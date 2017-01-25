@@ -28,9 +28,10 @@ const log = bunyan.createLogger({
 })
 
 app.get('/webapi/v2/one-click-id', (req, res)=> {
+    const reqId = shortid.generate()
 
     // create child logger with unqiue id, so subsecuent logs will have same req_id
-    req.log = log.child({req_id: shortid.generate()})
+    req.log = log.child({req_id: reqId})
     req.log.info({eventType: 'visit', req})
 
     const ipAddress = getClientIp(req)
@@ -53,7 +54,7 @@ app.get('/webapi/v2/one-click-id', (req, res)=> {
         } else {
             res.header('Access-Control-Allow-Origin', '*')
             res.header('Content-Type', 'text/javascript')
-            res.send(`window.sam_opcodes = ${JSON.stringify(oneclickid)}`)
+            res.send(`window.sam_opcodes = ${JSON.stringify({req_id: reqId, data: oneclickid})}`)
         }
     })
     .catch((err)=> {
