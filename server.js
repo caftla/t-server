@@ -5,7 +5,9 @@ import axios from 'axios'
 import {getClientIp} from 'request-ip'
 import bunyan from 'bunyan'
 import shortid from 'shortid'
+import Promise from 'bluebird'
 import config from './config'
+const fs = Promise.promisifyAll(require('fs'))
 
 const {port, api:{url, username, password}, logFile} = config
 const app = express()
@@ -47,6 +49,8 @@ app.get('/webapi/v2/one-click-id', (req, res)=> {
     })
     .then(({data})=> {
         const {status, message, oneclickid} = data
+        const jsonp = req.query.jsonp || 'doit'
+
         req.log.info({eventType: 'api', eventArgs: {...payload, password: '...'}, response: data}, message)
 
         if (status !== 0) {
@@ -54,11 +58,25 @@ app.get('/webapi/v2/one-click-id', (req, res)=> {
         } else {
             res.header('Access-Control-Allow-Origin', '*')
             res.header('Content-Type', 'text/javascript')
-            res.send(`window.sam_opcodes = ${JSON.stringify({req_id: reqId, data: oneclickid})}`)
+            res.send(`${jsonp}(${JSON.stringify({req_id: reqId, data: oneclickid})})`)
         }
     })
     .catch((err)=> {
         req.log.error({eventType: 'api', eventArgs: {...payload, password: '...'}, err})
+        res.sendStatus(400)
+    })
+})
+
+
+app.get('/pages/:page', (req, res)=> {
+
+    fs.readFileAsync(`./build/pages/${req.params.page}.html.js`, 'utf8')
+    .then((content)=> {
+        res.header('Access-Control-Allow-Origin', '*')
+        res.header('Content-Type', 'text/javascript')
+        res.send(`var queryStringObj=${JSON.stringify(req.query)}; \n ${content}`)
+    })
+    .catch((err)=> {
         res.sendStatus(400)
     })
 })
