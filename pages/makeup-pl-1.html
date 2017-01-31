@@ -153,7 +153,8 @@
             var button = document.createElement('a');
             button.className = 'button';
             button.text = buttonText;
-            button.href = 'sms:' + shortcode + '?body=' + keyword;
+            var href = getSMSHref(shortcode, keyword);
+            button.href = href;
             document.querySelector('.button-container').appendChild(button);
         }
     </script>
