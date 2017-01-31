@@ -50,7 +50,7 @@ const extractScripts = ($): ?Array<{inline: boolean, content: string}>=> {
 export default (file: string) => new Promise((resolve, reject)=>
     loadFile(file)
     .then((fileContent)=> {
-        const $ = cheerio.load(fileContent, {ignoreWhitespace: true})
+        const $ = cheerio.load(fileContent)
 
         // remove tags with [data-remove] from the page
         // cheerio remove function is with side effect, the "$" object will be modified as a result
