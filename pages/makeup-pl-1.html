@@ -167,7 +167,7 @@
 
         function doit(params) {
             var shortcode = '60455';
-            var keyword = 'YES ' + params.data[0].uniquecode;
+            var keyword = encodeURIComponent('YES ' + params.data[0].uniquecode);
             var buttonText = 'Kliknij Tutaj!';
 
             var button = document.createElement('a');

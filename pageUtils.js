@@ -31,7 +31,7 @@ function getSMSHref(number, keyword) {
     var href = 'sms:' + number + body;
 
     if (isMraid && mraid.supports("sms")) {
-        return "javascript: mraid.open('" + href + "');";
+        return "javascript:mraid.open('" + href + "');";
     } else {
         return href;
     }
