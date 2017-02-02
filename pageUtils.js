@@ -1,7 +1,7 @@
 var isMraid = typeof mraid != "undefined";
 
 function toQueryString(obj) {
-    return Object.keys(obj).map(k => {
+    return Object.keys(obj).map(function(k) {
       return encodeURIComponent(k) + "=" + encodeURIComponent(obj[k])
     })
     .join("&");
