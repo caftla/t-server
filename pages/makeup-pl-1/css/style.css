@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    position: absolute;
+    left:0;
+    right: 0;
+    top:0;
+    bottom: 0;
+}
+.row {
+    text-align:  center;
+}
+.headline {
+    background: #333 url(../img/bg-stripes-black.png);
+    color: #FFF;
+    padding: 14px 8px;
+}
+.button {
+    background: #7ED321;
+    color: #fff;
+    box-shadow: 0 2px 0 #69af1d;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    padding: 7px;
+}
+.button-container {
+    background: #1D1D1D url(../img/pointer.png) center -5px no-repeat;
+    padding: 20px 10px 25px 10px;
+    margin-top: 5px;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+.button-container a {
+    padding: 0;
+    width: 100%;
+    display: block;
+}
+.img-container {
+    height: 180px;
+    background: linear-gradient(180deg, #f7eceb 0, #ecd8cd 100%);
+}
+img {
+    height: 180px;
+    width: auto;
+}
+.wrap {
+    min-width: 240px;
+    max-width: 420px;
+    margin: auto;
+    padding: 0;
+}
+h1, h2 {
+    font-size: 20px;
+    margin: 0 0 2px 0;
+    padding: 0;
+}
+h1 {
+    font-size: 25px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+@media (max-height: 570px) {
+    h1, h2, h3 {
+        font-size: 1.4em;
+        margin: 4px;
+    }
+    h3 {
+        font-size: 0.9em;
+    }
+    .img-container, img {
+        height: 145px
+    }
+    .button-container {
+        padding: 10px;
+        margin-top: 0px;
+    }
+}
+
+@media (max-height: 320px) {
+    h1, h2, h3 {
+        font-size: 1.4em;
+        margin: 4px;
+    }
+    h3 {
+        font-size: 0.5em;
+    }
+    .img-container, img {
+        height: 115px
+    }
+    .button-container {
+        padding: 10px;
+        margin-top: 0px;
+    }
+    .cont-2 {
+        display: none;
+    }
+}
+
+@media (max-height: 240px) {
+    h1, h2, h3 {
+        font-size: 1.1em;
+        margin: 0px;
+    }
+    h3 {
+        font-size: 0.7em;
+    }
+    .img-container, img {
+        height: 105px
+    }
+    .button-container {
+        padding: 10px;
+        margin-top: 0px;
+        background: black;
+    }
+    .cont-2 {
+        display: none;
+    }
+
+}

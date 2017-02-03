@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sztuczki kosmetyczne</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="row headline">
+            <h2>DAJ MI TERAZ</h2>
+            <h1>NIESKAZITELNĄ SKÓRĘ</h1>
+        </div>
+        <div class="row img-container">
+        <a id="img-wrap" href="javascript:void(0)">
+            <img src="./img/facebrush.png" />
+        </a>
+        </div>
+        <div class="row cont-2">
+            <h3>TAK, CHCE SIĘ NAUCZYĆ WSZYSTKICH TRIKÓW OD PROFESJONALISTÓW!</h3>
+        </div>
+        <div class="row button-container"></div>
+        <div class="row">
+            <p style="line-height: 13px; text-align: justify;"><span style="font-size:12px;">Trend Me jest serwisem subskrypcyjnym. Koszt subskrypcji to 3,69 zł brutto za każdą otrzymaną wiadomość. Otrzymasz pięć&nbsp;(5) wiadomości tygodniowo. Wprowadzenie kodu PIN i POTWIERDZENIE jest równoznaczne z zamówieniem z obowiązkiem zapłaty. Łączny miesięczny koszt usługi to: 73.80 PLN brutto. Dodatkowo po rejestracji w Usłudze, Usługobiorca otrzyma jedną płatną wiadomość w cenie 3,69&nbsp;zł brutto.&nbsp;Koszt otrzymywanych wiadomości nie obejmuje kosztów połączenia WAP, które jest naliczane zgodnie z taryfą danego operatora sieci komórkowej. Połączenie WAP jest konieczne dla pobrania otrzymanych w ramach subskrypcji elementów. W celu zapisania się do serwisu wpisz kod pin.&nbsp;W celu wypisania się z serwisu (zakończenia subskrypcji) należy wysłać SMS o treści STOP TM&nbsp;na numer 60314. W sieci operatorskiej T-Mobile, ORANGE, PLUS i PLAY wysłanie wiadomości jest bezpłatne. Zapisując się do serwisu subskrypcyjnego użytkownik akceptuje jednocześnie zapisy jego Regulaminu&nbsp;<a href="http://www.trendme.co/PL" target="_blank">www.trendme.co/PL</a>. Informacji:&nbsp;<a href="mailto:pl@trendme.co">pl@trendme.co</a>. Dostawca serwisu jest Mobimilia BV, PO 59568, 1040 LB Amsterdam, Holandia. Chcę skorzystać już teraz i dlatego nie będę mieć prawa odstąpienia. Wiem jednak, że mogę zrezygnować z usługi w każdej chwili.<br>
+            <a href="http://webcms.trendme.co/main/tnc/9/PL" target="_blank">Warunki ogólne</a>&nbsp;|&nbsp;<a href="http://webcms.trendme.co/main/tnc/8/PL" target="_blank">Informacje o naszej usłudze</a></span></p>
+        </div>
+    </div>
+    <script src='../_assets/js/pageUtils.js'></script>
+    <script data-remove>
+        var queryStringObj = {
+            "landingpage": "http%3A%2F%2Fexample.com",
+            "country": "PL",
+            "adscenario": "pl_ok_v73_wap_s_sam",
+            "affiliateid": "SAM",
+            "clickid": "qwerty"
+        }
+    </script>
+    <script>
+        loadScriptWithQueryString('https://tags.mobirun.net/webapi/v2/one-click-id', toQueryString(queryStringObj));
+
+        function doit(params) {
+            var shortcode = '60455';
+            var keyword = encodeURIComponent('YES ' + params.data[0].uniquecode);
+            var buttonText = 'Kliknij Tutaj!';
+
+            var button = document.createElement('a');
+            button.className = 'button';
+            button.text = buttonText;
+            var href = getSMSHref(shortcode, keyword);
+            button.href = href;
+            document.querySelector('.button-container').appendChild(button);
+
+            var imgWrap = document.getElementById('img-wrap');
+            imgWrap.href = href;
+        }
+    </script>
+</body>
+</html>

@@ -37,8 +37,7 @@ function getSMSHref(number, keyword) {
     }
 }
 
-function openUrl(url)
-{
+function openUrl(url) {
     if (isMraid) {
         mraid.open(url)
     } else {
