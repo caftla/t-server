@@ -49,7 +49,7 @@
             button.className = 'button';
             button.text = buttonText;
             // var href = getSMSHref(shortcode, keyword);
-            var href = `javascript:openUrl('http://n.trendme.co/pl/beauty-tips-tm?offer=1&device=smart')`
+            var href = `javascript:createPixel('${queryStringObj.ctrTrackingUrl}');openUrl('http://n.trendme.co/pl/beauty-tips-tm?offer=1&device=smart')`
             button.href = href;
             document.querySelector('.button-container').appendChild(button);
 

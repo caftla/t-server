@@ -44,3 +44,9 @@ function openUrl(url) {
         window.location.href = url
     }
 }
+
+function createPixel(url) {
+    var pixel = document.createElement('img');
+    pixel.src = url;
+    document.body.appendChild(pixel);
+}
