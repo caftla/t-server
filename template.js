@@ -44,9 +44,22 @@ var html = window.sam_tag_content.html
 fixViewPort()
 
 var renderAd = function() {
-
     // add html
     viewport.innerHTML = html
+    
+    if (isMraid) {
+        mraid.useCustomClose(true);
+
+        var closeButton = document.getElementById('close');
+
+        if(!closeButton) {
+            console.log("close button not found")
+        } else {
+            closeButton.addEventListener('click', function() {
+                mraid.close()
+            })
+        }
+    }
 
     // add styles
     if (!!styles) {

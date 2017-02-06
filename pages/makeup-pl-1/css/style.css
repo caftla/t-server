@@ -8,6 +8,19 @@ body {
     top:0;
     bottom: 0;
 }
+#close {
+    top: 5px;
+	right: 5px;
+ 	width: 25px;
+ 	height: 25px;
+ 	z-index: 100;
+ 	color: white;
+ 	position: absolute;
+ 	background-size: cover;
+ 	background-repeat: no-repeat;
+  	background-position: 50% 50%;
+  	background-image: url(../../_assets/img/close.png);
+}
 .row {
     text-align:  center;
 }
@@ -51,6 +64,7 @@ img {
     max-width: 420px;
     margin: auto;
     padding: 0;
+    position: relative;
 }
 h1, h2 {
     font-size: 20px;
