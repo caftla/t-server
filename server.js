@@ -30,6 +30,9 @@ const log = bunyan.createLogger({
     }
 })
 
+const pageCache: Map<string, {buffer: Buffer, bufferLength: number}> = new Map()
+
+
 app.get('/webapi/v2/one-click-id', (req, res)=> {
     const reqId = req.query._req_id || shortid.generate()
 
@@ -90,15 +93,40 @@ app.get('/pages/:page', (req, res)=> {
     req.log = log.child({req_id: reqId})
     req.log.info({req, eventType: 'page-visit', eventArgs: {page: req.params.page}})
 
-    fs.readFileAsync(`./build/pages/${req.params.page}.html.js`, 'utf8')
-    .then((content)=> {
-        res.header('Access-Control-Allow-Origin', '*')
-        res.header('Content-Type', 'text/javascript')
-        res.send(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})}; \n ${content}`)
-    })
-    .catch((err)=> {
-        res.sendStatus(400)
-    })
+    const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};`)
+
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Content-Type', 'text/javascript')
+
+    if (!!pageCache.has(req.params.page)) {
+        const cacheValue = pageCache.get(req.params.page)
+        const bufferLength = cacheValue.bufferLength + queryStringObjBuffer.length
+
+        res.send(Buffer.concat([
+            queryStringObjBuffer,
+            cacheValue.buffer
+        ], bufferLength))
+    } else {
+        fs.readFileAsync(`./build/pages/${req.params.page}.html.js`)
+        .then((content)=> {
+
+            // store in the cache
+            pageCache.set(req.params.page, {
+                buffer: content,
+                bufferLength: content.length
+            })
+
+            const bufferLength = content.length + queryStringObjBuffer.length
+
+            res.send(Buffer.concat([
+                queryStringObjBuffer,
+                content
+            ], bufferLength))
+        })
+        .catch((err)=> {
+            res.sendStatus(400)
+        })
+    }
 })
 
 app.listen(port, ()=> {
