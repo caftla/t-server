@@ -11,6 +11,8 @@ const fs = Promise.promisifyAll(require('fs'))
 
 const {port, api:{url, username, password}, logFile} = config
 const app = express()
+app.disable('x-powered-by')
+
 const log = bunyan.createLogger({
     name: "tag-server",
     streams: [
