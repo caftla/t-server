@@ -6,7 +6,8 @@
   "scripts": {
     "build-pages": "babel-node build.js",
     "dev": "nodemon server.js --exec babel-node",
-    "init": "cp config.temp.js config.js"
+    "init": "cp config.temp.js config.js",
+    "deploy": "npm run build-pages && pm2 restart tag-server"
   },
   "author": "",
   "license": "ISC",
