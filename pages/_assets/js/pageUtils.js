@@ -48,5 +48,6 @@ function openUrl(url) {
 function createPixel(url) {
     var pixel = document.createElement('img');
     pixel.src = url;
+    pixel.setAttribute("style", "width: 1px; height: 1px; display:none");
     document.body.appendChild(pixel);
 }
