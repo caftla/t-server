@@ -52,7 +52,7 @@
             // var href = `javascript:createPixel('${queryStringObj.ctrTrackingUrl}');openUrl('http://n.trendme.co/pl/beauty-tips-tm?offer=1&device=smart')`
             button.href = href;
             button.addEventListener('click', function() {
-                createPixel('${queryStringObj.ctrTrackingUrl}');
+                createPixel(queryStringObj.ctrTrackingUrl);
             })
             document.querySelector('.button-container').appendChild(button);
 
