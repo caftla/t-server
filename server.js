@@ -98,8 +98,8 @@ app.get('/pages/:page', (req, res)=> {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Content-Type', 'text/javascript')
 
-    if (!!pageCache.has(req.params.page)) {
-        const cacheValue = pageCache.get(req.params.page)
+    const cacheValue = pageCache.get(req.params.page)
+    if (!!cacheValue) {
         const bufferLength = cacheValue.bufferLength + queryStringObjBuffer.length
 
         res.send(Buffer.concat([
@@ -127,6 +127,11 @@ app.get('/pages/:page', (req, res)=> {
             res.sendStatus(400)
         })
     }
+})
+
+app.get("/", (req, res) => {
+  res.header('Content-Type', 'text/plain')
+  res.end('-')
 })
 
 app.listen(port, ()=> {
