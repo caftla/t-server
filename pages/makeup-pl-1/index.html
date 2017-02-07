@@ -59,24 +59,40 @@
         loadScriptWithQueryString('https://tags.mobirun.net/webapi/v2/one-click-id', toQueryString(queryStringObj));
 
         function doit(params) {
+
+            gac('send', 'event', 'web-api', 'webapi-api-call');
+
             var shortcode = '60455';
             var keyword = encodeURIComponent('YES ' + params.data[0].uniquecode);
             var buttonText = 'Kliknij Tutaj!';
 
+            var clickHandler = function(e) {
+                var label = !!this.dataset ? this.dataset.name : 'unknown';
+                setTimeout(function() {
+                  gac('send', 'event', 'interaction', 'cta_click', label);
+                  if(!!queryStringObj.ctrTrackingUrl) {
+                    createPixel(queryStringObj.ctrTrackingUrl);
+                  }
+                }, 1);
+            }
+
             var button = document.createElement('a');
             button.className = 'button';
             button.text = buttonText;
+            if(!!button.dataset) {
+              button.dataset.name = 'button';
+            }
             var href = getSMSHref(shortcode, keyword);
             // var href = `javascript:createPixel('${queryStringObj.ctrTrackingUrl}');openUrl('http://n.trendme.co/pl/beauty-tips-tm?offer=1&device=smart')`
             button.href = href;
-            button.addEventListener('click', function() {
-                if(!!queryStringObj.ctrTrackingUrl) {
-                  setTimeout(function() { createPixel(queryStringObj.ctrTrackingUrl); }, 1);
-                }
-            })
+            button.addEventListener('click', clickHandler);
             document.querySelector('.button-container').appendChild(button);
 
             var imgWrap = document.getElementById('img-wrap');
+            if(!!imgWrap.dataset) {
+              imgWrap.dataset.name = 'img';
+            }
+            imgWrap.addEventListener('click', clickHandler, true);
             imgWrap.href = href;
         }
     </script>
