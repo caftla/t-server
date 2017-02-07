@@ -48,9 +48,12 @@
             var button = document.createElement('a');
             button.className = 'button';
             button.text = buttonText;
-            // var href = getSMSHref(shortcode, keyword);
-            var href = `javascript:createPixel('${queryStringObj.ctrTrackingUrl}');openUrl('http://n.trendme.co/pl/beauty-tips-tm?offer=1&device=smart')`
+            var href = getSMSHref(shortcode, keyword);
+            // var href = `javascript:createPixel('${queryStringObj.ctrTrackingUrl}');openUrl('http://n.trendme.co/pl/beauty-tips-tm?offer=1&device=smart')`
             button.href = href;
+            button.addEventListener('click', function() {
+                createPixel('${queryStringObj.ctrTrackingUrl}');
+            })
             document.querySelector('.button-container').appendChild(button);
 
             var imgWrap = document.getElementById('img-wrap');
