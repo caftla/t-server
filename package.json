@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-pages": "babel-node build.js",
+    "dev": "babel-node server.js",
+    "init": "cp config.temp.js config.js"
   },
   "author": "",
   "license": "ISC",
