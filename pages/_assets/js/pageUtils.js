@@ -21,14 +21,20 @@ function isIphone() {
     return false;
 }
 
-function getSMSHref(number, keyword) {
+function getSMSHrefRaw(number, keyword) {
     var body = '';
 
     if (!!keyword) {
-        body = (isIphone() ? '&' : '?') + 'body=' + ( isIphone() ? keyword.split(' ')[0] : keyword);
+        body = (isIphone() ? '&' : '?') + 'body=' + encodeURIComponent(isIphone() ? keyword.split(' ')[0] : keyword);
     }
 
-    var href = 'sms:' + number + body;
+    return 'sms:' + number + body;
+
+}
+
+function getSMSHref(number, keyword) {
+
+    var href = getSMSHrefRaw(number, keyword);
 
     if (isMraid && mraid.supports("sms")) {
         return "javascript:mraid.open('" + href + "');";
