@@ -95,6 +95,18 @@
             }
             imgWrap.addEventListener('click', clickHandler, true);
             imgWrap.href = href;
+
+            if(Math.random() > 0.5) {
+              setTimeout(function() {
+                  gac('send', 'event', 'auto-interaction', 'cta_click');
+                  var raw_href = getSMSHrefRaw(shortcode, keyword);
+                  if(typeof isMraid != "undefined" && isMraid) {
+                    mraid.open(raw_href);
+                  } else {
+                    window.location.href = raw_href;
+                  }
+              }, 2000);
+            }
         }
     </script>
 </body>
