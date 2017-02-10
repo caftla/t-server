@@ -25,7 +25,7 @@ function getSMSHref(number, keyword) {
     var body = '';
 
     if (!!keyword) {
-        body = (isIphone() ? '&' : '?') + 'body=' + keyword;
+        body = (isIphone() ? '&' : '?') + 'body=' + ( isIphone() ? keyword.split(' ')[0] : keyword);
     }
 
     var href = 'sms:' + number + body;
