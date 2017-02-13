@@ -38,7 +38,7 @@ fs.readdirAsync(pageDir)
 .then((pages)=> {
     R.compose(
         R.forEach(buildPage),
-        R.filter((it)=> !R.test(/^_/, it))
+        R.filter((it)=> !R.test(/^_|\./, it))
     )(pages)
 })
 .catch((err)=> console.log(err))
