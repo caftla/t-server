@@ -46,7 +46,7 @@ fixViewPort()
 var renderAd = function() {
     // add html
     viewport.innerHTML = html
-    
+
     if (isMraid) {
         mraid.useCustomClose(true);
 
@@ -72,7 +72,7 @@ var renderAd = function() {
                 var link = document.createElement('link');
                 link.type = 'text/css';
                 link.rel = 'stylesheet';
-                link.href = links[i].content;
+                link.href = styles[i].content;
                 document.head.appendChild(link);
             }
         }
