@@ -20,23 +20,19 @@ html, body {
  	width: 25px;
  	height: 25px;
  	z-index: 100;
- 	color: white;
+ 	color: #FFF;
  	position: absolute;
  	background-size: cover;
  	background-repeat: no-repeat;
   	background-position: 50% 50%;
-  	background-image: url(../../_assets/img/close.png);
+  	background-image: url("../../_assets/img/close.png");
 }
 
 .zombie-bg {
-	min-width: 320px;
+	position: relative;
 	background: url("../images/bg-500.jpg") center top no-repeat;
-	padding-top:100px;
+	padding-top:60px;
 	padding-bottom:20px;
-}
-
-.hook-block {
-	padding:0;
 }
 
 a {color: inherit; text-decoration: none;}
@@ -52,13 +48,6 @@ h2 {
 
 h3 {
 	font-size: 1.4em;
-}
-
-h3.last {
-
-	color:#fff;
-	font-weight: 500;
-	font-size: 1.6em;
 }
 
 
@@ -77,28 +66,9 @@ h6 {
 	font-size: 1.2em;
 }
 
-
-.toplegal p{
-	font-size: 12px;
-	letter-spacing: -1;
-	font-family: 'Arial', 'Helvetica', sans-serif;
-	float: left;
-	display: inline-block;
-	text-transform: uppercase;
-	width: auto !important;
-	color:#000;
-	position: absolute;
-	top:2px;
-	left:2px;
-	background:rgba(255,255,255,0.8);
-	border-radius: 2px;
-	padding:3px;
-}
-
 .wrap {
 	padding-left:10px;
 	padding-right:10px;
-	width:300px;
 	margin-left:auto;
 	margin-right:auto;
 }
@@ -233,44 +203,6 @@ button, .button {
 }
 
 
-/* !KEYWORD ANIMATION */
-
-.keyword {
-	font-size: 2em;
-	color: orange;
-	
-	-webkit-animation-duration: 1.5s;
-	animation-duration: 1.5s;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
-	-webkit-animation-iteration-count: infinite;
-	animation-iteration-count: infinite;
-	-webkit-animation-name: flash;
-	animation-name: flash;
-}
-
-
-@-webkit-keyframes flash {
-  0%, 50%, 100% {
-    opacity: 1;
-  }
-
-  25%, 75% {
-    opacity: .75;
-  }
-}
-
-@keyframes flash {
-  0%, 50%, 100% {
-    opacity: 1;
-  }
-
-  25%, 75% {
-    opacity: .75;
-  }
-}
-
-
 
 /* !RESPONSIVE EXTRAS */
 
@@ -371,7 +303,3 @@ button, .button {
 		width: inherit;
 	}
 }
-
-@media only screen and (max-height: 300px) {
-}
-
