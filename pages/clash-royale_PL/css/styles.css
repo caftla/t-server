@@ -1,0 +1,377 @@
+/* !Guide
+	Thin: 100
+	Light: 300
+	Normal: 400
+	Medium: 500
+	Bold: 700
+**/
+
+html, body {
+	color:#d8d8d8;
+	background:#4b9bc6;
+	font-size: 12px;
+	font-family: 'Roboto', 'Arial', sans-serif;
+	margin: 0;
+}
+
+#close {
+    top: 5px;
+	right: 5px;
+ 	width: 25px;
+ 	height: 25px;
+ 	z-index: 100;
+ 	color: white;
+ 	position: absolute;
+ 	background-size: cover;
+ 	background-repeat: no-repeat;
+  	background-position: 50% 50%;
+  	background-image: url(../../_assets/img/close.png);
+}
+
+.zombie-bg {
+	min-width: 320px;
+	background: url("../images/bg-500.jpg") center top no-repeat;
+	padding-top:100px;
+	padding-bottom:20px;
+}
+
+.hook-block {
+	padding:0;
+}
+
+a {color: inherit; text-decoration: none;}
+
+/* !Headings */
+h1 {
+	font-size: 1.8em;
+}
+
+h2 {
+	font-size: 1.6em;
+}
+
+h3 {
+	font-size: 1.4em;
+}
+
+h3.last {
+
+	color:#fff;
+	font-weight: 500;
+	font-size: 1.6em;
+}
+
+
+h4 {
+	font-size: 1.3em;
+}
+
+h5 {
+	font-size: 1.2em;}
+
+h6 {
+	font-size: 1em;
+}
+
+.bigger {
+	font-size: 1.2em;
+}
+
+
+.toplegal p{
+	font-size: 12px;
+	letter-spacing: -1;
+	font-family: 'Arial', 'Helvetica', sans-serif;
+	float: left;
+	display: inline-block;
+	text-transform: uppercase;
+	width: auto !important;
+	color:#000;
+	position: absolute;
+	top:2px;
+	left:2px;
+	background:rgba(255,255,255,0.8);
+	border-radius: 2px;
+	padding:3px;
+}
+
+.wrap {
+	padding-left:10px;
+	padding-right:10px;
+	width:300px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+footer.wrap {
+	padding:0 20px 20px 20px;
+	width:auto;
+	max-width: 960px;
+}
+
+.headline {
+	width:80%;
+	max-width:457px;
+	margin-top:-80px;
+	margin-bottom:10px;
+}
+
+
+.more-games {
+	margin-top:20px;
+	text-transform: uppercase;
+}
+
+.more-games img{
+	width:90%;
+	margin-top:10px;
+}
+
+main {
+	background:rgba(0,0,0,0.7);
+	border:1px solid #000;
+	color:#fff;
+	border-radius: 10px;
+	padding:20px;
+	text-align: center;
+
+}
+
+footer {
+	/** insert rules **/
+}
+
+.hidden {
+	display: none;
+}
+
+.gif {
+	width: 100%;
+	max-width: 320px;
+}
+
+/* !INPUTS */
+
+button, .button {
+	display: inline-block;
+	height:47px;
+	font-weight: 500;
+	border:0;
+	border-radius: 5px;
+	outline:none;
+	font-family: 'Roboto', sans-serif;
+	margin-top: 10px;
+	padding:0 10px;
+	margin-bottom:13px; /* to offset the shadow **/
+
+	width:90%;
+	font-size: 1.5em;
+	margin-top:10px;
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7fc7ff+0,0086ed+100 */
+	background: #7fc7ff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #7fc7ff 0%, #0086ed 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #7fc7ff 0%,#0086ed 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #7fc7ff 0%,#0086ed 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7fc7ff', endColorstr='#0086ed',GradientType=0 ); /* IE6-9 */
+
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+	color:#fff;
+	box-shadow: 0 3px 0 #0064b0;
+	line-height: 47px;
+	cursor: pointer;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  
+   -webkit-transform-origin: center center;
+  transform-origin: center center;
+  
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+}
+
+/* !PULSATING BUTTON */
+
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+/* !KEYWORD ANIMATION */
+
+.keyword {
+	font-size: 2em;
+	color: orange;
+	
+	-webkit-animation-duration: 1.5s;
+	animation-duration: 1.5s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-webkit-animation-name: flash;
+	animation-name: flash;
+}
+
+
+@-webkit-keyframes flash {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: .75;
+  }
+}
+
+@keyframes flash {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: .75;
+  }
+}
+
+
+
+/* !RESPONSIVE EXTRAS */
+
+@media only screen and (min-width: 500px) {
+	
+	.zombie-bg {
+		background: url("../images/bg-760.jpg") center top no-repeat;
+		
+		padding-top:100px;
+	}
+	
+	.wrap {
+		width: 350px;
+	}
+	
+	.headline {
+		width:100%;
+		max-width:457px;
+		margin-top:-110px;
+	}
+
+	
+	.congrats {
+		margin-top:-45px;
+	}
+}
+
+
+
+@media only screen and (min-width: 761px) {
+	
+	.zombie-bg {
+		background: url("../images/bg-960.jpg") center top no-repeat;
+		padding-top:140px;
+	}
+	
+	.wrap {
+		width: 450px;
+	}
+	
+	.headline {
+		margin-top:-140px;
+
+	}
+	
+	.toplegal p{
+		font-size: 14px;
+	}
+	
+	.toplegal .badge {
+		height:70px;
+	}
+	
+	.congrats {
+		margin-top:-50px;
+	}
+	
+}
+
+@media only screen and (min-width: 961px) {
+	
+	.zombie-bg {
+		background: url("../images/bg-1280.jpg") center bottom no-repeat;
+		padding-top:140px;
+		
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		
+		min-height: 400px;
+		padding-bottom:0;
+		margin-bottom:20px;
+	}
+	
+	.wrap {
+		min-width: 450px;
+		width: 30%;
+	}
+	
+	.headline {
+		margin-top:-140px;
+
+	}
+	
+}
+
+@media only screen and (max-width: 320px) and (max-height: 300px){
+	.zombie-bg {
+		padding-top: 60px;
+	}
+	h1 {
+		font-size: 1.4em;
+		margin: 0 0 .1em;
+	}
+	.gif {
+		max-height: 100px;
+		width: inherit;
+	}
+}
+
+@media only screen and (max-height: 300px) {
+}
+
