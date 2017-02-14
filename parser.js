@@ -37,7 +37,7 @@ const extractStyles = ($, dir): ?Array<{inline: boolean, content: string}>=> {
 
 const transformCss = (cssString, dir)=> {
     return cssString.replace(/url\((.*)\)/g, (_, s)=> {
-        const dataUri = Datauri.sync(`${dir}/${s}`)
+        const dataUri = Datauri.sync(`${dir}/${s.replace(/\"/g, '').replace(/\'/g, '')}`)
         return `url(${dataUri})`
     })
 }
