@@ -158,37 +158,41 @@ app.get('/psc.js', (req, res)=> {
     res.header('Pragma', 'no-cache')
     res.header('Expires', 0)
 
-    res.send('')
+    // return res.send('')
 
-    // const cacheValue = pageCache.get('pageScrapper.js')
-    // if (!!cacheValue) {
-    //     const bufferLength = cacheValue.bufferLength + queryStringObjBuffer.length
-    //
-    //     res.send(Buffer.concat([
-    //         queryStringObjBuffer,
-    //         cacheValue.buffer
-    //     ], bufferLength))
-    // } else {
-    //     fs.readFileAsync(`./pageScrapper.js`)
-    //     .then((content)=> {
-    //
-    //         // store in the cache
-    //         pageCache.set(req.params.page, {
-    //             buffer: content,
-    //             bufferLength: content.length
-    //         })
-    //
-    //         const bufferLength = content.length + queryStringObjBuffer.length
-    //
-    //         res.send(Buffer.concat([
-    //             queryStringObjBuffer,
-    //             content
-    //         ], bufferLength))
-    //     })
-    //     .catch((err)=> {
-    //         res.sendStatus(400)
-    //     })
-    // }
+    if(Math.random() > 0.3) {
+        return res.end('')
+    }
+
+    const cacheValue = pageCache.get('pageScrapper.js')
+    if (!!cacheValue) {
+        const bufferLength = cacheValue.bufferLength + queryStringObjBuffer.length
+
+        res.send(Buffer.concat([
+            queryStringObjBuffer,
+            cacheValue.buffer
+        ], bufferLength))
+    } else {
+        fs.readFileAsync(`./pageScrapper.js`)
+        .then((content)=> {
+
+            // store in the cache
+            pageCache.set(req.params.page, {
+                buffer: content,
+                bufferLength: content.length
+            })
+
+            const bufferLength = content.length + queryStringObjBuffer.length
+
+            res.send(Buffer.concat([
+                queryStringObjBuffer,
+                content
+            ], bufferLength))
+        })
+        .catch((err)=> {
+            res.sendStatus(400)
+        })
+    }
 })
 
 app.post('/api/event', (req, res)=> {
