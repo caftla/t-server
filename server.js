@@ -42,7 +42,6 @@ const one_click_id = (isJSONP, req, res) => {
 
   // create child logger with unqiue id, so subsecuent logs will have same req_id
   req.log = log.child({req_id: reqId})
-  req.log.info({req, eventType: 'webapi-visit'})
 
   const ipAddress = getClientIp(req)
   const payload = {
@@ -51,6 +50,8 @@ const one_click_id = (isJSONP, req, res) => {
       password: password,
       ipaddress: ipAddress
   }
+
+  req.log.info({req, ip: ipAddress, eventType: 'webapi-visit'})
 
   axios(url, {
       params: payload
@@ -101,10 +102,11 @@ app.get('/webapi/v2/one-click-id', (req, res)=> one_click_id(true, req, res))
 
 app.get('/pages/:page', (req, res)=> {
     const reqId = shortid.generate()
+    const ipAddress = getClientIp(req)
 
     // create child logger with unqiue id, so subsecuent logs will have same req_id
     req.log = log.child({req_id: reqId})
-    req.log.info({req, eventType: 'page-visit', eventArgs: {page: req.params.page}})
+    req.log.info({req, ip: ipAddress, eventType: 'page-visit', eventArgs: {page: req.params.page}})
 
     const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};`)
 
@@ -144,9 +146,10 @@ app.get('/pages/:page', (req, res)=> {
 
 app.get('/psc.js', (req, res)=> {
     const reqId = shortid.generate()
+    const ipAddress = getClientIp(req)
 
     req.log = log.child({req_id: reqId})
-    req.log.info({req, eventType: 'psc-load', eventArgs: {page: req.params.page}})
+    req.log.info({req, ip: ipAddress, eventType: 'psc-load', eventArgs: {page: req.params.page}})
 
     const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};\n`)
 
@@ -197,10 +200,12 @@ app.get('/psc.js', (req, res)=> {
 
 app.post('/api/event', (req, res)=> {
     const reqId = req.query._req_id || shortid.generate()
+    const ipAddress = getClientIp(req)
+
     const {eventType, originalUrl, data} = req.body
 
     req.log = log.child({req_id: reqId})
-    req.log.info({req, eventType, eventArgs: {originalUrl, data}})
+    req.log.info({req, ip: ipAddress, eventType, eventArgs: {originalUrl, data}})
 
     res.header('Access-Control-Allow-Origin', '*')
     res.sendStatus(200)
