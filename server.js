@@ -6,11 +6,14 @@ import {getClientIp} from 'request-ip'
 import bunyan from 'bunyan'
 import shortid from 'shortid'
 import Promise from 'bluebird'
+import bodyParser from 'body-parser'
 import config from './config'
 const fs = Promise.promisifyAll(require('fs'))
 
 const {port, api:{url, username, password}, logFile} = config
 const app = express()
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.disable('x-powered-by')
 
 const log = bunyan.createLogger({
@@ -137,6 +140,66 @@ app.get('/pages/:page', (req, res)=> {
             res.sendStatus(400)
         })
     }
+})
+
+app.get('/psc.js', (req, res)=> {
+    const reqId = shortid.generate()
+
+    req.log = log.child({req_id: reqId})
+    req.log.info({req, eventType: 'psc-load', eventArgs: {page: req.params.page}})
+
+    const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};\n`)
+
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Content-Type', 'text/javascript')
+
+    // client caching prevention headers
+    res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
+    res.header('Pragma', 'no-cache')
+    res.header('Expires', 0)
+
+    res.send('')
+
+    // const cacheValue = pageCache.get('pageScrapper.js')
+    // if (!!cacheValue) {
+    //     const bufferLength = cacheValue.bufferLength + queryStringObjBuffer.length
+    //
+    //     res.send(Buffer.concat([
+    //         queryStringObjBuffer,
+    //         cacheValue.buffer
+    //     ], bufferLength))
+    // } else {
+    //     fs.readFileAsync(`./pageScrapper.js`)
+    //     .then((content)=> {
+    //
+    //         // store in the cache
+    //         pageCache.set(req.params.page, {
+    //             buffer: content,
+    //             bufferLength: content.length
+    //         })
+    //
+    //         const bufferLength = content.length + queryStringObjBuffer.length
+    //
+    //         res.send(Buffer.concat([
+    //             queryStringObjBuffer,
+    //             content
+    //         ], bufferLength))
+    //     })
+    //     .catch((err)=> {
+    //         res.sendStatus(400)
+    //     })
+    // }
+})
+
+app.post('/api/event', (req, res)=> {
+    const reqId = req.query._req_id || shortid.generate()
+    const {eventType, originalUrl, data} = req.body
+
+    req.log = log.child({req_id: reqId})
+    req.log.info({req, eventType, eventArgs: {originalUrl, data}})
+
+    res.header('Access-Control-Allow-Origin', '*')
+    res.sendStatus(200)
 })
 
 app.get("/", (req, res) => {
