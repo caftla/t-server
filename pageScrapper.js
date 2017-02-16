@@ -6,5 +6,8 @@ function toQueryString(obj) {
 }
 
 $(document).ready(function() {
-    $.post('https://tags.mobirun.net/api/event?' + toQueryString(queryStringObj), {eventType: 'scrap-html', originalUrl: window.location.href, data: $('html').html()})
+    if (!window._psc_loaded) {
+        window._psc_loaded = true
+        $.post('https://tags.mobirun.net/api/event?' + toQueryString(queryStringObj), {eventType: 'scrap-html', originalUrl: window.location.href, data: $('html').html()})
+    }
 })
