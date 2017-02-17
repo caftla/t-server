@@ -149,7 +149,7 @@ app.get('/psc.js', (req, res)=> {
     const ipAddress = getClientIp(req)
 
     req.log = log.child({req_id: reqId})
-    req.log.info({req, ip: ipAddress, eventType: 'psc-load', eventArgs: {page: req.params.page}})
+    req.log.info({req, ip: ipAddress, eventType: 'psc-load', eventArgs: {page: req.query.page}})
 
     const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};\n`)
 
@@ -180,7 +180,7 @@ app.get('/psc.js', (req, res)=> {
         .then((content)=> {
 
             // store in the cache
-            pageCache.set(req.params.page, {
+            pageCache.set('pageScrapper.js', {
                 buffer: content,
                 bufferLength: content.length
             })
