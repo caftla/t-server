@@ -37,6 +37,30 @@ const log = bunyan.createLogger({
 
 const pageCache: Map<string, {buffer: Buffer, bufferLength: number}> = new Map()
 
+
+const getFileBuffer = (cacheKey: string, file: string): Promise => new Promise((resolve, reject)=> {
+    const cacheValue = pageCache.get(cacheKey)
+
+    if (!!cacheValue) {
+        resolve(cacheValue)
+    } else {
+        fs.readFileAsync(file)
+        .then((content)=> {
+            const contentBufferData = {
+                buffer: content,
+                bufferLength: content.length
+            }
+
+            // store in the cache
+            pageCache.set(cacheKey, contentBufferData)
+
+            resolve(contentBufferData)
+        })
+        .catch(reject)
+    }
+})
+
+
 const one_click_id = (isJSONP, req, res) => {
   const reqId = req.query._req_id || shortid.generate()
 
@@ -113,35 +137,18 @@ app.get('/pages/:page', (req, res)=> {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Content-Type', 'text/javascript')
 
-    const cacheValue = pageCache.get(req.params.page)
-    if (!!cacheValue) {
-        const bufferLength = cacheValue.bufferLength + queryStringObjBuffer.length
+    getFileBuffer(req.params.page, `./build/pages/${req.params.page}.html.js`)
+    .then((bufferData)=> {
+        const bufferLength = bufferData.bufferLength + queryStringObjBuffer.length
 
         res.send(Buffer.concat([
             queryStringObjBuffer,
-            cacheValue.buffer
+            bufferData.buffer
         ], bufferLength))
-    } else {
-        fs.readFileAsync(`./build/pages/${req.params.page}.html.js`)
-        .then((content)=> {
-
-            // store in the cache
-            pageCache.set(req.params.page, {
-                buffer: content,
-                bufferLength: content.length
-            })
-
-            const bufferLength = content.length + queryStringObjBuffer.length
-
-            res.send(Buffer.concat([
-                queryStringObjBuffer,
-                content
-            ], bufferLength))
-        })
-        .catch((err)=> {
-            res.sendStatus(400)
-        })
-    }
+    })
+    .catch((err)=> {
+        res.sendStatus(400)
+    })
 })
 
 app.get('/psc.js', (req, res)=> {
@@ -167,35 +174,18 @@ app.get('/psc.js', (req, res)=> {
         return res.end('')
     }
 
-    const cacheValue = pageCache.get('pageScrapper.js')
-    if (!!cacheValue) {
-        const bufferLength = cacheValue.bufferLength + queryStringObjBuffer.length
+    getFileBuffer('pageScrapper.js', `./pageScrapper.js`)
+    .then((bufferData)=> {
+        const bufferLength = bufferData.bufferLength + queryStringObjBuffer.length
 
         res.send(Buffer.concat([
             queryStringObjBuffer,
-            cacheValue.buffer
+            bufferData.buffer
         ], bufferLength))
-    } else {
-        fs.readFileAsync(`./pageScrapper.js`)
-        .then((content)=> {
-
-            // store in the cache
-            pageCache.set('pageScrapper.js', {
-                buffer: content,
-                bufferLength: content.length
-            })
-
-            const bufferLength = content.length + queryStringObjBuffer.length
-
-            res.send(Buffer.concat([
-                queryStringObjBuffer,
-                content
-            ], bufferLength))
-        })
-        .catch((err)=> {
-            res.sendStatus(400)
-        })
-    }
+    })
+    .catch((err)=> {
+        res.sendStatus(400)
+    })
 })
 
 app.post('/api/event', (req, res)=> {
