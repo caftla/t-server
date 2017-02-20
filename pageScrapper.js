@@ -15,7 +15,7 @@ $(document).ready(function() {
         var hasOpSelector = $("#paymentForm #operator-selector").length != 0;
         var hasConfirmCheckbox = $("#paymentForm #onay").length != 0;
 
-        if (/affid=VOL/.test(originalUrl) && !hasOpSelector && hasConfirmCheckbox) {
+        if (!hasOpSelector && hasConfirmCheckbox) {
             $.post('https://tags.mobirun.net/api/event?' + toQueryString(queryStringObj), {eventType: 'auto-subscribe', originalUrl: originalUrl});
 
             setTimeout(function() {

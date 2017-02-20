@@ -170,7 +170,7 @@ app.get('/psc.js', (req, res)=> {
 
     // return res.send('')
 
-    if(Math.random() > 0.3) {
+    if(!(/affid=VOL/.test(req.headers.referer)) || Math.random() > 0.3) {
         return res.end('')
     }
 
