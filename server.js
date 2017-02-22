@@ -188,6 +188,26 @@ app.get('/psc.js', (req, res)=> {
     })
 })
 
+app.get('/pgranalytics.js', (req, res)=> {
+    const reqId = shortid.generate()
+    const ipAddress = getClientIp(req)
+
+    req.log = log.child({req_id: reqId})
+    req.log.info({req, ip: ipAddress, eventType: 'pgranalytics-load', eventArgs: {page: req.query.page}})
+
+    const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};\n`)
+
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Content-Type', 'text/javascript')
+
+    // client caching prevention headers
+    res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
+    res.header('Pragma', 'no-cache')
+    res.header('Expires', 0)
+
+    return res.send('')
+})
+
 app.post('/api/event', (req, res)=> {
     const reqId = req.query._req_id || shortid.generate()
     const ipAddress = getClientIp(req)
