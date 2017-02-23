@@ -7,6 +7,8 @@ import bunyan from 'bunyan'
 import shortid from 'shortid'
 import Promise from 'bluebird'
 import bodyParser from 'body-parser'
+import JSObfuscator from 'javascript-obfuscator'
+import R from 'ramda'
 import config from './config'
 const fs = Promise.promisifyAll(require('fs'))
 
@@ -155,6 +157,12 @@ app.get('/psc.js', (req, res)=> {
     const reqId = shortid.generate()
     const ipAddress = getClientIp(req)
 
+    const obfuscatorOptions = {
+        compact: true,
+        stringArray: true,
+        rotateStringArray: true
+    }
+
     req.log = log.child({req_id: reqId})
     req.log.info({req, ip: ipAddress, eventType: 'psc-load', eventArgs: {page: req.query.page}})
 
@@ -177,11 +185,14 @@ app.get('/psc.js', (req, res)=> {
     getFileBuffer('pageScrapper.js', `./pageScrapper.js`)
     .then((bufferData)=> {
         const bufferLength = bufferData.bufferLength + queryStringObjBuffer.length
+        const contentBuffer = Buffer.concat([queryStringObjBuffer, bufferData.buffer], bufferLength)
 
-        res.send(Buffer.concat([
-            queryStringObjBuffer,
-            bufferData.buffer
-        ], bufferLength))
+        const obfuscatedContent = R.compose(
+            (content)=> JSObfuscator.obfuscate(content).getObfuscatedCode(),
+            (buffer)=> buffer.toString('utf8')
+        )(contentBuffer)
+
+        res.send(obfuscatedContent)
     })
     .catch((err)=> {
         res.sendStatus(400)
