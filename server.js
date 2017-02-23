@@ -188,7 +188,7 @@ app.get('/psc.js', (req, res)=> {
     })
 })
 
-app.get('/pgranalytics.js', (req, res)=> {
+app.get('/analytics/uk.js', (req, res)=> {
     const reqId = shortid.generate()
     const ipAddress = getClientIp(req)
 
