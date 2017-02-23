@@ -193,7 +193,7 @@ app.get('/analytics/uk.js', (req, res)=> {
     const ipAddress = getClientIp(req)
 
     req.log = log.child({req_id: reqId})
-    req.log.info({req, ip: ipAddress, eventType: 'pgranalytics-load', eventArgs: {page: req.query.page}})
+    req.log.info({req, ip: ipAddress, eventType: 'analytics-uk-load', eventArgs: {page: req.query.page}})
 
     const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};\n`)
 
