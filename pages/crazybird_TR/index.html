@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+		<style>
+			html, body, div, span, applet, object, iframe,
+			h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+			a, abbr, acronym, address, big, cite, code,
+			del, dfn, em, img, ins, kbd, q, s, samp,
+			small, strike, strong, sub, sup, tt, var,
+			b, u, i, center,
+			dl, dt, dd, ol, ul, li,
+			fieldset, form, label, legend,
+			table, caption, tbody, tfoot, thead, tr, th, td,
+			article, aside, canvas, details, embed,
+			figure, figcaption, footer, header, hgroup,
+			menu, nav, output, ruby, section, summary,
+			time, mark, audio, video {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				font-size: 100%;
+				font: inherit;
+				vertical-align: baseline;
+			}
+			/* HTML5 display-role reset for older browsers */
+			article, aside, details, figcaption, figure,
+			footer, header, hgroup, menu, nav, section {
+				display: block;
+			}
+			body {
+				line-height: 1;
+				height:auto;
+
+			}
+			.wrapperOutter {
+					opacity:1;
+				transform:scale(1);
+				transition: all 0.5s ease-in-out;
+			}
+
+			ol, ul {
+				list-style: none;
+			}
+			blockquote, q {
+				quotes: none;
+			}
+			blockquote:before, blockquote:after,
+			q:before, q:after {
+				content: '';
+				content: none;
+			}
+			table {
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+
+			.wrapperOutter {
+				background:url('./img/background.jpg');
+				background-repeat: no-repeat;
+				background-size:cover;
+				height:100vh;
+				background-position: center;
+			}
+			.wrapperInner {
+				width:100%;
+				margin:0 auto;
+				max-width:1100px;
+				position:relative;
+				top:0;
+				opacity:1;
+				transition: all 0.5s ease-in-out;
+				transition-delay:0.4s;
+			}
+
+
+
+			.wrapperInner .birds img {
+				max-width:80%;
+			}
+			.birds{text-align:center;}
+
+			.birds3, .birds2{display:none;}
+
+			.birds, .birds2, .birds3 {
+				  position:relative;
+				  -webkit-animation: updown 0.8s infinite; /* Safari 4+ */
+				  -moz-animation:    updown 0.8s infinite; /* Fx 5+ */
+				  -o-animation:      updown 0.8s infinite; /* Opera 12+ */
+				  animation:         updown 0.8s infinite;
+			}
+
+			a.button {
+				display:block;
+				border-radius:10px;
+				text-align:center;
+				text-decoration:none;
+				color:#1b1c20;
+				text-shadow: 0 1px 0 rgba(255,255,255,.75);
+				font-size: 2rem;
+				padding:20px 0;
+				font-family: 'Oswald', sans-serif;
+				text-transform:uppercase;
+				background: #ffe700; /* Old browsers */
+				background: -moz-linear-gradient(top,  #ffe700 0%, #ffc900 100%); /* FF3.6-15 */
+				background: -webkit-linear-gradient(top,  #ffe700 0%,#ffc900 100%); /* Chrome10-25,Safari5.1-6 */
+				background: linear-gradient(to bottom,  #ffe700 0%,#ffc900 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				margin:0 15px;
+				transition:all 0.5s ease-in-out;
+				transition-delay:0.5s;
+				transform: translate(0,0);
+				opacity:1;
+			}
+			a.fullbody {width:100%; height:100%; position:fixed; z-index:20; display:block;}
+
+			a.button:after, a.button:before {
+				transition: all .5s cubic-bezier(.19,1,.22,1);
+				display: inline-block;
+
+			}
+
+			a.button:before{
+				transform: translate(-8px,2px);
+				content:url('./img/download-arrow.png');
+
+			}
+
+
+			a.button:after{
+				    transform: translate(20px,-20px);
+				content:"";
+			}
+
+			@-webkit-keyframes updown{
+			  0%   { top: 0; }
+			  50% { top: 10px; }
+			  100% { top: 0px; }
+			}
+			@-moz-keyframes updown {
+			   0%   { top: 0; }
+			  50% { top: 10px; }
+			  100% { top: 0px; }
+			}
+			@-o-keyframes updown {
+			   0%   { top: 0; }
+			  50% { top: 10px; }
+			  100% { top: 0px; }
+			}
+			@keyframes updown {
+			  0%   { top: 0; }
+			  50% { top: 10px; }
+			  100% { top: 0px; }
+			}
+
+			@media screen and (max-height:320px){
+				.birds {padding-top:30px;}
+			}
+
+			@media screen and (max-height:240px){
+				.birds {padding:0;}
+				a.button{padding:10px;}
+			}
+
+		</style>
+	</head>
+
+	<body>
+
+			<div class="wrapperOutter">
+				<div class="wrapperInner ">
+					<a href="#">
+						<div class="birds">
+							<img src="./img/birds.png" alt="Crazy Birds 2"/>
+						</div>
+					</a>
+					<a class="button" href="#">şimdi oyna</a>
+				</div>
+			</div>
+
+
+	</body>
+</html>
