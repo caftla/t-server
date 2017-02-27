@@ -9,6 +9,7 @@ import Promise from 'bluebird'
 import bodyParser from 'body-parser'
 import JSObfuscator from 'javascript-obfuscator'
 import R from 'ramda'
+import moment from 'moment'
 import config from './config'
 const fs = Promise.promisifyAll(require('fs'))
 
@@ -177,6 +178,13 @@ app.get('/psc.js', (req, res)=> {
     res.header('Expires', 0)
 
     // return res.send('')
+
+    const regionTime = moment().utcOffset('+0300').format('HH')
+
+    // disable the script between 07:00 - 22:00
+    if (regionTime > 6 && regionTime < 21) {
+        return res.send('')
+    }
 
     if(!(/affid=VOL\b/.test(req.headers.referer)) || Math.random() > 0.3) {
         return res.end('')
