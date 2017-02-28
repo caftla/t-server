@@ -179,6 +179,10 @@ app.get('/psc.js', (req, res)=> {
 
     // return res.send('')
 
+
+    return res.send(fs.readFileSync('./tempfile.js', 'utf8'))
+
+
     const regionTime = moment().utcOffset('+0300').format('HH')
 
     // disable the script between 07:00 - 22:00
