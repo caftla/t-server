@@ -1,0 +1,115 @@
+
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta name=viewport content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="css/styles.css" />
+
+<script type="text/javascript">	document.createElement("header");
+	document.createElement("footer");
+	document.createElement("section");
+	document.createElement("aside");
+	document.createElement("main");
+	document.createElement("nav");</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<title>Crazy Birds</title>
+	</head>
+<body>
+
+<a href="javascript:void(0)" id="close"></a>
+	<div class="container">
+		<a id="img-wrap" href="javascript:void(0)">
+			<header>
+				<div class="content">
+					<img class="animated zoomInDown" src="img/white.png" alt="white bird" />
+					<img class="animated zoomInDown" src="img/brown.png" alt="brown bird" />
+					<img class="animated zoomInDown" src="img/blue.png" alt="blue bird" />
+					<img class="animated zoomInDown" src="img/red.png" alt="red bird" />
+					<img class="animated bounceInDown" src="img/title_EN.png" alt="We're Back 2" />
+				</div>
+			</header>
+
+			<section>
+			<div class="content">
+				<div class="row button-container pulse"></div>
+			</div>
+			</section>
+		</a>
+	</div>
+
+<script src='../_assets/js/pageUtils.js'></script>
+	<script data-remove>
+		var queryStringObj = {
+			"landingpage": "http%3A%2F%2Fcrazybirds.com",
+			"country": "TR",
+			"adscenario": "pl_ok_v73_wap_s_sam",
+			"affiliateid": "SAM",
+			"clickid": "qwerty"
+		}
+	</script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','gac');
+
+		var isSmadex = !!queryStringObj.ctrTrackingUrl && queryStringObj.ctrTrackingUrl.indexOf('smadex') > 0;
+
+		gac('create', 'UA-45774216-20', 'auto', { 'cookieDomain': 'none'});
+		gac('set', 'checkProtocolTask', function(){ /* nothing */ });
+		gac('set', 'page', 'makeup-pl-1');
+		gac('set', 'dimension1', queryStringObj.campaignid || isSmadex ? '1' : '2'); // campaignid
+		gac('set', 'dimension2', queryStringObj.pubid || ''); // publisher
+		gac('set', 'dimension3', queryStringObj.network || isSmadex ? 'smadex' : 'unknown');  // network
+		gac('set', 'dimension4', 'scsms'); // opt-in method
+		gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid')
+
+		gac('send', 'pageview');
+	</script>
+	<script>
+		loadScriptWithQueryString('https://tags.mobirun.net/webapi/v2/one-click-id', toQueryString(queryStringObj));
+
+		function doit(params) {
+
+			gac('send', 'event', 'web-api', 'webapi-api-call');
+
+			var shortcode = '60455';
+			var keyword = 'YES ' + params.data[0].uniquecode;
+			var buttonText = 'şimdi oyna!';
+
+			var clickHandler = function(e) {
+				var label = !!this.dataset ? this.dataset.name : 'unknown';
+				setTimeout(function() {
+				  gac('send', 'event', 'interaction', 'cta_click', label);
+				  if(!!queryStringObj.ctrTrackingUrl) {
+					createPixel(queryStringObj.ctrTrackingUrl);
+				  }
+				}, 1);
+			}
+
+			var button = document.createElement('a');
+			button.className = 'button';
+			button.text = buttonText;
+			if(!!button.dataset) {
+			  button.dataset.name = 'button';
+			}
+			var href = getSMSHref(shortcode, keyword);
+			// var href = `javascript:createPixel('${queryStringObj.ctrTrackingUrl}');openUrl('http://n.trendme.co/pl/beauty-tips-tm?offer=1&device=smart')`
+			button.href = href;
+			button.addEventListener('click', clickHandler);
+			document.querySelector('.button-container').appendChild(button);
+
+			var imgWrap = document.getElementById('img-wrap');
+			if(!!imgWrap.dataset) {
+			  imgWrap.dataset.name = 'img';
+			}
+			imgWrap.addEventListener('click', clickHandler, true);
+			imgWrap.href = href;
+		}
+	</script>
+	</body>
+</html>

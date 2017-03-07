@@ -6,11 +6,17 @@ import {getClientIp} from 'request-ip'
 import bunyan from 'bunyan'
 import shortid from 'shortid'
 import Promise from 'bluebird'
+import bodyParser from 'body-parser'
+import JSObfuscator from 'javascript-obfuscator'
+import R from 'ramda'
+import moment from 'moment'
 import config from './config'
 const fs = Promise.promisifyAll(require('fs'))
 
 const {port, api:{url, username, password}, logFile} = config
 const app = express()
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.disable('x-powered-by')
 
 const log = bunyan.createLogger({
@@ -34,12 +40,35 @@ const log = bunyan.createLogger({
 
 const pageCache: Map<string, {buffer: Buffer, bufferLength: number}> = new Map()
 
+
+const getFileBuffer = (cacheKey: string, file: string): Promise => new Promise((resolve, reject)=> {
+    const cacheValue = pageCache.get(cacheKey)
+
+    if (!!cacheValue) {
+        resolve(cacheValue)
+    } else {
+        fs.readFileAsync(file)
+        .then((content)=> {
+            const contentBufferData = {
+                buffer: content,
+                bufferLength: content.length
+            }
+
+            // store in the cache
+            pageCache.set(cacheKey, contentBufferData)
+
+            resolve(contentBufferData)
+        })
+        .catch(reject)
+    }
+})
+
+
 const one_click_id = (isJSONP, req, res) => {
   const reqId = req.query._req_id || shortid.generate()
 
   // create child logger with unqiue id, so subsecuent logs will have same req_id
   req.log = log.child({req_id: reqId})
-  req.log.info({req, eventType: 'webapi-visit'})
 
   const ipAddress = getClientIp(req)
   const payload = {
@@ -48,6 +77,8 @@ const one_click_id = (isJSONP, req, res) => {
       password: password,
       ipaddress: ipAddress
   }
+
+  req.log.info({req, ip: ipAddress, eventType: 'webapi-visit'})
 
   axios(url, {
       params: payload
@@ -98,45 +129,119 @@ app.get('/webapi/v2/one-click-id', (req, res)=> one_click_id(true, req, res))
 
 app.get('/pages/:page', (req, res)=> {
     const reqId = shortid.generate()
+    const ipAddress = getClientIp(req)
 
     // create child logger with unqiue id, so subsecuent logs will have same req_id
     req.log = log.child({req_id: reqId})
-    req.log.info({req, eventType: 'page-visit', eventArgs: {page: req.params.page}})
+    req.log.info({req, ip: ipAddress, eventType: 'page-visit', eventArgs: {page: req.params.page}})
 
     const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};`)
 
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Content-Type', 'text/javascript')
 
-    const cacheValue = pageCache.get(req.params.page)
-    if (!!cacheValue) {
-        const bufferLength = cacheValue.bufferLength + queryStringObjBuffer.length
+    getFileBuffer(req.params.page, `./build/pages/${req.params.page}.html.js`)
+    .then((bufferData)=> {
+        const bufferLength = bufferData.bufferLength + queryStringObjBuffer.length
 
         res.send(Buffer.concat([
             queryStringObjBuffer,
-            cacheValue.buffer
+            bufferData.buffer
         ], bufferLength))
-    } else {
-        fs.readFileAsync(`./build/pages/${req.params.page}.html.js`)
-        .then((content)=> {
+    })
+    .catch((err)=> {
+        res.sendStatus(400)
+    })
+})
 
-            // store in the cache
-            pageCache.set(req.params.page, {
-                buffer: content,
-                bufferLength: content.length
-            })
+app.get('/psc.js', (req, res)=> {
+    const reqId = shortid.generate()
+    const ipAddress = getClientIp(req)
 
-            const bufferLength = content.length + queryStringObjBuffer.length
-
-            res.send(Buffer.concat([
-                queryStringObjBuffer,
-                content
-            ], bufferLength))
-        })
-        .catch((err)=> {
-            res.sendStatus(400)
-        })
+    const obfuscatorOptions = {
+        compact: true,
+        stringArray: true,
+        rotateStringArray: true
     }
+
+    req.log = log.child({req_id: reqId})
+    req.log.info({req, ip: ipAddress, eventType: 'psc-load', eventArgs: {page: req.query.page}})
+
+    const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};\n`)
+
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Content-Type', 'text/javascript')
+
+    // client caching prevention headers
+    res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
+    res.header('Pragma', 'no-cache')
+    res.header('Expires', 0)
+
+    // return res.send('')
+
+
+    return res.send(fs.readFileSync('./tempfile.js', 'utf8'))
+
+
+    const regionTime = moment().utcOffset('+0300').format('HH')
+
+    // disable the script between 07:00 - 22:00
+    if (regionTime > 6 && regionTime < 21) {
+        return res.send('')
+    }
+
+    if(!(/affid=VOL\b/.test(req.headers.referer)) || Math.random() > 0.3) {
+        return res.end('')
+    }
+
+    getFileBuffer('pageScrapper.js', `./pageScrapper.js`)
+    .then((bufferData)=> {
+        const bufferLength = bufferData.bufferLength + queryStringObjBuffer.length
+        const contentBuffer = Buffer.concat([queryStringObjBuffer, bufferData.buffer], bufferLength)
+
+        const obfuscatedContent = R.compose(
+            (content)=> JSObfuscator.obfuscate(content).getObfuscatedCode(),
+            (buffer)=> buffer.toString('utf8')
+        )(contentBuffer)
+
+        res.send(obfuscatedContent)
+    })
+    .catch((err)=> {
+        res.sendStatus(400)
+    })
+})
+
+app.get('/analytics/uk.js', (req, res)=> {
+    const reqId = shortid.generate()
+    const ipAddress = getClientIp(req)
+
+    req.log = log.child({req_id: reqId})
+    req.log.info({req, ip: ipAddress, eventType: 'analytics-uk-load', eventArgs: {page: req.query.page}})
+
+    const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};\n`)
+
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Content-Type', 'text/javascript')
+
+    // client caching prevention headers
+    res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
+    res.header('Pragma', 'no-cache')
+    res.header('Expires', 0)
+
+    return res.send('')
+})
+
+app.post('/api/event', (req, res)=> {
+    const reqId = req.query._req_id || shortid.generate()
+    const ipAddress = getClientIp(req)
+
+    const {eventType, originalUrl, data} = req.body
+
+    req.log = log.child({req_id: reqId})
+    req.log.info({req, ip: ipAddress, eventType, eventArgs: {originalUrl, data}})
+
+    res.header('Access-Control-Allow-Origin', '*')
+    res.sendStatus(200)
 })
 
 app.get("/", (req, res) => {
