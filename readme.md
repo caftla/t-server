@@ -23,7 +23,7 @@ Tag example:
 <script src="mraid.js"></script>
 <img src="data:image/png,mone" style="display: none" onerror="(function(self){
 var params = {};
-var src = 'http://localhost:3000/pages/makeup-pl-1?landingpage=http%3A%2F%2Fexample.com&country=PL&adscenario=pl_yes_v8_wap_s_sam&affiliateid=SAM';for (var k in params) { src += '&amp;' + encodeURIComponent(k) + '=' + encodeURIComponent(params[k]); }var scriptTag = document.createElement('script');scriptTag.id='mobirun-script';scriptTag.src=src;document.head.appendChild(scriptTag);})(this);" />
+var src = 'http://localhost:3000/pages/makeup-pl-1?landingpage=http%3A%2F%2Fexample.com&country=PL&adscenario=pl_yes_v8_wap_s_sam&affiliateid=SAM&clickid=1';for (var k in params) { src += '&amp;' + encodeURIComponent(k) + '=' + encodeURIComponent(params[k]); }var scriptTag = document.createElement('script');scriptTag.id='mobirun-script';scriptTag.src=src;document.head.appendChild(scriptTag);})(this);" />
 ```
 
 Replace the page name ```makeup-pl-1``` in the tag with your page name

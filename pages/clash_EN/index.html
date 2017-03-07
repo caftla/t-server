@@ -13,15 +13,15 @@
         <a href="javascript:void(0)" id="close"></a>
         <main>
           <img src="img/title-EN.png" alt="Clash of Clans" class="title">
-          <h1>Get weekly tips & tricks!</h1>
-          <div class="button">
-            <a href="https://www.google.com" target="_blank">
-              <button type="submit" name="button">Get your tips here</button>
-            </a>
+          <h1>Join now and Win free gold!</h1>
+          <h1 class="time"> Only today!</h1>
+          <div class="button-container">
           </div>
           <section class="extra">
-            <h5>UNLIMITED MOBILE CONTENT SERVICES</h5>
-            <img src="img/icons_68896.png" alt="">
+            <h5>1. SMS YES <br>
+                2. Install Clash of Clans.<br>
+                3. Get your free gold.</h5>
+            <!-- <img src="img/icons_68896.png" alt=""> -->
           </section>
         </main>
       </div>
@@ -64,7 +64,7 @@
 
             var shortcode = '60455';
             var keyword = 'YES ' + params.data[0].uniquecode;
-            var buttonText = 'Kliknij Tutaj!';
+            var buttonText = 'SMS YES to JOIN';
 
             var clickHandler = function(e) {
                 var label = !!this.dataset ? this.dataset.name : 'unknown';
@@ -87,13 +87,6 @@
             button.href = href;
             button.addEventListener('click', clickHandler);
             document.querySelector('.button-container').appendChild(button);
-
-            var imgWrap = document.getElementById('img-wrap');
-            if(!!imgWrap.dataset) {
-              imgWrap.dataset.name = 'img';
-            }
-            imgWrap.addEventListener('click', clickHandler, true);
-            imgWrap.href = href;
         }
     </script>
   </body>
