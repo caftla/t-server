@@ -1,24 +1,67 @@
 <!DOCTYPE html>
+<html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Crazy Birds</title>
 		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="./css/style.css">
 	</head>
 
 	<body>
 
-			<div class="wrapperOutter">
-				<a href="javascript:void(0)" id="close"></a>
-				<div class="wrapperInner ">
-					<a href="#">
-						<div class="birds">
-							<img src="./img/birds_web.png" alt="Crazy Birds 2"/>
-						</div>
-					</a>
-					<a class="button" href="#">şimdi oyna</a>
-				</div>
+		<div class="wrapperOutter">
+			<a href="javascript:void(0)" id="close"></a>
+
+			<div class="wrapperInner ">
+				<a id="img-wrap" data-name="img" href="javascript:void(0)">
+					<div class="birds">
+						<img src="./img/birds_web.png" alt="Crazy Birds 2"/>
+					</div>
+				</a>
+				<a class="button" id="cta" data-name="button" href="javascript:void(0)">şimdi oyna</a>
 			</div>
+		</div>
 
+		<script src='../_assets/js/pageUtils.js'></script>
+		<script data-remove>
+			var queryStringObj = {}
+		</script>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','gac');
 
+			var isSmadex = !!queryStringObj.ctrTrackingUrl && queryStringObj.ctrTrackingUrl.indexOf('smadex') > 0;
+
+			gac('create', 'UA-45774216-20', 'auto', { 'cookieDomain': 'none'});
+			gac('set', 'checkProtocolTask', function(){ /* nothing */ });
+			gac('set', 'page', 'crazybird_TR');
+			gac('set', 'dimension1', queryStringObj.campaignid || isSmadex ? '1' : '2'); // campaignid
+			gac('set', 'dimension2', queryStringObj.pubid || ''); // publisher
+			gac('set', 'dimension3', queryStringObj.network || isSmadex ? 'smadex' : 'unknown');  // network
+			gac('set', 'dimension4', 'scsms'); // opt-in method
+			gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid')
+
+			gac('send', 'pageview');
+		</script>
+		<script>
+			var clickHandler = function(e) {
+				var label = !!this.dataset ? this.dataset.name : 'unknown';
+
+				gac('send', 'event', 'interaction', 'cta_click', label);
+				if(!!queryStringObj.ctrTrackingUrl) {
+					createPixel(queryStringObj.ctrTrackingUrl);
+				}
+
+				openUrl('http://n.frogstargames.com/tr/crazy-birds?offer=581');
+			}
+
+			var button = document.getElementById('cta');
+			button.addEventListener('click', clickHandler);
+
+			var imgWrap = document.getElementById('img-wrap');
+			imgWrap.addEventListener('click', clickHandler, true);
+		</script>
 	</body>
 </html>
