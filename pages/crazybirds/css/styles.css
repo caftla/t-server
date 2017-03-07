@@ -1,0 +1,270 @@
+/* RESET */
+*{margin:0; padding:0;}
+a {color: inherit;}
+
+/** Float Clearing **/
+
+.clearfix:before,.clearfix:after {  content: "";  display: table;}
+.clearfix:after {  clear: both;}
+
+/* END OF RESET */
+
+body{
+	background: url("../img/background_web.jpg") no-repeat;
+	background-position: left;
+	background-color: black;
+	background-size: cover;
+	text-align: center;
+	height: 100vh;
+}
+.container{
+	height: 100%;
+}
+
+section{ rgba(0,0,0,.8);padding:0;}
+
+.content{ margin:0 auto; position: relative; width:100%;}
+
+.tq_content .content{
+	border-radius:70px; -webkit-border-radius:70px; -moz-border-radius:70px;
+	box-shadow:3px 3px 15px #000; border-bottom:3px solid #be9c00; border-right:5px solid #fffb8c;
+	background-color:rgba(255,212,3,1); padding:35px 10px; width:60%; margin:0 auto;}
+
+.button-container{
+	cursor:pointer;
+	display: block;
+	font-size:1.3rem;
+	letter-spacing:.12em;
+	font-family: Roboto, Arial, cursive;
+	width: 300px;
+	margin: auto;
+	border-radius: 20px;
+	font-weight: bold;
+	background: #ffe700; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffe700 0%, #ffc900 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #ffe700 0%,#ffc900 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #ffe700 0%,#ffc900 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	text-transform: uppercase;
+	padding: 15px 0;
+}
+.button-container a {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+	text-decoration: none;
+}
+.button-container a:after {
+  content: '\00ab';
+  position: absolute;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+	font-size:1.5rem;
+	line-height: 1.3rem;
+}
+.button-container a:before {
+  content: '\00bb';
+  position: absolute;
+  top: 0;
+  left: -20px;
+  transition: 0.5s;
+	font-size:1.5rem;
+	line-height: 1.3rem;
+}
+#close {
+    top: 5px;
+	right: 5px;
+ 	width: 25px;
+ 	height: 25px;
+ 	z-index: 100;
+ 	color: #FFF;
+ 	position: absolute;
+ 	background-size: cover;
+ 	background-repeat: no-repeat;
+  	background-position: 50% 50%;
+  	background-image: url('../../_assets/img/close.png');
+}
+.video{
+	padding-top: 50px;
+}
+.video img{
+	box-shadow: 0px 0px 2px 2px #000;
+}
+.footer {
+	font-size:11px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:normal;
+	margin-top:25vh;
+	}
+
+.footer a{
+	color:inherit;
+	}
+
+.footer, .toplegal {
+	color: #fff;
+	text-align: justify; display:table; width:100%;
+}
+.birds{
+	padding: 50px 0;
+}
+.birds img{
+	width: 100%;
+}
+.birds, .birds2, .birds3 {
+      position:relative;
+      -webkit-animation: updown 1.5s infinite; /* Safari 4+ */
+      -moz-animation:    updown 1.5s infinite; /* Fx 5+ */
+      -o-animation:      updown 1.5s infinite; /* Opera 12+ */
+      animation:         updown 1.5s infinite;
+}
+/****************** birds **********************/
+@-webkit-keyframes updown{
+  0%   { top: 0; }
+  50% { top: 5px; }
+  100% { top: 0px; }
+}
+@-moz-keyframes updown {
+   0%   { top: 0; }
+  50% { top: 5px; }
+  100% { top: 0px; }
+}
+@-o-keyframes updown {
+   0%   { top: 0; }
+  50% { top: 5px; }
+  100% { top: 0px; }
+}
+@keyframes updown {
+  0%   { top: 0; }
+  50% { top: 5px; }
+  100% { top: 0px; }
+}
+
+@media screen and (max-height:240px){
+    .birds {
+			padding:0;
+		}
+    [class^='button']{
+			padding:10px 0;
+		}
+}
+
+/****************** button **********************/
+
+@-webkit-keyframes pulse {
+  from {
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+	-webkit-transform: scale3d(1.05, 1.05, 1.05);
+	transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulse {
+  from {
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+	-webkit-transform: scale3d(1.05, 1.05, 1.05);
+	transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+  }
+}
+.pulse {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  -webkit-animation-duration: 0.7s;
+  -o-animation-duration: 0.7s;
+  animation-duration: 0.7s;
+  -webkit-animation-delay: 1s;
+  -o-animation-delay: 1s;
+  animation-delay: 1s;
+  -webkit-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+/****************** background **********************/
+@-webkit-keyframes move {
+  from {
+	background-position: left;
+  }
+
+  50% {
+	background-position: right;
+  }
+
+  to {
+	background-position: left;
+  }
+}
+
+@keyframes move {
+	from {
+	background-position: left;
+  }
+
+  50% {
+	background-position: right;
+  }
+
+  to {
+	background-position: left;
+  }
+}
+.move {
+  -webkit-animation-name: move;
+  animation-name: move;
+	-webkit-animation-timing-function:linear;
+  animation-timing-function:linear;
+  -webkit-animation-duration: 30s;
+  -o-animation-duration: 30s;
+  animation-duration: 30s;
+  -webkit-animation-delay: 0s;
+  -o-animation-delay: 0s;
+  animation-delay: 0s;
+  -webkit-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+/****************** button resizing **********************/
+
+@media screen and (max-width:400px) {
+	.button-container{
+		width: 250px;
+		font-size:1.2rem;
+	}
+	.button-container a:before{
+		line-height: 1.2rem;
+	}
+	.button-container a:after{
+		line-height: 1.2rem;
+	}
+}
+@media screen and (max-width:320px) {
+	.button-container{
+		width: 200px;
+		font-size:1rem;
+	}
+	.button-container a:before{
+		line-height: 1rem;
+	}
+	.button-container a:after{
+		line-height: 1rem;
+	}
+}
