@@ -40,7 +40,7 @@
 			gac('set', 'dimension1', queryStringObj.campaignid || isSmadex ? '1' : '2'); // campaignid
 			gac('set', 'dimension2', queryStringObj.pubid || ''); // publisher
 			gac('set', 'dimension3', queryStringObj.network || isSmadex ? 'smadex' : 'unknown');  // network
-			gac('set', 'dimension4', 'scsms'); // opt-in method
+			gac('set', 'dimension4', ''); // opt-in method
 			gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid')
 
 			gac('send', 'pageview');
