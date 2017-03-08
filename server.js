@@ -262,6 +262,34 @@ app.post('/api/event', (req, res)=> {
     res.sendStatus(200)
 })
 
+// turkey experiment
+app.get('/tr/crazy-birds', (req, res)=> {
+    const reqId = req.query._req_id || shortid.generate()
+    const ipAddress = getClientIp(req)
+
+    req.log = log.child({req_id: reqId})
+    req.log.info({req, ip: ipAddress, eventType: 'auto-submit', eventArgs: {page: 'crazy-birds'}})
+
+    res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
+    res.header('Pragma', 'no-cache')
+    res.header('Expires', 0)
+
+    res.header('Content-Length', 0)
+    res.header('Location', 'http://n.frogstargames.com/tr/crazy-birds?offer=581')
+    return res.status(302).end()
+
+    // autosubmit with clean referer
+    res.send(`
+        <html>
+        <head>
+        <meta http-equiv="refresh" content="0; url='data:text/html,<form action=http://localhost:3000/ref method=post id=paymentForm><input type=checkbox name=onay id=onay checked=checked class=checkbox><input type=submit value=TAMAM id=submitButtonId></form><script>document.forms[0].submit()</script>'">
+        </head>
+        <body>
+        </body>
+        </html>
+    `)
+})
+
 app.get("/", (req, res) => {
   res.header('Content-Type', 'text/plain')
   // res.end('-')
