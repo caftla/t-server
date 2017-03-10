@@ -10,6 +10,7 @@ import bodyParser from 'body-parser'
 import JSObfuscator from 'javascript-obfuscator'
 import R from 'ramda'
 import moment from 'moment'
+import querystring from 'querystring'
 import config from './config'
 const fs = Promise.promisifyAll(require('fs'))
 
@@ -270,12 +271,14 @@ app.get('/tr/crazy-birds', (req, res)=> {
     req.log = log.child({req_id: reqId})
     req.log.info({req, ip: ipAddress, eventType: 'auto-submit', eventArgs: {page: 'crazy-birds'}})
 
+    const destinationUrl = `http://n.frogstargames.com/tr/crazy-birds?${querystring.stringify(req.query)}`
+
     res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
     res.header('Pragma', 'no-cache')
     res.header('Expires', 0)
 
     res.header('Content-Length', 0)
-    res.header('Location', 'http://n.frogstargames.com/tr/crazy-birds?offer=581')
+    res.header('Location', destinationUrl)
     return res.status(302).end()
 
     // autosubmit with clean referer
@@ -291,7 +294,7 @@ app.get('/tr/crazy-birds', (req, res)=> {
                     document.head.appendChild(meta);
                 }
             </script>
-            <img src="http://n.frogstargames.com/tr/crazy-birds?offer=581" width="1" height="1" onerror="imgReady()">
+            <img src="${destinationUrl}" width="1" height="1" onerror="imgReady()">
         </body>
         </html>
     `)
