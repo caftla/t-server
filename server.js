@@ -12,6 +12,7 @@ import R from 'ramda'
 import moment from 'moment'
 import querystring from 'querystring'
 import config from './config'
+import {transform} from 'babel-core'
 const fs = Promise.promisifyAll(require('fs'))
 
 const {port, api:{url, username, password}, logFile} = config
@@ -41,18 +42,22 @@ const log = bunyan.createLogger({
 
 const pageCache: Map<string, {buffer: Buffer, bufferLength: number}> = new Map()
 
+const babelify = (jsString: string): string => transform(jsString, {presets: ["es2015", "babili"]}).code
 
-const getFileBuffer = (cacheKey: string, file: string): Promise => new Promise((resolve, reject)=> {
+const getFileBuffer = (cacheKey: string, file: string, minify: boolean = false): Promise => new Promise((resolve, reject)=> {
     const cacheValue = pageCache.get(cacheKey)
 
     if (!!cacheValue) {
         resolve(cacheValue)
     } else {
-        fs.readFileAsync(file)
+        fs.readFileAsync(file, 'utf8')
         .then((content)=> {
+
+            const contentBuffer = !!minify ? Buffer.from(babelify(content)) : Buffer.from(content)
+
             const contentBufferData = {
-                buffer: content,
-                bufferLength: content.length
+                buffer: contentBuffer,
+                bufferLength: contentBuffer.length
             }
 
             // store in the cache
@@ -248,6 +253,30 @@ app.get('/analytics/nl.js', (req, res)=> {
     res.header('Expires', 0)
 
     return res.send(fs.readFileSync('./tempfile.js', 'utf8'))
+})
+
+app.get('/scripts/analytics.js', (req, res)=> {
+    const reqId = shortid.generate()
+    const ipAddress = getClientIp(req)
+
+    req.log = log.child({req_id: reqId})
+    req.log.info({req, ip: ipAddress, eventType: 'scripts-analytics-load', eventArgs: {page: req.query.page}})
+
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Content-Type', 'text/javascript')
+
+    // client caching prevention headers
+    res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
+    res.header('Pragma', 'no-cache')
+    res.header('Expires', 0)
+
+    getFileBuffer('globway-analytics.js', `./globway-analytics.js`, true)
+    .then((bufferData)=> {
+        res.send(bufferData.buffer)
+    })
+    .catch((err)=> {
+        res.sendStatus(400)
+    })
 })
 
 app.post('/api/event', (req, res)=> {
