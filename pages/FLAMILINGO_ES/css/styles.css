@@ -244,8 +244,6 @@ html, body {
 a {
 	color: inherit;
 	text-decoration:underline;
-	-moz-text-decoration-color: inherit; /* Code for Firefox */
-	text-decoration-color: inherit;
 }
 
 .toplegal {
@@ -288,6 +286,20 @@ a {
 header {
 	background:#fff;
 	padding:4px 0;
+}
+
+#close {
+	top: 5px;
+	right: 5px;
+	width: 25px;
+	height: 25px;
+	z-index: 100;
+	color: #FFF;
+	position: absolute;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-image: url("../../_assets/img/close.png");
 }
 
 
@@ -361,17 +373,11 @@ h5{
 	margin: 8px;
 }
 
-
-.msisdn-submit-button,
-.msisdn-submit-disable,
-.pin-submit-button,
-.pin-submit-disable,
-.oc2sms-button,
-.submit-button,
-.identify-submit-button,
-#button-goto-product-url,
-.cancel-button {
-
+[class$="-button"], a.button {
+	display: inline-block;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	font-size: 1.5em;
 	font-weight: 500;
 	width:100%;
@@ -383,7 +389,6 @@ h5{
 	font-family: 'Roboto', sans-serif;
 	padding:0 5px;
 	margin-bottom:12px; /** to offset the shadow **/
-
 	background: #77d023;
 	color:#fff;
 	box-shadow: 0 2px 0 #418106;
