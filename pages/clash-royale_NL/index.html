@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clash Royale tips & tricks</title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+    iframe.outerframe {
+        position: absolute;
+        left: -35px;
+        top: -329px;
+        opacity: 0;
+        z-index: 9999;
+    }
+    .outer {
+        margin: auto;
+        max-width: 300px;
+        height: 60px;
+        display: block;
+        position: relative;
+        overflow: hidden;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="zombie-bg">
+
+    <a href="javascript:void(0)" id="close"></a>
+        <div class="wrap">
+            <main>
+                <img src="images/title-NL.png" alt="Clash Royale tips & tricks" class="headline" id="headline" />
+                <a id="img-wrap" href="javascript:void(0)">
+                    <img class="gif" src="images/bomber.gif" alt="">
+                </a>
+                <!-- button -->
+                <div class="row button-container">
+                    <div class="outer">
+                        <button>Speel nu</button>
+                        <iframe class="outerframe" width="700" height="700"></iframe>
+                    </div>
+                    <p>Ontvang geheime en exlusive tips</p>
+                </div>
+                <div class="more-games">
+                    <img src="images/icons.png" alt="games" class="icons"/>
+                </div>
+                <div>
+                    <p>Alle bezoekers en leden accepteren onderstaande voorwaarden en zijn 16 jaar of ouder. Dit is een abonnementsdienst voor €7.5 p/week. Hier vindt u de meest exclusieve producten en de populairste apps. © 2017 Sam Media.</p>
+                </div>
+            </main>
+
+    </div><!-- end of wrap -->
+    </div><!-- end of large background -->
+
+    <script src='../_assets/js/pageUtils.js'></script>
+    <script data-remove>
+        var queryStringObj = {
+            device: 'smart',
+            offer: 1
+        }
+    </script>
+    <script>
+    var qs = toQueryString(queryStringObj)
+    document.querySelector('.outerframe').src = "data:text/html,<iframe width=700 height=700 src=http://n.apptips.me/nl/clash-clans-tips?"+qs+"></iframe>"
+    </script>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','gac');
+
+        var isSmadex = !!queryStringObj.ctrTrackingUrl && queryStringObj.ctrTrackingUrl.indexOf('smadex') > 0;
+
+        gac('create', 'UA-45774216-20', 'auto', { 'cookieDomain': 'none'});
+        gac('set', 'checkProtocolTask', function(){ /* nothing */ });
+        gac('set', 'page', 'clashroyale_NL');
+        gac('set', 'dimension1', queryStringObj.campaignid || isSmadex ? '1' : '2'); // campaignid
+        gac('set', 'dimension2', queryStringObj.pubid || ''); // publisher
+        gac('set', 'dimension3', queryStringObj.network || isSmadex ? 'smadex' : 'unknown');  // network
+        gac('set', 'dimension4', 'wap'); // opt-in method
+        gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
+
+        gac('send', 'pageview');
+    </script>
+</body>
+</html>
