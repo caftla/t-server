@@ -292,6 +292,27 @@ app.post('/api/event', (req, res)=> {
     res.sendStatus(200)
 })
 
+app.get('/api/event/pixel', (req, res)=> {
+    const reqId = shortid.generate()
+    const ipAddress = getClientIp(req)
+
+    const dataParser = R.compose(R.reduce((acc, [k,v])=> {acc[k]=v; return acc}, {}), R.map(R.split('=')), R.split(','))
+
+    const {eventType, data} = req.query
+
+    const eventArgs = !!data ? dataParser(data) : {}
+
+    req.log = log.child({req_id: reqId})
+    req.log.info({req, ip: ipAddress, eventType, eventArgs})
+
+    res.header('Cache-Control', 'no-cache, no-store')
+    res.header('Content-Type', 'image/gif')
+    res.end(
+        new Buffer('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64'),
+        'binary'
+    )
+})
+
 // turkey experiment
 app.get('/tr/crazy-birds', (req, res)=> {
     const reqId = req.query._req_id || shortid.generate()
