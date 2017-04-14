@@ -80,7 +80,12 @@ export default (file: string) => new Promise((resolve, reject)=>
         // replace images with datauri
         $('img').each((i, el)=> {
             const srcAttr = $(el).attr('src')
-            $(el).attr('src', Datauri.sync(`${dir}/${srcAttr}`))
+
+            if (isRemoteUrl(srcAttr)) {
+                $(el).attr('src', srcAttr)
+            } else {
+                $(el).attr('src', Datauri.sync(`${dir}/${srcAttr}`))
+            }
         })
 
         // remove tags from the page
