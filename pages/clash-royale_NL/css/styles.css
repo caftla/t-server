@@ -151,16 +151,16 @@ button, .button {
 	cursor: pointer;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
-  
+
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-  
+
    -webkit-transform-origin: center center;
   transform-origin: center center;
-  
+
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
-  
+
   -webkit-animation-name: pulse;
   animation-name: pulse;
 }
@@ -206,24 +206,22 @@ button, .button {
 /* !RESPONSIVE EXTRAS */
 
 @media only screen and (min-width: 500px) {
-	
+
 	.zombie-bg {
-		background: url("../images/bg-760.jpg") center top no-repeat;
-		
 		padding-top:100px;
 	}
-	
+
 	.wrap {
 		width: 350px;
 	}
-	
+
 	.headline {
 		width:100%;
 		max-width:457px;
 		margin-top:-110px;
 	}
 
-	
+
 	.congrats {
 		margin-top:-45px;
 	}
@@ -232,61 +230,59 @@ button, .button {
 
 
 @media only screen and (min-width: 761px) {
-	
+
 	.zombie-bg {
-		background: url("../images/bg-960.jpg") center top no-repeat;
 		padding-top:140px;
 	}
-	
+
 	.wrap {
 		width: 450px;
 	}
-	
+
 	.headline {
 		margin-top:-140px;
 
 	}
-	
+
 	.toplegal p{
 		font-size: 14px;
 	}
-	
+
 	.toplegal .badge {
 		height:70px;
 	}
-	
+
 	.congrats {
 		margin-top:-50px;
 	}
-	
+
 }
 
 @media only screen and (min-width: 961px) {
-	
+
 	.zombie-bg {
-		background: url("../images/bg-1280.jpg") center bottom no-repeat;
 		padding-top:140px;
-		
+
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
 		background-size: cover;
-		
+
 		min-height: 400px;
 		padding-bottom:0;
 		margin-bottom:20px;
 	}
-	
+
 	.wrap {
 		min-width: 450px;
 		width: 30%;
 	}
-	
+
 	.headline {
 		margin-top:-140px;
 
 	}
-	
+
 }
 
 @media only screen and (max-width: 320px) and (max-height: 300px){
