@@ -22,6 +22,7 @@
     "datauri": "^1.0.5",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
+    "fs-extra": "^2.1.2",
     "javascript-obfuscator": "^0.9.1",
     "mkdirp": "^0.5.1",
     "moment": "^2.17.1",

@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.disable('x-powered-by')
 
+app.use(express.static('build/pages'))
+
 const log = bunyan.createLogger({
     name: "tag-server",
     streams: [
@@ -147,7 +149,7 @@ app.get('/pages/:page', (req, res)=> {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Content-Type', 'text/javascript')
 
-    getFileBuffer(req.params.page, `./build/pages/${req.params.page}.html.js`)
+    getFileBuffer(req.params.page, `./build/pages/${req.params.page}/index.html.js`)
     .then((bufferData)=> {
         const bufferLength = bufferData.bufferLength + queryStringObjBuffer.length
 
@@ -174,7 +176,7 @@ app.get('/pages/html/:page', (req, res)=> {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Content-Type', 'text/html')
 
-    getFileBuffer(`${req.params.page}-html`, `./build/pages/${req.params.page}.html`)
+    getFileBuffer(`${req.params.page}-html`, `./build/pages/${req.params.page}/index.html`)
     .then((bufferData)=> {
         res.send(ejs.render(bufferData.buffer.toString('utf8'), {scriptBlock: queryStringObjBuffer}))
     })

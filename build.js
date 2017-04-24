@@ -7,6 +7,7 @@ import mkdirp from 'mkdirp'
 import {minify} from 'uglify-js'
 import {transform} from 'babel-core'
 import cheerio from 'cheerio'
+import fse from 'fs-extra'
 
 const fs = Promise.promisifyAll(require('fs'))
 const ejs = Promise.promisifyAll(require('ejs'))
@@ -14,19 +15,19 @@ const ejs = Promise.promisifyAll(require('ejs'))
 const pageDir = `${__dirname}/pages`
 const pageBuildDir = `${__dirname}/build/pages`
 
-// create build directory if doesnt exists
-mkdirp.sync(pageBuildDir)
-
 const babelify = (jsString: string): string => transform(jsString, {presets: ["es2015", "babili"]}).code
 
 
 const buildPage = (page: string): Promise =>
     R.composeP(
         ({pageType, content})=> {
+            // create build directory if doesnt exists
+            mkdirp.sync(`${pageBuildDir}/${page}`)
+
             if (pageType == 'html') {
-                fs.writeFileAsync(`${pageBuildDir}/${page}.html`, content)
+                fs.writeFileAsync(`${pageBuildDir}/${page}/index.html`, content)
             } else {
-                fs.writeFileAsync(`${pageBuildDir}/${page}.html.js`, babelify(content))
+                fs.writeFileAsync(`${pageBuildDir}/${page}/index.html.js`, babelify(content))
             }
         },
         ({js, css, html})=> {
@@ -54,6 +55,13 @@ const buildPage = (page: string): Promise =>
                         $('body').append(`<script type="text/javascript" src="${content}" />`)
                     }
                 })(js)
+
+                $('img[data-datauri="off"]').each((i, el)=> {
+                    const srcAttr = $(el).attr('src')
+
+                    fse.copySync(`./pages/${page}/${srcAttr}`, `./build/pages/${page}/${srcAttr}`)
+                    $(el).attr('src', `/${page}/${srcAttr}`)
+                })
 
                 return {
                     pageType: 'html',

@@ -80,8 +80,9 @@ export default (file: string) => new Promise((resolve, reject)=>
         // replace images with datauri
         $('img').each((i, el)=> {
             const srcAttr = $(el).attr('src')
+            const datauri = $(el).attr('data-datauri')
 
-            if (isRemoteUrl(srcAttr)) {
+            if (isRemoteUrl(srcAttr) || datauri == "off") {
                 $(el).attr('src', srcAttr)
             } else {
                 $(el).attr('src', Datauri.sync(`${dir}/${srcAttr}`))
