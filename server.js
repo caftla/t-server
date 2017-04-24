@@ -13,6 +13,7 @@ import moment from 'moment'
 import querystring from 'querystring'
 import config from './config'
 import {transform} from 'babel-core'
+import ejs from 'ejs'
 const fs = Promise.promisifyAll(require('fs'))
 
 const {port, api:{url, username, password}, logFile} = config
@@ -154,6 +155,28 @@ app.get('/pages/:page', (req, res)=> {
             queryStringObjBuffer,
             bufferData.buffer
         ], bufferLength))
+    })
+    .catch((err)=> {
+        res.sendStatus(400)
+    })
+})
+
+app.get('/pages/html/:page', (req, res)=> {
+    const reqId = shortid.generate()
+    const ipAddress = getClientIp(req)
+
+    // create child logger with unqiue id, so subsecuent logs will have same req_id
+    req.log = log.child({req_id: reqId})
+    req.log.info({req, ip: ipAddress, eventType: 'page-visit', eventArgs: {page: req.params.page}})
+
+    const queryStringObjBuffer = `var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};`
+
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Content-Type', 'text/html')
+
+    getFileBuffer(`${req.params.page}-html`, `./build/pages/${req.params.page}.html`)
+    .then((bufferData)=> {
+        res.send(ejs.render(bufferData.buffer.toString('utf8'), {scriptBlock: queryStringObjBuffer}))
     })
     .catch((err)=> {
         res.sendStatus(400)
