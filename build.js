@@ -90,10 +90,13 @@ const buildPage = (page: string): Promise =>
     )(`${pageDir}/${page}/index.html`)
 
 
+const [,,pageName] = process.argv
+
 fs.readdirAsync(pageDir)
 .then((pages)=> {
     R.compose(
         R.forEach(buildPage),
+        R.filter((it)=> !pageName ? true : R.test(new RegExp(`^${pageName}`, 'i'), it)),
         R.filter((it)=> !R.test(/^_|\./, it))
     )(pages)
 })
