@@ -160,6 +160,11 @@
 
 		document.getElementById("confirm").addEventListener('click', function() {
 			gac('send', 'event', 'interaction', 'cta_click', 'confirm');
+
+			if(!!queryStringObj.ctrTrackingUrl) {
+			  createPixel(queryStringObj.ctrTrackingUrl);
+			}
+
 			openUrl('http://n.teletube.tv/es/tvclub?' + toQueryString(queryStringObj))
 		})
 	</script>
