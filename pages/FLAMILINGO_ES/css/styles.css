@@ -25,15 +25,15 @@ main,
 nav,
 section {
 	display: block; }
-	
+
 ol, ul {
 	list-style: none; }
-	
+
 em, h1, h2, h3, h4, h5, h6 {
 	font-style: inherit;
 	font-weight: inherit;
 }
-	
+
 /** Float Clearing **/
 
 .clearfix:before,
@@ -41,11 +41,11 @@ em, h1, h2, h3, h4, h5, h6 {
   content: "";
   display: table;
 }
- 
+
 .clearfix:after {
   clear: both;
 }
- 
+
 .clearfix {
   zoom: 1; /* ie 6/7 */
 }
@@ -130,7 +130,7 @@ em, h1, h2, h3, h4, h5, h6 {
 /* ----------------- IE 8 customized css for height:auto --------------------*/
 
 @media \0screen {
-  .imgIE8 { 
+  .imgIE8 {
 	width: auto; /* for ie 8 */
   }
 }
@@ -172,8 +172,8 @@ a{
 	color:rgba(255,255,255,1);
 	padding:5px;
 	}
-	
-.msisdn-input, .msisdn-input:focus { 
+
+.msisdn-input, .msisdn-input:focus {
 	text-align:center;
 }
 
@@ -196,12 +196,12 @@ a{
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:normal;
 	}
-	
+
 .footer a{
 	color:inherit;
 	}
 
-.footer, .toplegal {text-align: justify; display:table; width:100%;} 
+.footer, .toplegal {text-align: justify; display:table; width:100%;}
 
 .toplegal p {margin: 0;}
 
@@ -283,7 +283,7 @@ a {
 }
 
 
-header {
+.header {
 	background:#fff;
 	padding:4px 0;
 }
@@ -303,7 +303,7 @@ header {
 }
 
 
-main {
+.main {
 	padding: 15px 0 15px 0;
 	position: relative;
 }
@@ -312,7 +312,7 @@ h1 {
 	font-size: 1.6em;
 	font-weight: 500;
 	margin-top:5px;
-	
+
 }
 
 h4 {
@@ -411,7 +411,7 @@ h5{
 
 .optin-container .cancel-button {
 	display: none;
-	
+
 }
 
 .orange-optin .submit-button{
@@ -467,13 +467,13 @@ h5{
 .lr-box .left-box
 {
 	float:left;
-	width:58%; 
+	width:58%;
 	text-align: left;
 }
 
 .lr-box .right-box {
 	float:right;
-	width:42%; 
+	width:42%;
 	text-align: right;
 
 }
@@ -503,7 +503,7 @@ h5{
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
 	z-index: 99999;
-	
+
 }
 
 .identify-submit-button {
@@ -516,7 +516,7 @@ h5{
 	font-weight: 500;
 	font-size: 16px;
 	margin: 0;
-	padding:0; 
+	padding:0;
 }
 
 #wifi-overlay p {
@@ -558,7 +558,7 @@ h5{
 
 /** for iphones and small phones -- reduce height of content **/
 @media only screen and (max-width: 360px) {
-	
+
 	.logo {
 		height:30px;
 		margin-bottom: 5px;
@@ -570,14 +570,14 @@ h5{
 	}
 }
 
-header {
+.header {
 	border-bottom:2px solid #303574;
 }
 
 
 }
 
-/* ------------------------------ 
+/* ------------------------------
 OVERWRITE TEMPLATE DEFAULT STYLES
 ------------------------------- */
 
@@ -586,7 +586,7 @@ html, body {
 	color: #e4e6ff;
 }
 
-header,
+.header,
 .toplegal {
 	background: #0a0c25;
 	color: #fff;
