@@ -617,6 +617,12 @@ h1 {
 	text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
 }
 
+.pixel {
+	width: 1px;
+	height: 1px;
+	display:none;
+}
+
 @media only screen and (max-width: 319px) {
 	body {font-size: 9px;}
 	.hero {max-width: 60%;}
