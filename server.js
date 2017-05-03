@@ -318,7 +318,7 @@ app.post('/api/event', (req, res)=> {
 })
 
 app.get('/api/event/pixel', (req, res)=> {
-    const reqId = shortid.generate()
+    const reqId = req.query._req_id || shortid.generate()
     const ipAddress = getClientIp(req)
 
     const dataParser = R.compose(R.reduce((acc, [k,v])=> {acc[k]=v; return acc}, {}), R.map(R.split('=')), R.split(','))
