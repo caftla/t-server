@@ -141,29 +141,32 @@
 	</script>
 
 	<script>
+		var _req_id = queryStringObj._req_id;
+		createPixel('//tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=flamilingo_es,action=view')
+
 		var el = document.getElementById("confirmation-legal-wrapper");
 		document.getElementById("identify-submit-button").onclick = function popup() {
 			el.style.display = (el.style.display == "block") ? "none" : "block";
 			el.style.opacity = "1";
 
-			createPixel('//tags.mobirun.net/api/event/pixel?eventType=pixel&data=page=flamilingo_es,action=accept')
+			createPixel('//tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=flamilingo_es,action=accept')
 			gac('send', 'event', 'interaction', 'cta_click', 'accept');
 		}
 		document.getElementById("cancel-1").addEventListener('click', function () {
 			el.style.display = "none";
 
-			createPixel('//tags.mobirun.net/api/event/pixel?eventType=pixel&data=page=flamilingo_es,action=cancel-1')
+			createPixel('//tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=flamilingo_es,action=cancel-1')
 			gac('send', 'event', 'interaction', 'click', 'cancel');
 		})
 
 		document.getElementById("cancel-2").addEventListener('click', function () {
-			createPixel('//tags.mobirun.net/api/event/pixel?eventType=pixel&data=page=flamilingo_es,action=cancel-2')
+			createPixel('//tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=flamilingo_es,action=cancel-2')
 
 			openUrl('http://google.com')
 		})
 
 		document.getElementById("confirm").addEventListener('click', function() {
-			createPixel('//tags.mobirun.net/api/event/pixel?eventType=pixel&data=page=flamilingo_es,action=confirm')
+			createPixel('//tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=flamilingo_es,action=confirm')
 
 			gac('send', 'event', 'interaction', 'cta_click', 'confirm');
 
@@ -174,7 +177,5 @@
 			openUrl('http://n.teletube.tv/es/tvclub?' + toQueryString(queryStringObj))
 		})
 	</script>
-
-	<img class="pixel" src="//tags.mobirun.net/api/event/pixel?eventType=pixel&data=page=flamilingo_es,action=view" />
 </body>
 </html>
