@@ -14,6 +14,7 @@ import querystring from 'querystring'
 import config from './config'
 import {transform} from 'babel-core'
 import ejs from 'ejs'
+import glob from 'glob'
 const fs = Promise.promisifyAll(require('fs'))
 
 const {port, api:{url, username, password}, logFile} = config
@@ -295,13 +296,25 @@ app.get('/scripts/analytics.js', (req, res)=> {
     res.header('Pragma', 'no-cache')
     res.header('Expires', 0)
 
-    getFileBuffer('globway-analytics.js', `./globway-analytics.js`, true)
-    .then((bufferData)=> {
-        res.send(bufferData.buffer)
+    const injectionInterceptors = glob.sync('./injectionInterceptors/*')
+
+    Promise.map(injectionInterceptors, (interceptor)=> require(interceptor)(req, res))
+    .then((x)=> {
+        const scriptContent = R.find((it)=> !!it)(x)
+
+        if (!scriptContent) {
+            getFileBuffer('injection-scripts-default.js', `./injection-scripts/default.js`, true)
+            .then((bufferData)=> {
+                res.send(bufferData.buffer)
+            })
+            .catch((err)=> {
+                res.sendStatus(500)
+            })
+        } else {
+            res.send(babelify(scriptContent))
+        }
     })
-    .catch((err)=> {
-        res.sendStatus(400)
-    })
+    .catch(()=> res.sendStatus(500))
 })
 
 app.post('/api/event', (req, res)=> {
