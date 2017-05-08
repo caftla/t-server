@@ -16,7 +16,7 @@
 	document.createElement("main");
 	document.createElement("nav");</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<title>Flappy Bird</title>
+	<title>Pokemon go</title>
    </head>
 <body>
 	<div class="toplegal"></div>
@@ -36,22 +36,31 @@
 	<section class="main">
 	<a id="img-wrap" href="javascript:void(0)">
 		<div class="building">
-			<img src="img/building.gif" alt="a" class="b_img"/>
-			<img src="img/flap.gif" alt="b" class="toppic"/>
+			<div class="animation">
+				<img src="img/logo.png" alt="a" class="logo" height="120px"/>
+				<p class="playnow">จะไปจับมันละนะ</p>
+				<img src="img/pikachu.gif" alt="b" class="toppic" height="100px"/>
+			</div>
 			<img src="img/bottombar.gif" alt="c" class="bottombar"/>
-			<img src="img/getready.gif" alt="d" class="ready"/>
+			<!-- <img src="img/getready.gif" alt="d" class="ready"/> -->
 		</div>
 	</a>
 	<aside class="cta_box animated">
+		<p>ค่าบริการ 10บาท/ข้อความ ส่งวันละ 1 ข้อความ</p>
 		<div class="row button-container"></div>
 	</aside>
 	</section>
-	<div class="footer"></div>
+	<div class="footer">
+		<img class="pokeball" src="img/pokeball.gif" alt="-o-" />
+		<p>สมัครบริการ พิมพ์ R(เว้นวรรค)04 ส่งไปที่ 4507101 หรือ กด *450710104 โทรออก</p>
+		<p>ยกเลิก พิมพ์ C(เว้นวรรค)04 ส่งไปที่ 4507101 หรือ กด *450710195 โทรออก</p>
+		<p>สอบถามเพิ่มเติมโทร 02-652-1177 จ-ศ (ยกเว้นวันหยุดนักขัตฤกษ์) เวลา 8.00-17.00น.</p>
+	</div>
 	<script src='../_assets/js/pageUtils.js'></script>
 	<script data-remove>
 		var queryStringObj = {
 			"landingpage": "http%3A%2F%2Fflappy.com",
-			"country": "TR",
+			"country": "TH",
 			"adscenario": "pl_ok_v73_wap_s_sam",
 			"affiliateid": "SAM",
 			"clickid": "qwerty"
@@ -85,7 +94,7 @@
 
 			var shortcode = '60455';
 			var keyword = 'YES ' + params.data[0].uniquecode;
-			var buttonText = 'SEND \'YES\' TO PLAY!';
+			var buttonText = 'สมัครบริการ';
 
 			var clickHandler = function(e) {
 				var label = !!this.dataset ? this.dataset.name : 'unknown';
