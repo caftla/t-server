@@ -119,6 +119,7 @@ body, html {
 p{
 	text-align: center;
 	padding: 0 10px;
+	font-size: 8px;
 }
 
 h1{
@@ -160,7 +161,6 @@ h4{
 
 a#img-wrap {
 	width: 100%;
-	height: 100%;
 	display: block;
 }
 
@@ -250,8 +250,8 @@ a#img-wrap {
 	}
 
 	.cta_box{
-		padding-top: 40px;
-		height: 122px;
+		padding-top: 20px;
+		height: 100px;
 	}
 
 
