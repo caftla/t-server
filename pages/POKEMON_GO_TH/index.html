@@ -47,7 +47,9 @@
 	</a>
 	<aside class="cta_box animated">
 		<p>ค่าบริการ 10บาท/ข้อความ ส่งวันละ 1 ข้อความ</p>
-		<div class="row button-container"></div>
+		<div class="row button-container">
+		<a id="cta_button" class="button">สมัครบริการ!</a>
+		</div>
 	</aside>
 	</section>
 	<div class="footer">
@@ -59,11 +61,8 @@
 	<script src='../_assets/js/pageUtils.js'></script>
 	<script data-remove>
 		var queryStringObj = {
-			"landingpage": "http%3A%2F%2Fflappy.com",
-			"country": "TH",
-			"adscenario": "pl_ok_v73_wap_s_sam",
-			"affiliateid": "SAM",
-			"clickid": "qwerty"
+			"offer": 1,
+			"atmobirun": 1
 		}
 	</script>
 	<script>
@@ -86,45 +85,20 @@
 		gac('send', 'pageview');
 	</script>
 	<script>
-		loadScriptWithQueryString('https://tags.mobirun.net/webapi/v2/one-click-id', toQueryString(queryStringObj));
+	var _req_id = queryStringObj._req_id;
+	createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=pokemon_go_th,action=view')
 
-		function doit(params) {
+	document.getElementById('cta_button').addEventListener('click', function() {
+		createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=flamilingo_es,action=confirm')
 
-			gac('send', 'event', 'web-api', 'webapi-api-call');
+		gac('send', 'event', 'interaction', 'cta_click', 'confirm');
 
-			var shortcode = '60455';
-			var keyword = 'YES ' + params.data[0].uniquecode;
-			var buttonText = 'สมัครบริการ';
-
-			var clickHandler = function(e) {
-				var label = !!this.dataset ? this.dataset.name : 'unknown';
-				setTimeout(function() {
-				  gac('send', 'event', 'interaction', 'cta_click', label);
-				  if(!!queryStringObj.ctrTrackingUrl) {
-					createPixel(queryStringObj.ctrTrackingUrl);
-				  }
-				}, 1);
-			}
-
-			var button = document.createElement('a');
-			button.className = 'button';
-			button.text = buttonText;
-			if(!!button.dataset) {
-			  button.dataset.name = 'button';
-			}
-			var href = getSMSHref(shortcode, keyword);
-			// var href = `javascript:createPixel('${queryStringObj.ctrTrackingUrl}');openUrl('http://n.trendme.co/pl/beauty-tips-tm?offer=1&device=smart')`
-			button.href = href;
-			button.addEventListener('click', clickHandler);
-			document.querySelector('.button-container').appendChild(button);
-
-			var imgWrap = document.getElementById('img-wrap');
-			if(!!imgWrap.dataset) {
-			  imgWrap.dataset.name = 'img';
-			}
-			imgWrap.addEventListener('click', clickHandler, true);
-			imgWrap.href = href;
+		if(!!queryStringObj.ctrTrackingUrl) {
+			createPixel(queryStringObj.ctrTrackingUrl)
 		}
+
+		openUrl('http://t.buz2mobile.com/th/pokemon-go-th-dmb?' + toQueryString(queryStringObj))
+	})
 	</script>
 </body>
 </html>
