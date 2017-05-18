@@ -15,23 +15,10 @@
 	document.createElement("aside");
 	document.createElement("main");
 	document.createElement("nav");</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<title>Pokemon go</title>
    </head>
 <body>
 	<div class="toplegal"></div>
-	<script>
-	function moveRight() {
-		$(".b_img").css('right', '-70px');
-			$(".b_img").animate({
-				right: "+=550"
-			}, 1200, moveRight);
-		}
-
-	$(document).ready(function () {
-		moveRight();
-	});
-	</script>
 	<a href="javascript:void(0)" id="close"></a>
 	<section class="main">
 	<a id="img-wrap" href="javascript:void(0)">
@@ -48,7 +35,7 @@
 	<aside class="cta_box animated">
 		<p>ค่าบริการ 10บาท/ข้อความ ส่งวันละ 1 ข้อความ</p>
 		<div class="row button-container">
-		<a id="cta_button" class="button">สมัครบริการ!</a>
+		<a id="cta_button" class="button">สมัครบริการ</a>
 		</div>
 	</aside>
 	</section>
@@ -89,7 +76,7 @@
 	createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=pokemon_go_th,action=view')
 
 	document.getElementById('cta_button').addEventListener('click', function() {
-		createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=flamilingo_es,action=confirm')
+		createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=pokemon_go_th,action=confirm')
 
 		gac('send', 'event', 'interaction', 'cta_click', 'confirm');
 
