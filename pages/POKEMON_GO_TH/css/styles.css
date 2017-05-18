@@ -26,6 +26,9 @@ a{
 .footer{
 	border-top: #c1c19c 2px solid;
 	padding-top: 5px;
+	position: fixed;
+	bottom: 0;
+	margin-bottom: 10px;
 }
 
 .footer a{
