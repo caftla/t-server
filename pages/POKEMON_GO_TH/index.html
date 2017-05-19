@@ -46,6 +46,7 @@
 		<p>สอบถามเพิ่มเติมโทร 02-652-1177 จ-ศ (ยกเว้นวันหยุดนักขัตฤกษ์) เวลา 8.00-17.00น.</p>
 	</div>
 	<script src='../_assets/js/pageUtils.js'></script>
+	<script src='../_assets/js/gac.js'></script>
 	<script data-remove>
 		var queryStringObj = {
 			"offer": 1,
@@ -53,32 +54,29 @@
 		}
 	</script>
 	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','https://www.google-analytics.com/analytics.js','gac');
+		gac('create', 'UA-45774216-20');
+		gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
+		gac('set', 'page', 'pokemon_go_th');
+		gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
+		gac('set', 'dimension2', queryStringObj.pubid || 'unknown'); // publisher
+		// gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
+		gac('set', 'dimension4', 'payment-page'); // opt-in method
+		gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
 
-		var isSmadex = !!queryStringObj.ctrTrackingUrl && queryStringObj.ctrTrackingUrl.indexOf('smadex') > 0;
-
-		gac('create', 'UA-45774216-20', 'auto', { 'cookieDomain': 'none'});
-		gac('set', 'checkProtocolTask', function(){ /* nothing */ });
-		gac('set', 'page', 'makeup-pl-1');
-		gac('set', 'dimension1', queryStringObj.campaignid || isSmadex ? '1' : '2'); // campaignid
-		gac('set', 'dimension2', queryStringObj.pubid || ''); // publisher
-		gac('set', 'dimension3', queryStringObj.network || isSmadex ? 'smadex' : 'unknown');  // network
-		gac('set', 'dimension4', 'scsms'); // opt-in method
-		gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid')
+		gac('set', 'cs', queryStringObj.source || 'unknown');
+		gac('set', 'cm', queryStringObj.medium || 'unknown');
+		gac('set', 'cn', queryStringObj.campaign || 'unknown');
 
 		gac('send', 'pageview');
 	</script>
 	<script>
 	var _req_id = queryStringObj._req_id;
-	createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=pokemon_go_th,action=view')
+	createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=pokemon_go_th,action=pageview')
 
 	document.getElementById('cta_button').addEventListener('click', function() {
-		createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=pokemon_go_th,action=confirm')
+		createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=pokemon_go_th,action=subscribe')
 
-		gac('send', 'event', 'interaction', 'cta_click', 'confirm');
+		gac('send', 'event', 'interaction', 'click', 'subscribe');
 
 		if(!!queryStringObj.ctrTrackingUrl) {
 			createPixel(queryStringObj.ctrTrackingUrl)
