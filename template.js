@@ -61,6 +61,17 @@ var renderAd = function() {
         }
     }
 
+    if (isMraid) {
+        var externalLinks = document.querySelectorAll('.external-link');
+
+        externalLinks.forEach(function(elem) {
+            elem.addEventListener('click', function(e) {
+                e.preventDefault();
+                mraid.open(e.target.href)
+            })
+        })
+    }
+
     // add styles
     if (!!styles) {
         for(var i = 0; i < styles.length; i++) {
