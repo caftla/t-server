@@ -57,3 +57,9 @@ function createPixel(url) {
     pixel.setAttribute("style", "width: 1px; height: 1px; display:none");
     document.body.appendChild(pixel);
 }
+
+function mraidClose(url) {
+    if (isMraid) {
+        mraid.close()
+    }
+}
