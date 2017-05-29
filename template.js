@@ -64,12 +64,12 @@ var renderAd = function() {
     if (isMraid) {
         var externalLinks = document.querySelectorAll('.external-link');
 
-        externalLinks.forEach(function(elem) {
-            elem.addEventListener('click', function(e) {
+        for (var i = 0; i < externalLinks.length; i++) {
+            externalLinks[i].addEventListener('click', function(e) {
                 e.preventDefault();
                 mraid.open(e.target.href)
             })
-        })
+        }
     }
 
     // add styles
