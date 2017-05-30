@@ -79,7 +79,7 @@ const buildPage = (page: string): Promise =>
                                     return {inline, content: inline ? babelify(content) : content}
                                 })(js),
                                 css,
-                                html
+                                html: $('body').html()
                             }
                         }
                     )
