@@ -25,9 +25,9 @@ const buildPage = (page: string): Promise =>
             mkdirp.sync(`${pageBuildDir}/${page}`)
 
             if (pageType == 'html') {
-                fs.writeFileAsync(`${pageBuildDir}/${page}/index.html`, content)
+                return fs.writeFileAsync(`${pageBuildDir}/${page}/index.html`, content)
             } else {
-                fs.writeFileAsync(`${pageBuildDir}/${page}/index.html.js`, babelify(content))
+                return fs.writeFileAsync(`${pageBuildDir}/${page}/index.html.js`, babelify(content))
             }
         },
         ({js, css, html})=> {
@@ -92,12 +92,9 @@ const buildPage = (page: string): Promise =>
 
 const [,,pageName] = process.argv
 
-fs.readdirAsync(pageDir)
-.then((pages)=> {
-    R.compose(
-        R.forEach(buildPage),
-        R.filter((it)=> !pageName ? true : R.test(new RegExp(`^${pageName}`, 'i'), it)),
-        R.filter((it)=> !R.test(/^_|\./, it))
-    )(pages)
-})
-.catch((err)=> console.log(err))
+R.composeP(
+    (it)=> Promise.map(it, buildPage, {concurrency: 5}),
+    R.filter((it)=> !pageName ? true : R.test(new RegExp(`^${pageName}`, 'i'), it)),
+    R.filter((it)=> !R.test(/^_|\./, it)),
+    (it)=> fs.readdirAsync(it)
+)(pageDir)
