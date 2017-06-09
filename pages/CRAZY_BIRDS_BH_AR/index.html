@@ -1,0 +1,79 @@
+
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lalezar" rel="stylesheet">
+
+	<title>Crazy Birds</title>
+	</head>
+<body class="move">
+
+<a href="javascript:void(0)" id="close"></a>
+		<a id="img-wrap" href="javascript:void(0)">
+			<div class="container">
+				<div class="birds">
+					<img src="./img/birdies.png" alt="Crazy Birds 2"/>
+				</div>
+
+			<section>
+				<div class="row button-container pulse">
+                    <a id="cta_button" class="button">!إلعب الآن</a>
+                </div>
+			</section>
+            <section>
+                <div class="footer">
+                    <p>Frogstars هي خدمة للاشتراك. لمشتركي فيفا، إستمتع بتجربة مجانية  لمدة يوم واحد. رسوم الاشتراك
+						  0.20 دينار بحريني للرسالة القصيرة الواحدة الى ان تقوم بإلغاء الاشتراك من الخدمة. لإلغاء الاشتراك
+						   في أي وقت ارسل غ 33 إلى 98054.</p>
+                    <p>للحصول على المساعدة، يرجى الاتصال بفريق الدعم bh@buz2mobile.com:</p>
+                    <p>بمجرد الاشتراك، سوف تكون قادرة على الوصول إلى الألعاب المتوفرة لدينا. للاستمتاع بهذه
+						 الخدمة يجب أن تكون أكثر من 18 سنة أو ان تكون حاصل على موافقة من أهلك
+						  أو الشخص المخول بدفع الفاتورة. بالضغط على الاشتراك تؤكد موافقتك على جميع شروط وبنود خدمة Frogstars</p>
+                </div>
+            </section>
+			</div>
+		</a>
+
+<script src='../_assets/js/pageUtils.js'></script>
+	<script src='../_assets/js/gac.js'></script>
+	<script data-remove>
+		var queryStringObj = {
+			"atmobirun": 1
+		}
+	</script>
+	<script>
+		gac('create', 'UA-45774216-20');
+		gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
+		gac('set', 'page', 'crazy_birds_bh_ar');
+		gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
+		gac('set', 'dimension2', queryStringObj.pubid || 'unknown'); // publisher
+		// gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
+		gac('set', 'dimension4', 'payment-page'); // opt-in method
+		gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
+
+		gac('set', 'cs', queryStringObj.source || 'unknown');
+		gac('set', 'cm', queryStringObj.medium || 'unknown');
+		gac('set', 'cn', queryStringObj.campaign || 'unknown');
+
+		gac('send', 'pageview');
+	</script>
+	<script>
+	var _req_id = queryStringObj._req_id;
+	createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=crazy_birds_bh_ar,action=pageview')
+
+	document.getElementById('cta_button').addEventListener('click', function() {
+		createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=crazy_birds_bh_ar,action=subscribe')
+
+		gac('send', 'event', 'interaction', 'click', 'subscribe');
+
+		if(!!queryStringObj.ctrTrackingUrl) {
+			createPixel(queryStringObj.ctrTrackingUrl)
+		}
+
+		openUrl('http://track.prontoluck.com/d85f1b21-7bf9-4777-9709-c11872d11094?' + toQueryString(queryStringObj))
+	})
+	</script>
+	</body>
+</html>
