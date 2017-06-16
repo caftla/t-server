@@ -13,9 +13,10 @@
 	<body>
 		<section class="main">
 			<a href="javascript:void(0)" id="close"></a>
-			<iframe src="http://n.gamezpark.com/iq/superdario?device=smart&offer=935" id="dario" width="320" height="100%" frameborder="0" style="height: 480px;"></iframe>       
+			<iframe id="iframe" width="320" height="100%" frameborder="0" style="height: 480px;"></iframe>       
 		<section>
 		<script src='../_assets/js/gac.js'></script>
+		<script src='../_assets/js/pageUtils.js'></script>
 		<script data-remove>
 			var queryStringObj = {
 				"atmobirun": 1
@@ -26,9 +27,9 @@
 			gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
 			gac('set', 'page', 'super_dario_iraq_if');
 			gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
-			gac('set', 'dimension2', queryStringObj.pubid || 'unknown'); // publisher
-			// gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
-			gac('set', 'dimension4', 'payment-page'); // opt-in method
+			gac('set', 'dimension2', queryStringObj.appId || 'unknown'); // publisher
+			gac('set', 'dimension3', queryStringObj.source || 'unknown');  // network
+			gac('set', 'dimension4', 'header-enrichment'); // opt-in method
 			gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
 
 			gac('set', 'cs', queryStringObj.source || 'unknown');
@@ -36,6 +37,8 @@
 			gac('set', 'cn', queryStringObj.campaign || 'unknown');
 
 			gac('send', 'pageview');
+
+			appendIframeUrl('http://n.gamezpark.com/iq/superdario?device=smart&offer=935');
 		</script>
 	</body>
 </html>
