@@ -1,0 +1,39 @@
+
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN"
+		"http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta name=viewport content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="css/styles.css" />
+	<title>Super Dario</title>
+   </head>
+   <body>
+	<iframe src="http://n.gamezpark.com/iq/superdario?device=smart&offer=935" id="dario" width="320" height="100%" frameborder="0" style="height: 480px;"></iframe>       
+   </body>
+	<script src='../_assets/js/gac.js'></script>
+	<script data-remove>
+		var queryStringObj = {
+			"atmobirun": 1
+		}
+	</script>
+	<script>
+		gac('create', 'UA-45774216-20');
+		gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
+		gac('set', 'page', 'super_dario_iraq_if');
+		gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
+		gac('set', 'dimension2', queryStringObj.pubid || 'unknown'); // publisher
+		// gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
+		gac('set', 'dimension4', 'payment-page'); // opt-in method
+		gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
+
+		gac('set', 'cs', queryStringObj.source || 'unknown');
+		gac('set', 'cm', queryStringObj.medium || 'unknown');
+		gac('set', 'cn', queryStringObj.campaign || 'unknown');
+
+		gac('send', 'pageview');
+	</script>
+</body>
+</html>
