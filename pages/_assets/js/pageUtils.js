@@ -64,7 +64,6 @@ function mraidClose(url) {
     }
 }
 
-function appendIframeUrl(url) {
-	var site = url + '&' + queryStringObj.aff_sub5 + '&' + queryStringObj.aff_sub6;
-	document.getElementById('iframe').src = site;
+function appendIframeUrl(id,url) {
+	document.getElementById(id).src = url;
 }
