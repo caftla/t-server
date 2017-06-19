@@ -39,7 +39,7 @@
 			gac('send', 'pageview');
 
 			var url = 'http://n.gamezpark.com/iq/superdario?device=smart&offer=935?' + toQueryString(queryStringObj);			
-			appendIframeUrl('iframe', url);
+			document.getElementById('iframe').src = url;
 		</script>
 	</body>
 </html>

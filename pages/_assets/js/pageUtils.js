@@ -63,7 +63,3 @@ function mraidClose(url) {
         mraid.close()
     }
 }
-
-function appendIframeUrl(id,url) {
-	document.getElementById(id).src = url;
-}
