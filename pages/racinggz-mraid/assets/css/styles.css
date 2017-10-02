@@ -1,0 +1,234 @@
+body{
+	margin:0;
+	padding:0;
+	background-color: #3a2220;
+	-webkit-touch-callout:none;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	font:12px/18px Tahoma, Arial, Helvetica sans-serif;
+}
+
+#close {
+    top: 5px;
+	right: 5px;
+ 	width: 25px;
+ 	height: 25px;
+ 	z-index: 100;
+ 	color: white;
+ 	position: absolute;
+ 	background-size: cover;
+ 	background-repeat: no-repeat;
+  	background-position: 50% 50%;
+  	background-image: url('../../../_assets/img/close.png');
+}
+
+#container.ar{
+	direction: rtl;
+}
+
+#price{
+	color:#c3a8a6;
+	display: none;
+	padding:5px 10px;
+	font-size: 11px;
+	text-align: center;
+	background-color: rgba(0,0,0,0.3);
+}
+
+#creative{
+	height: 320px;
+	display: block;
+	position: relative;
+}
+
+#creative #holder{
+	left:0;
+	right:0;
+	z-index: 5;
+	bottom:-45px;
+	display:block;
+	position: absolute;
+}
+
+.btn{
+	color: #fff;
+	width: 280px;
+	outline: none;
+	display: block;
+	font-size: 18px;
+	cursor: pointer;
+	margin: 10px auto;
+	padding: 18px 0px;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 35px;
+	text-decoration: none;
+	border: 1px solid #74b807;
+	text-shadow: 0px 1px 0px #528009;
+	-moz-box-shadow: inset 0px 1px 0px 0px #a4e271;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #a4e271;
+	box-shadow: inset 0px 1px 0px 0px #a4e271;
+	background-color: #89c403;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809));
+	background: -moz-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background: -webkit-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background: -o-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background: -ms-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background: linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809',GradientType=0);
+    -webkit-animation: pulse 1s ease-in-out infinite;
+}
+
+.btn:hover{
+	background-color:#77a809;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403));
+	background:-moz-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:-webkit-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:-o-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:-ms-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403',GradientType=0);
+}
+
+
+@-webkit-keyframes pulse{
+    0%{
+        -webkit-transform:scale(1,1);
+    }
+    50%{
+        -webkit-transform:scale(0.95,0.95);
+    }
+    100%{
+        -webkit-transform:scale(1,1);
+    }
+}
+
+ul#scene{
+	margin:0;
+	padding:0;
+}
+
+ul#scene li{
+	list-style: none;
+	position: absolute;
+}
+
+.title{
+	left:0;
+	right:0;
+	top:15px;
+	z-index: 4;
+	width:280px;
+	height:100px;
+	margin:0 auto;
+	display: block;
+	background-size: 100% auto;
+	background-position: top center;
+	background-image:url('../img/titlear.png');
+    -webkit-animation:1.2s expandOpen ease-out;
+}
+
+@-webkit-keyframes expandOpen {
+    0% {
+        -webkit-transform: scale(1.8);		
+    }
+    50% {
+        -webkit-transform: scale(0.95);
+    }	
+    80% {
+        -webkit-transform: scale(1.05);
+    }
+    90% {
+        -webkit-transform: scale(0.98);
+    }	
+    100% {
+        -webkit-transform: scale(1);
+    }					
+}
+
+.wind{
+	left:0;
+	top:180px;
+	z-index: 3;
+	width:100%;
+	height:100px;
+	display: block;
+	background-size:1050px 100px;
+	background-image:url('../img/wind.png');
+	-webkit-animation: 1s wind linear infinite	
+}
+
+@-webkit-keyframes wind{
+
+	0%{
+		background-position: 0 0;
+	}
+	
+	100%{
+		
+		background-position: -647px 0;
+	}
+	
+}
+
+.car{
+	right: 0;
+	left: -40px;
+	z-index: 2;
+	width:240px;
+	bottom: 30px;
+	height: 139px;
+	margin:0 auto;
+	display: block;
+}
+
+.car img{
+	width: 240px;
+	height:139px;
+}
+
+.bg{
+	left:0;
+	z-index: 1;
+	width:100%;
+	height:320px;
+	display: block;
+	background-size: 647px 320px;
+	background-image:url('../img/bg.jpg');
+	-webkit-animation: 1.5s bg linear infinite;
+}
+
+
+@-webkit-keyframes bg{
+
+	0%{
+		background-position: 0 0;
+	}
+	
+	100%{
+		
+		background-position: -647px 0;
+	}
+	
+}
+
+
+#footer{
+	padding:10px;
+	color:#c3a8a6;
+	display: block;
+	font-size: 12px;
+	max-width: 620px;
+	text-align: center;
+	margin:0px auto 50px auto;
+}
+
+#footer #operatorLogo{
+	width:200px;
+	height:52px;
+	display: block;
+	background-size: 100% auto;
+	margin: 35px auto 20px auto;
+	background-image: url('../img/iraqcom.png');
+	
+}

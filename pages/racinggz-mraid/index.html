@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<title>Racing Monster</title>
+
+<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+
+<link rel="icon" type="image/x-icon" sizes="16x16 32x32" href="assets/img/favicon.ico">
+
+</head>
+
+<body>
+
+	<div id="container" class="ar">
+		
+			<a href="javascript:void(0)" id="close"></a>
+			
+			<div id="price">{Price Information Here}</div>
+			
+			<div id="creative">
+			
+			
+				<ul id="scene">
+					<li class="title"></li>
+					<li class="wind"></li>
+					<li class="car"><img src="assets/img/truck1.gif" alt=""/></li>
+					<li class="bg"></li>
+				</ul>
+				
+				
+				<div id="holder">
+				
+					<button id="cta" class="btn">إشتراك</button>
+				
+				</div>
+			
+			</div>
+			
+			<div id="footer">
+				
+			<div id="operatorLogo"></div>
+			
+			مرحباً بك في خدمة Gamez Park تقدم هذه الخدمة مكتبة متنوعة من المحتويات المتميزة من العاب HTML5				
+			و التطبيقات. مستخدمي آسياسيل: عند اشتراكك بالخدمة سوف تستلم 7 محتويات أسبوعيا بسعر 300				
+			دينارعراقي لكل محتوى وللإلغاء الأشتراك، ارسل 0 الى 2884.				
+			
+			</div>		
+		
+	</div>
+
+	 <script src='../_assets/js/pageUtils.js'></script>
+	 <script src='../_assets/js/gac.js'></script>
+	<script data-remove>
+	    var queryStringObj = {
+		    "offer": 1,
+	        "clickid": "qwerty"
+	    }
+	</script>
+	
+	<script>
+		gac('create', 'UA-45774216-20');
+		gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
+		gac('set', 'page', 'racinggz-mraid');
+		gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
+		gac('set', 'dimension2', queryStringObj.pubid || 'unknown'); // publisher
+		// gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
+		gac('set', 'dimension4', 'payment-page'); // opt-in method
+		gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
+
+		gac('set', 'cs', queryStringObj.source || 'unknown');
+		gac('set', 'cm', queryStringObj.medium || 'unknown');
+		gac('set', 'cn', queryStringObj.campaign || 'unknown');
+
+		gac('send', 'pageview');
+	</script>
+	
+	<script>
+		var ctaUrl = "http://n.gamezpark.com/iq/racinggz?atmobirun=1&" + toQueryString(queryStringObj);
+		
+		document.getElementById('cta').addEventListener('click', function() {
+			gac('send', 'event', 'interaction', 'click', 'subscribe');
+			openUrl(ctaUrl);
+		})
+	</script>
+	
+	 
+</body>
+
+
+</html>
