@@ -1,0 +1,445 @@
+body{
+	margin:0;
+	padding:0;
+	color:#fff;
+	background-color: #000;
+	font:12px/18px Arial, Helvetica, Sans-serif;
+	
+	-webkit-touch-callout:none;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+#close {
+    top: 5px;
+	right: 5px;
+ 	width: 25px;
+ 	height: 25px;
+ 	z-index: 100;
+ 	color: white;
+ 	position: absolute;
+ 	background-size: cover;
+ 	background-repeat: no-repeat;
+  	background-position: 50% 50%;
+  	background-image: url('../../../_assets/img/close.png');
+}
+
+.creative{
+	height: 330px;
+	display: block;
+	overflow: hidden;
+	position: relative;
+	background-repeat: repeat;
+	background-image: url('../img/bg.jpg');
+}
+
+ul.effects{
+	margin:0;
+	padding:0;
+}
+
+ul.effects li{
+	list-style: none;
+	position: absolute;
+	background-size: 100% auto;
+}
+
+ul.effects li.title{
+    left: 50%;
+    top: 245px;
+    z-index: 5;
+    opacity: 0;
+    width: 280px;
+    height: 70px;
+    display: block;
+    margin-left: -140px;
+	background-image: url('../img/title-en.png');
+
+   	-webkit-animation-name:slideUp;
+	-webkit-animation-delay: 1s;
+	-webkit-animation-duration: 0.75s;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-timing-function:ease-in-out;		
+}
+
+@-webkit-keyframes slideUp {
+    0% {
+	    opacity:0;
+        -webkit-transform: translateY(100%);
+    }
+    50%{
+        -webkit-transform: translateY(-8%);
+    }
+    65%{
+        -webkit-transform: translateY(4%);
+    }
+    80%{
+        -webkit-transform: translateY(-4%);
+    }
+    95%{
+        -webkit-transform: translateY(2%);
+    }			
+    100% {
+	    opacity:1;
+        -webkit-transform: translateY(0%);
+    }	
+}
+
+
+
+
+ul.effects li.flair{
+    top: 0px;
+    left: 50%;
+    z-index: 4;
+    opacity: 0;
+    width: 460px;
+    height: 180px;
+    display: block;
+    margin-left: -230px;
+	background-image: url('../img/flair.png');
+	mix-blend-mode: screen;
+
+
+   	-webkit-animation-name:fade;
+	-webkit-animation-delay: 0.4s;
+	-webkit-animation-duration: 0.75s;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-timing-function:ease-in-out;
+}
+
+
+@-webkit-keyframes fade {
+	0% {
+		opacity: 0;
+	    -webkit-transform: translateY(-100%);
+	}
+	50%{
+		opacity: 0.5;
+	    -webkit-transform: translateY(8%);
+	}
+	65%{
+		opacity: 0.75;
+	    -webkit-transform: translateY(-4%);
+	}
+	80%{
+		opacity: 0.5;
+	    -webkit-transform: translateY(4%);
+	}
+	95%{
+		opacity: 0.75;
+	    -webkit-transform: translateY(-2%);
+	}			
+	100% {
+		opacity:1;
+	    -webkit-transform: translateY(0%);
+	}		
+} 
+  		  		
+
+ul.effects li.flag{
+    top: -9px;
+    left: 50%;
+    z-index: 3;
+    opacity: 0;
+    width: 160px;
+    height: 150px;
+    display: block;
+    margin-left: -80px;
+	background-image: url('../img/flag.png');
+
+	-webkit-animation-name:slideDown;
+	-webkit-animation-delay: 0.4s;
+	-webkit-animation-duration: 0.75s;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-timing-function:ease-in-out;					
+}
+
+@-webkit-keyframes slideDown {
+	0% {
+		opacity: 0;
+	    -webkit-transform: translateY(-100%);
+	}
+	50%{
+	    -webkit-transform: translateY(8%);
+	}
+	65%{
+	    -webkit-transform: translateY(-4%);
+	}
+	80%{
+	    -webkit-transform: translateY(4%);
+	}
+	95%{
+	    -webkit-transform: translateY(-2%);
+	}			
+	100% {
+		opacity:1;
+	    -webkit-transform: translateY(0%);
+	}	
+}
+
+
+ul.effects li.crew{
+    left: 50%;
+    z-index: 2;
+    opacity: 0;
+    width: 380px;
+    height: 270px;
+    display: block;
+    margin-left: -187px;
+	background-image: url('../img/crew.png');
+
+	
+	-webkit-animation-name:fadeIn;
+	-webkit-animation-delay: 0.75s;
+	-webkit-animation-duration: 0.75s;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-timing-function:ease-in-out;				
+}
+
+
+@-webkit-keyframes fadeIn {
+    0% {
+        -webkit-transform: scale(0);
+        opacity: 0.0;		
+    }
+    60% {
+        -webkit-transform: scale(1.1);
+    }
+    80% {
+        -webkit-transform: scale(0.9);
+        opacity: 1;	
+    }	
+    100% {
+        -webkit-transform: scale(1);
+        opacity: 1;	
+    }		
+} 
+  		
+
+	  		
+
+ul.effects li.beam{
+    left: 50%;
+    z-index: 1;
+    opacity: 0;
+    width: 488px;
+    height: 330px;
+    display: block;
+    margin-left: -244px;
+	background-image: url('../img/beam.png');
+}
+
+ul.effects li.beam.show{
+	-webkit-animation-name:show;
+	-webkit-animation-duration: 0.75s;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-timing-function:ease-in-out;				
+}
+
+@-webkit-keyframes show {
+	0% {
+		opacity: 0;
+	}
+		
+	100% {
+		opacity: 1;
+	}	
+}
+
+
+.holder{
+	z-index: 6;
+	color:#000;
+	padding:10px;
+	display:block;
+	position: relative;
+	text-align: center;
+	background-color: #ffdf10;
+	text-shadow: 0px 1px 1px rgba(255,255,255,0.60);
+}
+
+.holder .step1 button{
+	width:125px;
+	height:85px;
+	border:none;
+	margin:0 3px;
+	outline: none;
+	cursor: pointer;
+	border-radius: 7px;
+	position: relative;
+	display: inline-block;
+	box-shadow: 0px 2px 2px rgba(0,0,0,0.75);
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eeeeee+0,cccccc+100;Gren+3D */
+	background: rgb(238,238,238); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+}
+
+.holder .step1 button:hover{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cccccc+0,eeeeee+100 */
+	background: rgb(204,204,204); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(238,238,238,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(204,204,204,1) 0%,rgba(238,238,238,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cccccc', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
+}
+
+.holder .step1 button.operatorA:before,
+.holder .step1 button.operatorB:before{
+	content:"";
+	left:0;
+	right:0;
+	top:18px;
+	width:90px;
+	height:50px;
+	margin:0 auto;
+	display: block;
+	position: absolute;
+	background-size:100% auto;
+}
+
+.holder .step1 button.operatorA:before{
+	background-image: url('../img/m1-logo.png');
+}
+
+.holder .step1 button.operatorB:before{
+	background-image: url('../img/singtel-logo.png');
+}
+
+.holder h1{
+	padding:0;
+	font-size: 14px;
+	margin:0 0 10px 0;
+}
+
+.holder .msg{
+	display: block;
+	max-width: 620px;
+	margin:10px auto 0 auto;
+}
+
+.holder .msg strong{
+	color:#0458a9;
+}
+
+.footer{
+	padding:10px;
+	margin:0 auto;
+	display: block;
+	max-width: 620px;
+	text-align: justify;
+}
+
+.footer .msg{
+	margin:10px 0;
+	display: block;
+	text-align: center;
+}
+
+.footer a{
+	color:#fff;
+	width:120px;
+	display: block;
+	margin:10px auto;
+	text-align: center;
+}
+
+#step2,
+#main-subscription{
+	display:none;
+}
+
+.btn{
+	height:60px;
+	width:260px;
+	border:none;
+	margin:0 auto;
+	outline: none;
+	color:#ffffff;
+	padding:0 10px;
+	display: block;
+	cursor: pointer;
+	font-size: 22px;
+	line-height: 60px;
+	font-weight: bold;
+	border-radius: 7px;
+	position: relative;
+	text-decoration: none;
+	text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
+	box-shadow: 0px 2px 2px rgba(0,0,0,0.75);
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#499bea+0,207ce5+100;Blue+3d+%237 */
+	background: rgb(73,155,234); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(73,155,234,1) 0%,rgba(32,124,229,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(73,155,234,1) 0%,rgba(32,124,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5',GradientType=0 ); /* IE6-9 */
+}
+
+.btn:hover{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#207ce5+0,499bea+100 */
+	background: rgb(32,124,229); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(32,124,229,1) 0%, rgba(73,155,234,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(32,124,229,1) 0%,rgba(73,155,234,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(32,124,229,1) 0%,rgba(73,155,234,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207ce5', endColorstr='#499bea',GradientType=0 ); /* IE6-9 */
+}
+
+
+.pulse{
+	opacity: 1 !important;
+    -webkit-animation: pulse 1.5s ease-in-out infinite;
+}
+
+@-webkit-keyframes pulse{
+    0%{
+        -webkit-transform:scale(1);
+    }
+    50%{
+        -webkit-transform:scale(1.20);
+    }
+    100%{
+        -webkit-transform:scale(1);
+    }
+}
+
+
+.pulse2{
+    -webkit-animation: pulse2 1s ease-in-out infinite;
+}
+
+@-webkit-keyframes pulse2{
+    0%{
+        -webkit-transform:scale(1,1);
+    }
+    50%{
+        -webkit-transform:scale(0.95,0.95);
+    }
+    100%{
+        -webkit-transform:scale(1,1);
+    }
+}
+
+		    	  	
+#container.preload  * {
+ /*CSS transitions*/
+ -o-transition-property: none !important;
+ -moz-transition-property: none !important;
+ -ms-transition-property: none !important;
+ -webkit-transition-property: none !important;
+ transition-property: none !important;
+ /*CSS transforms*/
+ -o-transform: none !important;
+ -moz-transform: none !important;
+ -ms-transform: none !important;
+ -webkit-transform: none !important;
+ transform: none !important;
+ /*CSS animations*/
+ -webkit-animation: none !important;
+ -moz-animation: none !important;
+ -o-animation: none !important;
+ -ms-animation: none !important;
+ animation: none !important;
+ }

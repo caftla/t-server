@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="shortcut icon" href="img/favicon.ico" />
+
+<link rel="icon" type="image/x-icon" sizes="16x16 32x32" href="img/favicon.ico">
+
+<title>Crazy Birds 2</title>
+
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+</head>
+
+<body>
+	
+	<div id="container" class="preload">
+		
+		<a href="javascript:void(0)" id="close"></a>
+		
+		<div class="creative">
+			
+			<ul class="effects">
+				<li class="title"></li>
+				<li class="flair"></li>
+				<li class="flag"></li>
+				<li class="crew"></li>
+				<li class="beam show" id="beam"></li>
+			</ul>
+			
+		</div>
+		
+		<div class="holder">
+			
+			<button id="cta" class="btn pulse2">Subscribe now</button>
+			
+			<div class="msg">
+				
+				Weekly subscription service: <strong>S$5.35 (w/GST)</strong> per sms, 
+				4 sms per week. Max of <strong>S$21.40 (w/GST)</strong> with 4 online games per week.
+				
+			</div>
+			
+		</div>
+		
+		<div class="footer">
+			
+			<div class="msg">You can download 4 online games per week.</div>
+			
+			Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+			
+			<a href="#" target="_blank">Terms &amp; Conditions</a>
+			
+		</div>
+		
+	</div>
+
+</body>
+
+<script src='../_assets/js/pageUtils.js'></script>
+<script src='../_assets/js/gac.js'></script>
+
+<script>
+	gac('create', 'UA-45774216-20');
+	gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
+	gac('set', 'page', 'racinggz-mraid');
+	gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
+	gac('set', 'dimension2', queryStringObj.pubid || 'unknown'); // publisher
+	// gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
+	gac('set', 'dimension4', 'payment-page'); // opt-in method
+	gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
+
+	gac('set', 'cs', queryStringObj.source || 'unknown');
+	gac('set', 'cm', queryStringObj.medium || 'unknown');
+	gac('set', 'cn', queryStringObj.campaign || 'unknown');
+
+	gac('send', 'pageview');
+</script>
+
+<script>
+	var ctaUrl = "http://n.gamezpark.com/iq/racinggz?atmobirun=1&" + toQueryString(queryStringObj);
+	
+	document.getElementById('cta').addEventListener('click', function() {
+		gac('send', 'event', 'interaction', 'click', 'subscribe');
+		openUrl(ctaUrl);
+	})
+</script>
+
+<script type="text/javascript">
+
+	window.onload = function(){
+	
+		document.getElementById("container").classList.remove('preload');
+	
+	}
+
+</script>
+
+
+
+</html>
