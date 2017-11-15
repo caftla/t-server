@@ -21,7 +21,7 @@ body{
  	background-size: cover;
  	background-repeat: no-repeat;
   	background-position: 50% 50%;
-  	background-image: url('../../../_assets/img/close.png');
+  	background-image: url('../../_assets/img/close.png');
 }
 
 .creative{

@@ -35,7 +35,7 @@
 		
 		<div class="holder">
 			
-			<div class="row button-container"></div>
+			<button class="btn">Subscribe now</button>
 			
 			<div class="msg">
 				
@@ -61,6 +61,7 @@
 </body>
 
 <script src='../_assets/js/pageUtils.js'></script>
+
 <script data-remove>
     var queryStringObj = {
         "landingpage": "http%3A%2F%2Fexample.com",
@@ -93,6 +94,7 @@
 </script>
 
 <script>
+/*
     loadScriptWithQueryString('https://tags.mobirun.net/webapi/v2/one-click-id', toQueryString(queryStringObj));
 
     function doit(params) {
@@ -100,7 +102,7 @@
         gac('send', 'event', 'web-api', 'webapi-api-call');
 
         var shortcode = '60455';
-        var keyword = 'YES ' + params.data[0].uniquecode;
+        var keyword = 'YES ';// + params.data[0].uniquecode;
         var buttonText = 'Kliknij Tutaj!';
 
         var clickHandler = function(e) {
@@ -132,15 +134,60 @@
         imgWrap.addEventListener('click', clickHandler, true);
         imgWrap.href = href;
     }
+*/
 </script>
 
 <script type="text/javascript">
+	var isMraid="undefined"!=typeof mraid
+	
+	function handleViewability() {
+		if (mraid.isViewable()) {
+			
+			document.getElementById("container").classList.remove('preload');
+			playBeam();
+			
+		} else {
+			mraid.addEventListener('viewableChange', function(visible) {
+				if (!!visible) {
+					
+					document.getElementById("container").classList.remove('preload');
+					playBeam();	
+								
+				}
+			})
+		}
+		
+	}
+	
+	if (!isMraid) {
+		
+		document.getElementById("container").classList.remove('preload');
+		playBeam();
+		
+	} else {
+		handleViewability();
+	}
+	
 
+	function playBeam(){
+		
+		setTimeout(function(){
+		
+			document.getElementById("beam").classList.remove('show');
+			document.getElementById("beam").className += " pulse";
+		
+		
+		}, 1000)
+	
+	}
+
+/*
 	window.onload = function(){
 	
 		document.getElementById("container").classList.remove('preload');
 	
 	}
+*/
 
 </script>
 
