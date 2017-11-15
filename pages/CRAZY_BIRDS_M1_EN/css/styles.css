@@ -352,7 +352,8 @@ ul.effects li.beam.show{
 	display:none;
 }
 
-.btn{
+.btn,
+.button{
 	height:60px;
 	width:260px;
 	border:none;
@@ -378,7 +379,8 @@ ul.effects li.beam.show{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5',GradientType=0 ); /* IE6-9 */
 }
 
-.btn:hover{
+.btn:hover,
+.button:hover{
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#207ce5+0,499bea+100 */
 	background: rgb(32,124,229); /* Old browsers */
 	background: -moz-linear-gradient(top, rgba(32,124,229,1) 0%, rgba(73,155,234,1) 100%); /* FF3.6-15 */
