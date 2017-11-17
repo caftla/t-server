@@ -128,18 +128,20 @@
 		}
 
 		document.getElementById("cancel-1").addEventListener('click', function () {
-			
-			modal.classList.remove("active");
 
 			createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=flamilingo_es,action=cancel-confirmation');
 			gac('send', 'event', 'interaction', 'click', 'cancel-confirmation');
+			
+			mraidClose();
+			
 		})
 
 		closeModal.addEventListener('click', function () {
 			createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=flamilingo_es,action=cancel');
 			gac('send', 'event', 'interaction', 'click', 'cancel');
 
-			mraidClose();
+			modal.classList.remove("active");
+
 		})
 
 		document.getElementById("confirm").addEventListener('click', function() {

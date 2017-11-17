@@ -11,7 +11,7 @@ body{
 }
 
 #close {
-    top: 40px;
+    top: 5px;
 	right: 5px;
  	width: 25px;
  	height: 25px;
@@ -38,9 +38,9 @@ a{
 	color:#fff;
 	display: block;
 	font-size: 13px;
-	padding:2px 10px;
-	font-weight: bold;
+	padding:2px 20px;
 	text-align: center;
+	font-weight: normal;
 }
 
 #creative{
@@ -96,7 +96,6 @@ ul.effects li{
 }
 .textLeft,
 .textRight{
-	width: 50%;
 	color:#fff;
 	height: auto;
 	font-size: 13px;
@@ -104,11 +103,13 @@ ul.effects li{
 }
 
 .textLeft{
+	width: 40%;
 	float:left;
 	text-align: left;
 }
 
 .textRight{
+	width: 40%;
 	float:right;
 	text-align: right;
 }
