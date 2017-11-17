@@ -68,11 +68,15 @@ ul.effects li{
 	max-width: 120px;
 }
 
-.productPoster img{
-	width:100%;
+.productPoster{
+	height:107px;
 	display: block;
 	margin:10px auto;
-	max-width: 800px;
+	max-width: 807px;
+	background-size: 807px 107px;
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-image: url('../img/collage.jpg');
 }
 
 .productSlogan{
