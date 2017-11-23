@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
@@ -16,66 +16,67 @@
 </head>
 
 <body>
-	
-	<div id="container" class="preload">
-		
-		<a href="javascript:void(0)" id="close"></a>
-		
-		<div class="ribbon"></div>
-		
-		<div class="creative">
-			
-			<ul class="effects">
-				<li class="title"></li>
-				<li class="flair"></li>
-				<li class="flag"></li>
-				<li class="crew"></li>
-				<li class="beam show" id="beam"></li>
-			</ul>
-			
-		</div>
-		
-		<div class="holder">
-			
-			<div class="clickHere">
-				
-				<a href="javascript:void(0);" class="sendSMS">Click here</a> to sms <strong>GAME</strong> to <strong>146079193</strong> and start playing.
-			
-			</div>
-			
-			
-			<button class="btn sendSMS">Play now!</button>
-			
-			<div class="msg">
-				
-				Weekly subscription service: <strong>S$5.35 (w/GST)</strong> per sms, 
-				4 sms per week. Max of <strong>S$21.40 (w/GST)</strong> with 4 online games per week.
-				
-			</div>
-			
-		</div>
-		
-		<div class="footer">
-			
-			<div class="msg">You can download 4 online games per week.</div>
-			
+
+    <div id="container" class="preload">
+
+        <a href="javascript:void(0)" id="close"></a>
+
+        <div class="ribbon"></div>
+
+        <div class="creative">
+
+            <ul class="effects">
+                <li class="title"></li>
+                <li class="flair"></li>
+                <li class="flag"></li>
+                <li class="crew"></li>
+                <li class="beam show" id="beam"></li>
+            </ul>
+
+        </div>
+
+        <div class="holder">
+
+            <div class="clickHere">
+
+                <a href="javascript:void(0);" class="sendSMS">Click here</a> to sms <strong>GAME</strong> to <strong>146079193</strong> and start playing.
+
+            </div>
+
+
+            <button class="btn sendSMS">Play now!</button>
+
+            <div class="msg">
+
+                Weekly subscription service: <strong>S$5.35 (w/GST)</strong> per sms,
+                4 sms per week. Max of <strong>S$21.40 (w/GST)</strong> with 4 online games per week.
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+
+            <div class="msg">You can download 4 online games per week.</div>
+
 This is a weekly Mobile Content Based Subscription service (game service). This is an ongoing auto-renewal subscription service until you quit. Prepaid user of M1, once subscribed, user will receive 4 SMS per week, each SMS is charged at S$5.35 (w/GST), Max. S$21.40 (w/GST) per week. No marketing messages are sent by this content provider or third party. To subscribe, text GAME and send to 146079193. To unsubscribe, text STOP GAME and send to 146079193. Price subject to prevailing 7% GST and standard operator charges apply. Please seek parental or guardian approval if you are 18 years old and below. This game is compatible with most mobile phones with colour screen. Supported mobile brands include Nokia, Sony, Samsung, HTC, LG, XiaoMi, iPhone and more. Please ensure that your mobile phone supports GPRS setting. For more info, call 66319199. Customer Service Hotline available from Mon - Fri, 9am – 6pm (except Public Holiday). IDA PRS Code applies. SBO Licence: Sam Media Pte Ltd.
-			
-			<a href=" http://webcms.mozzi.biz/main/tnc/8/SG" target="_blank">Terms &amp; Conditions</a>
-			
-		</div>
-		
-	</div>
+
+            <a href=" http://webcms.mozzi.biz/main/tnc/8/SG" target="_blank">Terms &amp; Conditions</a>
+
+        </div>
+
+    </div>
 
 </body>
 
 <script src='../_assets/js/pageUtils.js'></script>
+<script src='../_assets/js/gac.js'></script>
 
 <script data-remove>
     var queryStringObj = {
         "landingpage": "http%3A%2F%2Fexample.com",
-        "country": "PL",
-        "adscenario": "pl_ok_v73_wap_s_sam",
+        "country": "SG",
+        "adscenario": "crazy_birds_m1_en",
         "affiliateid": "SAM",
         "clickid": "qwerty"
     }
@@ -83,123 +84,93 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
 
 
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','gac');
+    gac('create', 'UA-45774216-20');
+    gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
+    gac('set', 'page', 'crazy_birds_m1_en');
+    gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
+    gac('set', 'dimension2', queryStringObj.pubid || 'unknown'); // publisher
+    // gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
+    gac('set', 'dimension4', 'payment-page'); // opt-in method
+    gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
+	gac('set', 'dimension6', typeof isMraid != "undefined" && isMraid ? mraid.getPlacementType() : 'not_mraid');
 
-    var isSmadex = !!queryStringObj.ctrTrackingUrl && queryStringObj.ctrTrackingUrl.indexOf('smadex') > 0;
-
-    gac('create', 'UA-45774216-20', 'auto', { 'cookieDomain': 'none'});
-    gac('set', 'checkProtocolTask', function(){ /* nothing */ });
-    gac('set', 'page', 'makeup-pl-1');
-    gac('set', 'dimension1', queryStringObj.campaignid || isSmadex ? '1' : '2'); // campaignid
-    gac('set', 'dimension2', queryStringObj.pubid || ''); // publisher
-    gac('set', 'dimension3', queryStringObj.network || isSmadex ? 'smadex' : 'unknown');  // network
-    gac('set', 'dimension4', 'scsms'); // opt-in method
-    gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid')
+    gac('set', 'cs', queryStringObj.source || 'unknown');
+    gac('set', 'cm', queryStringObj.medium || 'unknown');
+    gac('set', 'cn', queryStringObj.campaign || 'unknown');
 
     gac('send', 'pageview');
 </script>
 
-<script>
-/*
-    loadScriptWithQueryString('https://tags.mobirun.net/webapi/v2/one-click-id', toQueryString(queryStringObj));
-
-    function doit(params) {
-
-        gac('send', 'event', 'web-api', 'webapi-api-call');
-
-        var shortcode = '60455';
-        var keyword = 'YES ';// + params.data[0].uniquecode;
-        var buttonText = 'Kliknij Tutaj!';
-
-        var clickHandler = function(e) {
-            var label = !!this.dataset ? this.dataset.name : 'unknown';
-            setTimeout(function() {
-              gac('send', 'event', 'interaction', 'cta_click', label);
-              if(!!queryStringObj.ctrTrackingUrl) {
-                createPixel(queryStringObj.ctrTrackingUrl);
-              }
-            }, 1);
-        }
-
-        var button = document.createElement('a');
-        button.className = 'button';
-        button.text = buttonText;
-        if(!!button.dataset) {
-          button.dataset.name = 'button';
-        }
-        var href = getSMSHref(shortcode, keyword);
-        // var href = `javascript:createPixel('${queryStringObj.ctrTrackingUrl}');openUrl('http://n.trendme.co/pl/beauty-tips-tm?offer=1&device=smart')`
-        button.href = href;
-        button.addEventListener('click', clickHandler);
-        document.querySelector('.button-container').appendChild(button);
-
-        var imgWrap = document.getElementById('img-wrap');
-        if(!!imgWrap.dataset) {
-          imgWrap.dataset.name = 'img';
-        }
-        imgWrap.addEventListener('click', clickHandler, true);
-        imgWrap.href = href;
-    }
-*/
-</script>
-
 <script type="text/javascript">
-	var isMraid="undefined"!=typeof mraid
-	
-	function handleViewability() {
-		if (mraid.isViewable()) {
-			
-			document.getElementById("container").classList.remove('preload');
-			playBeam();
-			
-		} else {
-			mraid.addEventListener('viewableChange', function(visible) {
-				if (!!visible) {
-					
-					document.getElementById("container").classList.remove('preload');
-					playBeam();	
-								
-				}
-			})
-		}
-		
-	}
-	
-	if (!isMraid) {
-		
-		document.getElementById("container").classList.remove('preload');
-		playBeam();
-		
-	} else {
-		handleViewability();
-	}
-	
+    var isMraid="undefined"!=typeof mraid
 
-	function playBeam(){
-		
-		setTimeout(function(){
-		
-			document.getElementById("beam").classList.remove('show');
-			document.getElementById("beam").className += " pulse";
-		
-		
-		}, 1000)
-	
-	}
+    function handleViewability() {
+        if (mraid.isViewable()) {
 
-/*
-	window.onload = function(){
-	
-		document.getElementById("container").classList.remove('preload');
-	
-	}
-*/
+            document.getElementById("container").classList.remove('preload');
+            playBeam();
 
+        } else {
+            mraid.addEventListener('viewableChange', function(visible) {
+                if (!!visible) {
+
+                    document.getElementById("container").classList.remove('preload');
+                    playBeam();
+
+                }
+            })
+        }
+
+    }
+
+    if (!isMraid) {
+
+        document.getElementById("container").classList.remove('preload');
+        playBeam();
+
+    } else {
+        handleViewability();
+    }
+
+
+    function playBeam(){
+
+        setTimeout(function(){
+
+            document.getElementById("beam").classList.remove('show');
+            document.getElementById("beam").className += " pulse";
+
+
+        }, 1000)
+
+    }
 </script>
 
+
+<script>
+loadScriptWithQueryString('https://tags.mobirun.net/webapi/v2/one-click-id', toQueryString({
+    country: 'SG',
+    adscenario: 'sg_game_v5_wap_s_sam',
+    affiliateid: 'SAM',
+    clickid: queryStringObj.click_id
+}));
+
+function doit(params) {
+    var shortcode = '146079193';
+    var keyword = 'GAME ' + params.data[0].uniquecode;
+
+    var buttons = document.getElementsByClassName('sendSMS');
+
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', function(e) {
+            e.preventDefault();
+
+            gac('send', 'event', 'interaction', 'click', 'sendSMS');
+            openUrl(getSMSHrefRaw(shortcode, keyword));
+        })
+    }
+}
+</script>
 
 
 </html>
