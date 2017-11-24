@@ -109,7 +109,7 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
 
         } else {
             mraid.addEventListener('viewableChange', function(visible) {
-                gac('send', 'event', 'viewable', 'stateChange', viewable);
+                gac('send', 'event', 'viewable', 'stateChange', visible);
 
                 if (!!visible) {
 
