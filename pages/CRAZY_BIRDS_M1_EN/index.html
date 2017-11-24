@@ -102,12 +102,15 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
 
     function handleViewability() {
         if (mraid.isViewable()) {
+            gac('send', 'event', 'viewable', 'visible', true);
 
             document.getElementById("container").classList.remove('preload');
             playBeam();
 
         } else {
             mraid.addEventListener('viewableChange', function(visible) {
+                gac('send', 'event', 'viewable', 'stateChange', viewable);
+
                 if (!!visible) {
 
                     document.getElementById("container").classList.remove('preload');
