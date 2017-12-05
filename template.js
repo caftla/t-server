@@ -1,6 +1,6 @@
 var isMraid = typeof mraid != "undefined";
 var head = document.getElementsByTagName("head")[0];
-
+var mraidLoadTime0 = Date.now();
 // create ad container
 var scriptElement = document.getElementById('mobirun-script');
 var viewport = document.createElement('div');
@@ -46,6 +46,7 @@ fixViewPort()
 var renderAd = function() {
     // add html
     viewport.innerHTML = html
+    
 
     if (isMraid) {
         mraid.useCustomClose(true);
@@ -132,8 +133,12 @@ var renderAd_once = once(this, renderAd);
 
 // wait for mraid to load
 if (isMraid && mraid.getState() === 'loading') {
-    mraid.addEventListener('ready', renderAd_once);
-    setTimeout(renderAd_once, 2000);
+    mraid.addEventListener('ready', function() {
+        var mraidLoadTime1 = Date.now();
+        // setTimeout(renderAd_once, 2000);        
+        renderAd_once();
+    });
 } else {
+    var mraidLoadTime1 = Date.now();
     renderAd_once();
 }
