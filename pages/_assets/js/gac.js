@@ -25,11 +25,12 @@ const gac = (()=> {
 
             case 'set':
                 const [key, value] = args
-
                 if (key == 'page') {
                     hitData.dp = value
                 } else if (key.indexOf('dimension') > -1) {
                     hitData[key.replace('dimension', 'cd')] = value
+                } else if (key.indexOf('metric') > -1 ) {
+                    hitData[key.replace('metric', 'cm')] = value                    
                 } else {
                     hitData[key] = value
                 }
@@ -44,6 +45,10 @@ const gac = (()=> {
                     hitData.ec = ec
                     hitData.ea = ea
                     hitData.el = el
+                    hitData.ev = ev
+                } else if (hitType == 'pageview') {
+                    const [, cm1] = args
+                    hitData.cm1 = cm1
                 }
 
                 collect(toQueryString(hitData))
