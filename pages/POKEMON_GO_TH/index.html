@@ -41,49 +41,60 @@
 	</section>
 	<div class="footer">
 		<img class="pokeball" src="img/pokeball.gif" alt="-o-" />
-		<p>สมัครบริการ พิมพ์ R(เว้นวรรค)04 ส่งไปที่ 4507101 หรือ กด *450710104 โทรออก</p>
-		<p>ยกเลิก พิมพ์ C(เว้นวรรค)04 ส่งไปที่ 4507101 หรือ กด *450710195 โทรออก</p>
-		<p>สอบถามเพิ่มเติมโทร 02-652-1177 จ-ศ (ยกเว้นวันหยุดนักขัตฤกษ์) เวลา 8.00-17.00น.</p>
+		<h3 id="mraidLoadTime0"></h3>
+		<h3 id="mraidLoadTime1"></h3>
+		<h3 id="diff"></h3>
+		<h3 id="screensize"></h3>
+
+		
+
 	</div>
 	<script src='../_assets/js/pageUtils.js'></script>
 	<script src='../_assets/js/gac.js'></script>
-	<script data-remove>
-		var queryStringObj = {
-			"offer": 1,
-			"atmobirun": 1
-		}
-	</script>
+
 	<script>
-		gac('create', 'UA-45774216-20');
-		gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
-		gac('set', 'page', 'pokemon_go_th');
-		gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
-		gac('set', 'dimension2', queryStringObj.pubid || 'unknown'); // publisher
-		// gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
-		gac('set', 'dimension4', 'payment-page'); // opt-in method
-		gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
+	// var _req_id = queryStringObj._req_id;
+	// createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=pokemon_go_th,action=pageview')
 
-		gac('set', 'cs', queryStringObj.source || 'unknown');
-		gac('set', 'cm', queryStringObj.medium || 'unknown');
-		gac('set', 'cn', queryStringObj.campaign || 'unknown');
+	// document.getElementById('cta_button').addEventListener('click', function() {
+	// 	createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=pokemon_go_th,action=subscribe')
 
-		gac('send', 'pageview');
-	</script>
-	<script>
-	var _req_id = queryStringObj._req_id;
-	createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=pokemon_go_th,action=pageview')
+	// 	gac('send', 'event', 'interaction', 'click', 'subscribe');
 
-	document.getElementById('cta_button').addEventListener('click', function() {
-		createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=pokemon_go_th,action=subscribe')
+	// 	if(!!queryStringObj.ctrTrackingUrl) {
+	// 		createPixel(queryStringObj.ctrTrackingUrl)
+	// 	}
 
-		gac('send', 'event', 'interaction', 'click', 'subscribe');
+	// 	openUrl('http://t.buz2mobile.com/th/pokemon-go-th-dmb?' + toQueryString(queryStringObj))
+	// })
 
-		if(!!queryStringObj.ctrTrackingUrl) {
-			createPixel(queryStringObj.ctrTrackingUrl)
-		}
+	gac('create', 'UA-45774216-20');
+	gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
+	gac('set', 'page', queryStringObj.page || 'unknown');
+	gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
+	gac('set', 'dimension2', queryStringObj.pubid || 'unknown'); // publisher
+	gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
+	gac('set', 'dimension4', queryStringObj.optin_method || 'unknown'); // opt-in method
+	gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
+	gac('set', 'cs', queryStringObj.source || 'unknown');
+	gac('set', 'cm', queryStringObj.medium || 'unknown');
+	gac('set', 'cn', queryStringObj.campaign || 'unknown');
+    gac('send', 'pageview', mraidLoadTime1 == null? 0 : (mraidLoadTime1 - mraidLoadTime0));
+	
+	
+	var viewable_timer_started = Date.now();
+	mraid.addEventListener('viewableChange', function() {
 
-		openUrl('http://t.buz2mobile.com/th/pokemon-go-th-dmb?' + toQueryString(queryStringObj))
-	})
-	</script>
+		var viewable_timer_stopped = Date.now();
+		var state = mraid.isViewable();
+		var view_state_duration = viewable_timer_stopped - viewable_timer_started;
+		
+		gac('send', 'event', 'viewable', 'changed', !!state? 'visible' : 'not_visible', view_state_duration);
+		
+		viewable_timer_started = Date.now();
+	});
+
+	document.getElementById("diff").innerHTML = 'Mraidjs load time ='+ (mraidLoadTime1 - mraidLoadTime0);
+</script>
 </body>
 </html>
