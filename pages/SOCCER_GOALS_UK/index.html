@@ -193,6 +193,7 @@
 			}
 
 
+			createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=soccer_goals_uk,action=pageview');
 
 				if(gameStart){
 
@@ -201,11 +202,13 @@
 
 					var powerBar = setInterval(powerUp, 200);
 
-					trigger.addEventListener('click', kickBall);
+					trigger.addEventListener('click', function() {
+						kickBall();
+						createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=soccer_goals_uk,action=kick');
+						gac('send', 'event', 'interaction', 'click', 'kick');
+					});
 
-						createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=soccer_goals_uk,action=pageview');
-
-						subscribeBtn.addEventListener('click', function() {
+					subscribeBtn.addEventListener('click', function() {
 
 						kickBall();
 
@@ -214,8 +217,8 @@
 							addClass(confirmBtn,"active");
 						},10);
 
-						createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=soccer_goals_uk,action=accept');
-						gac('send', 'event', 'interaction', 'click', 'accept');
+						createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=soccer_goals_uk,action=subscribe');
+						gac('send', 'event', 'interaction', 'click', 'subscribe');
 
 					});
 
@@ -224,12 +227,12 @@
 
 						kickBall();
 
-						createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=soccer_goals_uk,action=subscribe');
+						createPixel('https://tags.mobirun.net/api/event/pixel?eventType=pixel&_req_id='+_req_id+'&data=page=soccer_goals_uk,action=accept');
 
-						gac('send', 'event', 'interaction', 'click', 'subscribe');
+						gac('send', 'event', 'interaction', 'click', 'accept');
 
-						if(!!queryStringObj.ctrTrackingUrl) {
-							createPixel(queryStringObj.ctrTrackingUrl)
+						if(!!queryStringObj.click_tracking_url) {
+							createPixel(queryStringObj.click_tracking_url)
 						}
 
 						openUrl('http://n.mobiworld.biz/uk/football-goals?' + toQueryString(queryStringObj))
@@ -511,8 +514,6 @@
 
 
 						}else{
-
-							console.log('exceed click!');
 
 						}
 
