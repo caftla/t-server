@@ -97,14 +97,14 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
     gac('set', 'cm', queryStringObj.medium || 'unknown');
     gac('set', 'cn', queryStringObj.campaign || 'unknown');
 
-    
+
 </script>
 
 <script type="text/javascript">
     var isMraid="undefined"!=typeof mraid
 
     waitForMraidToBecomeViewable(() => {
-        
+
         document.getElementById("container").classList.remove('preload');
         playBeam();
 
@@ -119,7 +119,7 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
 
 
         gac('send', 'pageview');
-        
+
     }, 2000);
 
     mraidViewablityChanges(
@@ -127,7 +127,9 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
     ,   () => gac('send', 'event', 'viewable', 'visible', false)
     )
 
-
+    document.querySelector('.creative').addEventListener('click', function(){
+        gac('send', 'event', 'interaction', 'click', 'creative');
+    })
 
     function playBeam(){
 
