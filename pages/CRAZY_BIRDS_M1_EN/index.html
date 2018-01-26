@@ -66,6 +66,7 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
 </body>
 
 <script src='../_assets/js/pageUtils.js'></script>
+<script src='../_assets/js/mraidUtils.js'></script>
 <script src='../_assets/js/gac.js'></script>
 
 <script data-remove>
@@ -88,48 +89,44 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
     // gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
     gac('set', 'dimension4', 'payment-page'); // opt-in method
     gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
-	gac('set', 'dimension6', typeof isMraid != "undefined" && isMraid ? mraid.getPlacementType() : 'not_mraid');
+    gac('set', 'dimension6', typeof isMraid != "undefined" && isMraid ? mraid.getPlacementType() : 'not_mraid');
+    gac('set', 'dimension7', getMraidVersion());
+    gac('set', 'dimension12', queryStringObj._req_x_requested_with);
 
     gac('set', 'cs', queryStringObj.source || 'unknown');
     gac('set', 'cm', queryStringObj.medium || 'unknown');
     gac('set', 'cn', queryStringObj.campaign || 'unknown');
 
-    gac('send', 'pageview');
+    
 </script>
 
 <script type="text/javascript">
     var isMraid="undefined"!=typeof mraid
 
-    function handleViewability() {
-        if (mraid.isViewable()) {
-            gac('send', 'event', 'viewable', 'visible', true);
-
-            document.getElementById("container").classList.remove('preload');
-            playBeam();
-
-        } else {
-            mraid.addEventListener('viewableChange', function(visible) {
-                gac('send', 'event', 'viewable', 'stateChange', visible);
-
-                if (!!visible) {
-
-                    document.getElementById("container").classList.remove('preload');
-                    playBeam();
-
-                }
-            })
-        }
-
-    }
-
-    if (!isMraid) {
-
+    waitForMraidToBecomeViewable(() => {
+        
         document.getElementById("container").classList.remove('preload');
         playBeam();
 
-    } else {
-        handleViewability();
-    }
+        ifMraid(
+            mraid => gac('set', 'dimension8', showDimension(100, mraid.getCurrentPosition()))
+        ,   () => { }
+        )
+
+        gac('set', 'dimension9', showDimension(100, { width: window.innerWidth, height: window.innerHeight }));
+        gac('set', 'dimension10', showDimension(100, { width: window.outerWidth, height: window.outerHeight }));
+        gac('set', 'dimension11', showDimension(100, { width: screen.width, height: screen.height }));
+
+
+        gac('send', 'pageview');
+        
+    }, 2000);
+
+    mraidViewablityChanges(
+        () => gac('send', 'event', 'viewable', 'visible', true)
+    ,   () => gac('send', 'event', 'viewable', 'visible', false)
+    )
+
 
 
     function playBeam(){

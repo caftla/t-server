@@ -145,7 +145,9 @@ app.get('/pages/:page', (req, res)=> {
     req.log = log.child({req_id: reqId})
     req.log.info({req, ip: ipAddress, eventType: 'page-visit', eventArgs: {page: req.params.page}})
 
-    const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};`)
+    const x_requested_with = req.header('x-requested-with')
+
+    const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({ ...req.query, _req_id: reqId, _req_x_requested_with: x_requested_with})};`)
 
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Content-Type', 'text/javascript')

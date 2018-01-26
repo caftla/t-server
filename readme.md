@@ -66,3 +66,30 @@ setTimeout(function() {
     }
 }, 2000);
 ```
+----
+
+Tag example
+
+```
+<script src="mraid.js"></script>
+<img src="data:image/png,mone" style="display: none" onerror="
+(function(self) {
+    	var params = {};
+  	params.offer = 1161; // change
+    	params.click_id = '{CLICK_URL}'; // change
+    	params.aff_sub6 = 'Matomy'; // change
+    	params.campaignid = 1161; // change
+    	params.source = 'Smadex'; // change
+    	params.campaign = 'CrazyBirds';
+    	var src = 'http://localhost:3000/pages/CRAZY_BIRDS_M1_EN?device=smart';
+    	for (var k in params) {
+        	src += '&' + encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+    	};
+    	var scriptTag = document.createElement('script');
+    	scriptTag.id = 'mobirun-script';
+    	scriptTag.src = src;
+	document.head.appendChild(scriptTag);
+})(this);
+"
+/>
+```

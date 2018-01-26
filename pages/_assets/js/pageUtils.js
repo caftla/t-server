@@ -1,4 +1,4 @@
-var isMraid = typeof mraid != "undefined";
+var isMraid = typeof mraid != "undefined" && !!window.mraid
 
 function toQueryString(obj) {
     return Object.keys(obj).map(function(k) {
@@ -36,7 +36,7 @@ function getSMSHref(number, keyword) {
 
     var href = getSMSHrefRaw(number, keyword);
 
-    if (isMraid && mraid.supports("sms")) {
+    if (isMraid && !!window.mraid.supports && mraid.supports("sms")) {
         return "javascript:mraid.open('" + href + "');";
     } else {
         return href;
@@ -44,8 +44,8 @@ function getSMSHref(number, keyword) {
 }
 
 function openUrl(url) {
-    if (isMraid) {
-        mraid.open(url)
+    if (isMraid && !!window.mraid.open) {
+        window.mraid.open(url)
     } else {
         window.location.href = url
     }
@@ -60,6 +60,14 @@ function createPixel(url) {
 
 function mraidClose(url) {
     if (isMraid) {
-        mraid.close()
+        window.mraid.close()
+    }
+}
+const showDimension = (p, d) => {
+    if(!d) {
+        return null
+    } else {
+        const { width, height } = d;
+        return `${p * Math.round(width / p)} X ${p * Math.round(height / p)}`
     }
 }
