@@ -85,7 +85,7 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
     gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
     gac('set', 'page', 'crazy_birds_m1_en');
     gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
-    gac('set', 'dimension2', queryStringObj.pubid || 'unknown'); // publisher
+    gac('set', 'dimension2', queryStringObj.pubid || queryStringObj.inventory_domain || 'unknown'); // publisher
     // gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
     gac('set', 'dimension4', 'payment-page'); // opt-in method
     gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
