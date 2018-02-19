@@ -163,7 +163,7 @@
     var unsub = pipe(timer(1000), // every 1 second
     withLatestFrom(orientation$), filter(function (_a) {
         var x = _a[1];
-        return x.distance > 100;
+        return x.distance > 30;
     }), take(1)).subscribe({
         next: function (x) { },
         error: function (err) { },
