@@ -33,7 +33,7 @@
 
         <div class="holder">
 
-			<div class="bar">ČASOVO OBMEDZENÁ PONUKA <span id="timer">00:00</span></div>
+			<div class="bar">ČASOVO OBMEDZENÁ PONUKA <span id="timer">05:00</span></div>
 
 			<h1>Začnite hrať teraz! Kliknite na tlačidlo nižšie:</h1>
 
@@ -130,8 +130,6 @@ Zaslaním potvrdzujúcej SMS súhlasíš a potvrdzuješ používanie našich slu
 
             document.getElementById("beam").classList.remove('show');
             document.getElementById("beam").className += " pulse";
-
-			document.getElementById('timer').innerHTML = 05 + ":" + 00;
 			
 			startTimer();
 
@@ -155,8 +153,8 @@ Zaslaním potvrdzujúcej SMS súhlasíš a potvrdzuješ používanie našich slu
 		
 		}
 		
-		document.getElementById('timer').innerHTML =m + ":" + s;
-		setTimeout(startTimer, 1000);
+		document.getElementById('timer').innerHTML = m + ":" + s;
+			setTimeout(startTimer, 1000);
 		}
 		
 		function checkSecond(sec) {
