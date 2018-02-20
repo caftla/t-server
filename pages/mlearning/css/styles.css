@@ -1,0 +1,651 @@
+	html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	border: 0;
+	font-family: inherit;
+	font-size: 100%;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	vertical-align: baseline; }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+nav,
+section {
+	display: block; }
+
+ol, ul {
+	list-style: none; }
+
+em, h1, h2, h3, h4, h5, h6 {
+	font-style: inherit;
+	font-weight: inherit;
+}
+
+/** Float Clearing **/
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1; /* ie 6/7 */
+}
+
+.footer strong { font-weight: bold;}
+
+.operator-group {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #666;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  width:220px;
+  margin:10px auto;
+}
+.operator-group:before, .operator-group:after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 9px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 4px dashed;
+  border-color: #888 transparent;
+  pointer-events: none;
+}
+.operator-group:before {
+  border-bottom-style: solid;
+  border-top: none;
+}
+.operator-group:after {
+  margin-top: 7px;
+  border-top-style: solid;
+  border-bottom: none;
+}
+
+.operator-selection {
+  position: relative;
+  width: 130%;
+  margin: 0;
+  height:30px;
+  padding: 5px 10px;
+  font-size: 15px;
+  color: #333;
+  background: #f2f2f2;
+  background: rgba(0, 0, 0, 0) !important;
+  border: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.operator-selection:focus {
+  z-index: 3;
+  width: 100%;
+  color: #394349;
+  outline: 2px solid #ccc;
+  outline-offset: -2px;
+}
+
+.operator-selection > option {
+  margin: 3px;
+  padding: 6px 8px;
+  text-shadow: none;
+  background: #f2f2f2;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+   appearance: none;
+}
+
+
+
+/* ----------------- IE 8 customized css for height:auto --------------------*/
+
+@media \0screen {
+  .imgIE8 {
+	width: auto; /* for ie 8 */
+  }
+}
+
+/* ----------------- IMG 100% ------------------*/
+
+.img100pct{width:100%;}
+
+/* ----------------- OC2SMS Button remove underline ------------------*/
+
+a{
+	text-decoration:none;
+	}
+#confirmation-legal-wrapper,#confirmation-incentivized-wrapper, .confirmation-op_confirm-wrapper{
+	position:fixed;
+	z-index:1000;
+	width:100%;
+	height: 100%;
+	text-align:center;
+	background:rgba(0,0,0,0.8);
+	top: 0;
+	-webkit-transition: opacity 2s ease;
+	-o-transition: opacity 2s ease;
+	transition: opacity 2s ease;
+	}
+
+.accept-confirmation,.decline-confirmation{
+	border-radius:5px;
+	border:none;
+	background-color:rgba(0,153,204,1) ;
+	color:rgba(255,255,255,1);
+	padding:5px; margin:3px;
+	}
+
+.accept-confirmation:hover,.decline-confirmation:hover{
+	border-radius:5px;
+	border:none;
+	background-color:rgba(0,128,192,1);
+	color:rgba(255,255,255,1);
+	padding:5px;
+	}
+
+.msisdn-input, .msisdn-input:focus {
+	text-align:center;
+}
+
+.transbtn{color:inherit; text-decoration:none;}
+
+.footer,
+.toplegal,
+.hook-topLeft,
+.hook-topCenter,
+.hook-topRight,
+.hook-bottomLeft,
+.hook-bottomCenter,
+.hook-bottomRight,
+.hook-beforeSubmit,
+.hook-afterSubmit,
+.hook-beforeInput,
+.hook-afterInput,
+.component-msg{
+	font-size:11px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:normal;
+	}
+
+.footer a{
+	color:inherit;
+	}
+
+.footer, .toplegal {text-align: justify; display:table; width:100%;}
+
+.toplegal p {margin: 0;}
+
+.popup-bottom, .popup-top{display:table-row;}
+
+.hook-confirmationBodyStart, hook-confirmationBodyEnd{padding:5px; text-align:center;}
+.hook-confirmationBodyStart{margin-top:10px;}
+.hook-confirmationBodyEnd{margin-bottom:10px;}
+
+.hook-topLeft, .hook-topCenter, .hook-topRight{margin:0; top:0;}
+.hook-confirmationTopLeft, .hook-confirmationTopCenter, .hook-confirmationTopRight{margin:0;}
+
+.hook-topLeft, .hook-bottomLeft, .hook-confirmationTopLeft, .hook-confirmationBottomLeft{text-align:left;}
+.hook-topCenter, .hook-bottomCenter{text-align:justify;}
+.hook-topRight, .hook-bottomRight, .hook-confirmationTopRight, .hook-confirmationBottomRight{text-align:right;}
+.hook-confirmationTopCenter, .hook-confirmationBottomCenter{text-align:center;}
+
+.hook-bottomLeft, .hook-bottomCenter, .hook-bottomRight, .hook-topLeft, .hook-topCenter, .hook-topRight {display:table-cell; padding:5px; vertical-align: top;}
+.hook-confirmationTopLeft, .hook-confirmationTopCenter, .hook-confirmationTopRight, .hook-confirmationBottomLeft, .hook-confirmationBottomCenter, .hook-confirmationBottomRight
+{display:table-cell; padding:5px;}
+
+
+/* ---------------------------- end top hooks and bottom hooks layout styling ------------------------------ */</style>    <style>/**
+
+.hook-block {
+	padding:0;
+}
+
+/* OTHER BRANDS ARE HIDDEN BY DEFAULT */
+.brand-flamilingo	{ display: none;	}
+
+html, body {
+	color:#eee;
+	background: #15194b;
+	font-size: 12px;
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+}
+
+a {
+	color: inherit;
+	text-decoration:underline;
+}
+
+.toplegal {
+	text-align: center;
+}
+
+.not-available {
+	padding:20px 0;
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+.wrap {
+	max-width: 380px;
+	padding-left:6px;
+	padding-right:6px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.logo {
+	max-height: 50px;
+	display: block;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:5px;
+}
+
+.hero {
+	width:100%;
+}
+
+
+.iphone-hero {
+	width: auto;
+	height:130px;
+}
+
+
+.header {
+	background:#fff;
+	padding:4px 0;
+}
+
+#close {
+	top: 5px;
+	right: 5px;
+	width: 25px;
+	height: 25px;
+	z-index: 100;
+	color: #FFF;
+	position: absolute;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-image: url("../../_assets/img/close.png");
+}
+
+
+.main {
+	padding: 15px 0 15px 0;
+	position: relative;
+}
+
+h1 {
+	font-size: 1.6em;
+	font-weight: 500;
+	margin-top:5px;
+
+}
+
+h4 {
+	font-size: 1.2em;
+}
+
+h5{
+	font-size: 1.4em;
+	font-weight: 500;
+	color:#63b317;
+	text-transform: uppercase;
+}
+
+.instruction {
+	font-size: 1.6em;
+	font-weight: 500;
+}
+
+.tq_bottom {
+	margin: 10px 0;
+}
+
+/** INPUTS **/
+
+
+.accept-confirmation,
+.accept-confirmation:hover,
+.decline-confirmation,
+.decline-confirmation:hover {
+	padding:10px 20px;
+	min-width: 80px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.accept-confirmation,
+.accept-confirmation:hover {
+	background: #71c325;
+}
+
+.decline-confirmation,
+.decline-confirmation:hover {
+	background:#bdbdbd;
+}
+
+.bupper-popup-block {
+	display:table;
+	width:50%;
+	margin:18% auto;
+	min-height:100px;
+	background-color:#15194b;
+	border-radius:10px;
+	padding:20px;
+	color: #EEE;
+}
+
+.bupper-popup-block p {
+	margin: 8px;
+}
+
+[class$="-button"], a.button {
+	display: inline-block;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: 1.5em;
+	font-weight: 500;
+	width:100%;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+	border:0;
+	border-radius: 3px;
+	outline:none;
+	font-family: 'Roboto', sans-serif;
+	padding:0 5px;
+	margin-bottom:12px; /** to offset the shadow **/
+	background: #77d023;
+	color:#fff;
+	box-shadow: 0 2px 0 #418106;
+	height:40px;
+	line-height: 40px;
+	cursor: pointer
+}
+
+.cancel-button {
+	padding:0;
+}
+
+/** classes specific for orange **/
+
+.optin-container a{
+	display: block;
+	text-decoration: none;
+	padding:0 10px;
+}
+
+.optin-container .cancel-button {
+	display: none;
+
+}
+
+.orange-optin .submit-button{
+	width:48%;
+	float: right;
+	font-size: 1.2em;
+}
+
+.orange-optin .cancel-button {
+	width: 48%;
+	float: left;
+	display: block;
+	font-size: 1.2em;
+	background: #8e8e8e; /* Old browsers */
+	box-shadow:0 2px 0 #777777
+}
+
+
+
+#button-goto-product-url {
+	display: block;
+	padding:0;
+}
+
+
+.errMsg {
+	color:#F00;
+	font-size: 12px;
+	padding: 2px 0 2px 0;
+	display: block;
+}
+
+
+/** fixing hooks **/
+
+
+.hook-bottomCenter {
+	display:block;
+
+}
+
+.lr-box {
+	margin-bottom:10px;
+}
+
+.lr-box div{
+	/*font-size: 12px;*/
+	vertical-align:top;
+	margin:0;
+}
+
+
+.lr-box .left-box
+{
+	float:left;
+	width:58%;
+	text-align: left;
+}
+
+.lr-box .right-box {
+	float:right;
+	width:42%;
+	text-align: right;
+
+}
+
+.operator-legal {
+	text-align: left;
+	margin-bottom:10px;
+}
+
+.hook-confirmationBodyEnd {direction: rtl;} /* reversing the button order */
+.hook-confirmationBodyEnd div, .hook-confirmationBodyEnd button {direction: ltr;}
+
+
+/** !WIFI OFF INSTRUCTIONS **/
+
+#wifi-overlay {
+	position: absolute;
+	width:250px;
+	left:50%;
+	margin-left:-150px;
+	top:10px;
+	background:rgba(255,255,255,0.95);
+	border:5px solid #fff;
+	box-shadow: 0 0 200px 100px rgba(0,0,0,0.8);
+	-webkit-box-shadow: 0 0 200px 100px rgba(0,0,0,0.8);
+	padding:10px 20px;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	z-index: 99999;
+
+}
+
+.identify-submit-button {
+	z-index: 999999;
+	position: relative;
+}
+
+#wifi-overlay h1 {
+	color:red;
+	font-weight: 500;
+	font-size: 16px;
+	margin: 0;
+	padding:0;
+}
+
+#wifi-overlay p {
+	color:#333;
+	font-weight: 400;
+	font-size: 12px;
+	margin: 3px 0 10px 0;
+}
+
+#wifi-overlay h2 {
+	color:#000;
+	font-weight: 500;
+	font-size: 14px;
+	margin:5px 0 0 0;
+}
+
+#wifi-overlay.hidden {
+	display: none;
+}
+
+#wifi-overlay .close {
+	width:40px;
+	height:40px;
+	position: absolute;
+	top:-5px;
+	right:-5px;
+	text-align: center;
+	line-height: 40px;
+	font-size: 20px;
+	font-weight: 100;
+	color:#888;
+	cursor: pointer;
+}
+
+.hidden {
+	display: none;
+}
+
+
+/** for iphones and small phones -- reduce height of content **/
+@media only screen and (max-width: 360px) {
+
+	.logo {
+		height:30px;
+		margin-bottom: 5px;
+	}
+
+	h1 {
+		font-size: 1.4em;
+		line-height: 1em;
+	}
+}
+
+.header {
+	border-bottom:2px solid #303574;
+}
+
+
+}
+
+/* ------------------------------
+OVERWRITE TEMPLATE DEFAULT STYLES
+------------------------------- */
+
+html, body {
+	background: #15194b;
+	color: #e4e6ff;
+}
+
+.header,
+.toplegal {
+	background: #0a0c25;
+	color: #fff;
+}
+
+h1 {
+	color: #ed217c;
+}
+
+
+/** BUTTON STYLES **/
+/* Default styles below */
+
+.submit-button,
+.identify-submit-button,
+#button-goto-product-url {
+	background: #77d023;
+	color:#fff;
+	box-shadow: 0 2px 0 #418106;
+	text-shadow: text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+.cancel-button,
+.orange-optin .cancel-button {
+	background: #BBB;
+	box-shadow: 0 2px 0 #9e9e9e;
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+.pixel {
+	width: 1px;
+	height: 1px;
+	display:none;
+}
+
+@media only screen and (max-width: 319px) {
+	body {font-size: 9px;}
+	.hero {max-width: 60%;}
+	[class$="-box"], .toplegal {
+		font-size: .8em !important;
+	}
+	.bupper-popup-block {
+		margin-top: 10%;
+		width: 80%;
+	}
+}
+
+@media screen and (min-width: 320px){
+.bupper-popup-block{
+	width:70%;
+	margin:40% auto;
+	min-height:100px;
+	}
+}
+
+@media screen and (min-width: 780px){
+.bupper-popup-block{
+	margin:33% auto;
+	top:0;
+	}
+}
