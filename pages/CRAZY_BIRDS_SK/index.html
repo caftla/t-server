@@ -130,6 +130,10 @@ Zaslaním potvrdzujúcej SMS súhlasíš a potvrdzuješ používanie našich slu
 
             document.getElementById("beam").classList.remove('show');
             document.getElementById("beam").className += " pulse";
+            
+           var timeSet = document.querySelector('#timer').innerHTML;
+			display = document.querySelector('#timer');
+			startTimer(timeSet, display);
 
         }, 1000)
     }
@@ -151,11 +155,7 @@ Zaslaním potvrdzujúcej SMS súhlasíš a potvrdzuješ používanie našich slu
 		}, 1000);
 	}
 	
-	window.onload = function () {
-		var timeSet = document.querySelector('#timer').innerHTML;
-			display = document.querySelector('#timer');
-			startTimer(timeSet, display);
-	};
+
 			
 
   		
