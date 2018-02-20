@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<title>Crazy Birds 2</title>
+
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+</head>
+
+<body>
+
+    <div id="container" class="preload">
+
+        <a href="javascript:void(0)" id="close"></a>
+
+        <div class="ribbon"></div>
+
+        <div class="creative">
+
+            <ul class="effects">
+                <li class="title"></li>
+                <li class="flair"></li>
+                <li class="flag"></li>
+                <li class="crew"></li>
+                <li class="beam show" id="beam"></li>
+            </ul>
+
+        </div>
+
+        <div class="holder">
+
+			<div class="bar">ČASOVO OBMEDZENÁ PONUKA <span id="timer">00:00</span></div>
+
+			<h1>Začnite hrať teraz! Kliknite na tlačidlo nižšie:</h1>
+
+            <button class="btn sendSMS">Pošlite SMS <span>ANO</span> na <span>7404</span></button>
+
+            <div class="msg">
+
+				Mobilný obsah club, ponúka originálne mobilný obsah a vyhraj skvelé ceny! 
+				Nenechaj si ujsť túto príležitosť! 3 SMS/týždeň (4,821 EUR s DPH/týždeň)
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+Zaslaním potvrdzujúcej SMS si predplatíte službu zasielania SMS správ - 3 SMS za týžden. Cena predplatného je 4,821 EUR s DPH / týžden. Užívatelia mladší ako 18 rokov si musia vyžiadat súhlas rodicov, resp. zákonných zástupcov. Klikni sem na precítanie všeobecných obchodných podmienok.
+<br><br>
+Zaslaním potvrdzujúcej SMS súhlasíš a potvrdzuješ používanie našich služieb a získaš tak najnovší a najlepší mobilný obsah ( textový obsah, vyzvánacie melódie, tapety, Java hry). Cena tejto služby je 4,821 EUR s DPH na týžden (3 SMS / týžden, cena 1 SMS je 1,607 EUR vrátane DPH). Predlženie tejto služby je automatické. Vypnutie: poslite ANO STOP na 7404. Služba bude vyúctovaná cez tvoj mobilný úcet alebo bude odúctovaná z tvojho predplateného úctu. Tvoj telefón musí byt schopný dostávat textové správy, prenášat dáta a prijímat mobilný obsah. Pre tieto predplatené služby musíš byt vlastníkom platnej mobilnej služby alebo musíš získat konkrétne povolenie od vlastníka na použitie služby, v prípade mladistvých, potrebuješ získat špeciálne povolenie od rodicov alebo zákonných zástupcov. Pre dalšie informácie volaj 01233000028 alebo pošli e-mail na sk@mozzi.com. Sam Media, PO 59568, 1040 LB, Amsterdam, Holland.
+        </div>
+
+    </div>
+
+</body>
+
+<script src='../_assets/js/pageUtils.js'></script>
+<script src='../_assets/js/mraidUtils.js'></script>
+<script src='../_assets/js/gac.js'></script>
+
+<script data-remove>
+    var queryStringObj = {
+        "landingpage": "http%3A%2F%2Fexample.com",
+        "country": "SG",
+        "adscenario": "crazy_birds_m1_en",
+        "affiliateid": "SAM",
+        "clickid": "qwerty"
+    }
+</script>
+
+
+<script>
+    gac('create', 'UA-45774216-20');
+    gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
+    gac('set', 'page', 'CRAZY_BIRDS_SK');
+    gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
+    gac('set', 'dimension2', queryStringObj.pubid || queryStringObj.inventory_domain || 'unknown'); // publisher
+    // gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
+    gac('set', 'dimension4', 'payment-page'); // opt-in method
+    gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
+    gac('set', 'dimension6', typeof isMraid != "undefined" && isMraid ? mraid.getPlacementType() : 'not_mraid');
+    gac('set', 'dimension7', getMraidVersion());
+    gac('set', 'dimension12', queryStringObj._req_x_requested_with);
+
+    gac('set', 'cs', queryStringObj.source || 'unknown');
+    gac('set', 'cm', queryStringObj.medium || 'unknown');
+    gac('set', 'cn', queryStringObj.campaign || 'unknown');
+
+
+</script>
+
+<script type="text/javascript">
+    var isMraid="undefined"!=typeof mraid
+
+    waitForMraidToBecomeViewable(() => {
+
+        document.getElementById("container").classList.remove('preload');
+        playBeam();
+
+        ifMraid(
+            mraid => gac('set', 'dimension8', showDimension(100, mraid.getCurrentPosition()))
+        ,   () => { }
+        )
+
+        gac('set', 'dimension9', showDimension(100, { width: window.innerWidth, height: window.innerHeight }));
+        gac('set', 'dimension10', showDimension(100, { width: window.outerWidth, height: window.outerHeight }));
+        gac('set', 'dimension11', showDimension(100, { width: screen.width, height: screen.height }));
+
+
+        gac('send', 'pageview');
+
+    }, 2000);
+
+    mraidViewablityChanges(
+        () => gac('send', 'event', 'viewable', 'visible', true)
+    ,   () => gac('send', 'event', 'viewable', 'visible', false)
+    )
+
+    document.querySelector('.creative').addEventListener('click', function(){
+        gac('send', 'event', 'interaction', 'click', 'creative');
+    })
+
+    function playBeam(){
+
+        setTimeout(function(){
+
+            document.getElementById("beam").classList.remove('show');
+            document.getElementById("beam").className += " pulse";
+
+
+        }, 1000)
+        
+        	document.getElementById('timer').innerHTML = 05 + ":" + 00;
+			
+			startTimer();
+			
+			function startTimer() {
+			
+			var presentTime = document.getElementById('timer').innerHTML;
+			var timeArray = presentTime.split(/[:]+/);
+			var m = timeArray[0];
+			var s = checkSecond((timeArray[1] - 1));
+			
+			if(s==59){m=m-1}
+			
+			if(m<0){
+			
+			document.getElementById('timer').innerHTML= "00:00";
+			
+			}
+			
+			document.getElementById('timer').innerHTML =m + ":" + s;
+			setTimeout(startTimer, 1000);
+			}
+			
+			function checkSecond(sec) {
+			
+			if (sec < 10 && sec >= 0) {sec = "0" + sec}; 
+			
+			if (sec < 0) {sec = "59"};
+			
+			return sec;
+			
+			}
+
+    }
+  		
+</script>
+
+
+<script>
+    var shortcode = '7404';
+    // var keyword = 'GAME ' + params.data[0].uniquecode;
+    var keyword = 'ANO';
+
+    var buttons = document.getElementsByClassName('sendSMS');
+
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', function(e) {
+            e.preventDefault();
+
+            gac('send', 'event', 'interaction', 'click', 'sendSMS');
+            openUrl(getSMSHrefRaw(shortcode, keyword));
+        })
+    }
+</script>
+
+
+</html>
