@@ -153,7 +153,7 @@ var motion = false;
               createPixel(queryStringObj.ctrTrackingUrl)
             }
 
-            openUrl('http://n.trendme.co/es/trending?' + toQueryString(queryStringObj))
+            openUrl('http://n.trendme.co/es/trendme?' + toQueryString(queryStringObj))
         })
 
 
@@ -188,16 +188,16 @@ var motion = false;
 
 				switch (modulo) {
 					case 1:
-						ifr.src = 'http://w.flamilingo.com/es/mlearning?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
+						ifr.src = 'http://w.flamilingo.com/es/flamilingo?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
 						break;
 					case 2:
-						ifr.src = 'http://n.trendme.co/es/trending?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
+						ifr.src = 'http://n.trendme.co/es/trendme?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
 						break;
 					case 3:
-						ifr.src = 'http://n.teletube.tv/es/tvclub?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
+						ifr.src = 'http://n.teletube.tv/es/streamtv?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
 						break;
 					case 0:
-						ifr.src = 'http://n.beemobi.me/es/gameclub?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
+						ifr.src = 'http://n.beemobi.me/es/top-games?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
 						break;
 					default:
 				}
