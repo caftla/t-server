@@ -127,11 +127,15 @@ Zaslaním potvrdzujúcej SMS súhlasíš a potvrdzuješ používanie našich slu
 
     function playBeam(){
 
+        setTimeout(function(){
+
             document.getElementById("beam").classList.remove('show');
             document.getElementById("beam").className += " pulse";
 			
 			startTimer();
 
+
+        }, 1000)
     }
     
 

@@ -48,7 +48,9 @@ const waitForMraidToBecomeViewable = (f, waitMS = 2000) => {
   }
   ifMraid(
     mraid => {
-      setTimeout(call, waitMS);
+      if (mraid.isViewable()) {
+	      call();
+      }
       mraidViewablityChanges(
           () => call() // visible
         , () => { } // hidden
