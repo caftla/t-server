@@ -37,7 +37,7 @@
 
 			<h1>Začnite hrať teraz! Kliknite na tlačidlo nižšie:</h1>
 
-            <button class="btn sendSMS">Pošlite SMS <span>ANO</span> na <span>7404</span></button>
+            <button class="btn sendSMS">Pošlite SMS <span>ANO 1</span> na <span>7404</span></button>
 
             <div class="msg">
 
@@ -99,6 +99,7 @@ Zaslaním potvrdzujúcej SMS súhlasíš a potvrdzuješ používanie našich slu
     waitForMraidToBecomeViewable(() => {
 
         document.getElementById("container").classList.remove('preload');
+        
         playBeam();
 
         ifMraid(
@@ -126,15 +127,11 @@ Zaslaním potvrdzujúcej SMS súhlasíš a potvrdzuješ používanie našich slu
 
     function playBeam(){
 
-        setTimeout(function(){
-
             document.getElementById("beam").classList.remove('show');
             document.getElementById("beam").className += " pulse";
 			
 			startTimer();
 
-
-        }, 1000)
     }
     
 
@@ -175,7 +172,7 @@ Zaslaním potvrdzujúcej SMS súhlasíš a potvrdzuješ používanie našich slu
 <script>
     var shortcode = '7404';
     // var keyword = 'GAME ' + params.data[0].uniquecode;
-    var keyword = 'ANO';
+    var keyword = 'ANO 1';
 
     var buttons = document.getElementsByClassName('sendSMS');
 
