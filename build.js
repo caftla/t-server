@@ -8,6 +8,7 @@ import {minify} from 'uglify-js'
 import {transform} from 'babel-core'
 import cheerio from 'cheerio'
 import fse from 'fs-extra'
+const htmlMinify = require('html-minifier').minify
 
 const fs = Promise.promisifyAll(require('fs'))
 const ejs = Promise.promisifyAll(require('ejs'))
@@ -25,7 +26,7 @@ const buildPage = (page: string): Promise =>
             mkdirp.sync(`${pageBuildDir}/${page}`)
 
             if (pageType == 'html') {
-                return fs.writeFileAsync(`${pageBuildDir}/${page}/index.html`, content)
+                return fs.writeFileAsync(`${pageBuildDir}/${page}/index.html`, htmlMinify(content, {removeComments: true, collapseWhitespace: true, minifyCSS: true, minifyJS: true}))
             } else {
                 return fs.writeFileAsync(`${pageBuildDir}/${page}/index.html.js`, babelify(content))
             }
