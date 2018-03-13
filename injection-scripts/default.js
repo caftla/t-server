@@ -4,7 +4,7 @@
 
     function sendEvent(data)
     {
-        var url = "http://tags.mobirun.net/api/event";
+        var url = "https://tags.mobirun.net/api/event";
         var xhr = createCORSRequest('POST', url);
         if (!xhr) {
             return;
