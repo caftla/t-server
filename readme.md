@@ -7,14 +7,15 @@ Setup project configurations ```npm run init```
 ### Run The Server
 ```npm run dev```
 
-### Previewing The Page
-
-To preview the page, just open your index.html file in the browser
-
 ### Build pages
 If you want to test the mraid tag from your local machine, you need to run the build command after making a change in the page
 ```npm run build-pages```
 
+### Previewing The Page
+
+To preview the page, just open your index.html file in the browser
+
+Or first build the pages and then access them by a URL like this: `http://localhost:3000/pages/html/FootballAd-300x250-TR`
 
 ### Previewing MRAID Tag
 
