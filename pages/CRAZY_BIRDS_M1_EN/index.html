@@ -158,8 +158,8 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
             e.preventDefault();
 
             gac('send', 'event', 'interaction', 'click', 'sendSMS');
-            // openUrl(getSMSHrefRaw(shortcode, keyword));
-            openUrl('http://m.frogstargames.com/sg/crazy-birds?' + toQueryString(queryStringObj))
+            openUrl(getSMSHrefRaw(shortcode, keyword));
+            // openUrl('http://m.frogstargames.com/sg/crazy-birds?' + toQueryString(queryStringObj))
         })
     }
 </script>
