@@ -35,12 +35,12 @@
 
             <div class="clickHere">
 
-                <a href="javascript:void(0);" class="sendSMS">Click here</a> to sms <strong>GAME</strong> to <strong>146079193</strong> and start playing.
+                <!-- <a href="javascript:void(0);" class="sendSMS">Click here</a> to sms <strong>GAME</strong> to <strong>146079193</strong> and start playing. -->
 
             </div>
 
 
-            <button class="btn sendSMS">Play now!</button>
+            <button class="btn sendSMS">Play Now!</button>
 
             <div class="msg">
 
@@ -75,6 +75,7 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
         "country": "SG",
         "adscenario": "crazy_birds_m1_en",
         "affiliateid": "SAM",
+        "offer": 1,
         "clickid": "qwerty"
     }
 </script>
@@ -146,16 +147,8 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
 
 
 <script>
-loadScriptWithQueryString('https://tags.mobirun.net/webapi/v2/one-click-id', toQueryString({
-    country: 'SG',
-    adscenario: 'sg_game_v5_wap_s_sam',
-    affiliateid: 'SMADMB',
-    clickid: queryStringObj.click_id
-}));
 
-function doit(params) {
     var shortcode = '146079193';
-    // var keyword = 'GAME ' + params.data[0].uniquecode;
     var keyword = 'GAME';
 
     var buttons = document.getElementsByClassName('sendSMS');
@@ -165,10 +158,10 @@ function doit(params) {
             e.preventDefault();
 
             gac('send', 'event', 'interaction', 'click', 'sendSMS');
-            openUrl(getSMSHrefRaw(shortcode, keyword));
+            // openUrl(getSMSHrefRaw(shortcode, keyword));
+            openUrl('http://m.frogstargames.com/sg/crazy-birds?' + toQueryString(queryStringObj))
         })
     }
-}
 </script>
 
 
