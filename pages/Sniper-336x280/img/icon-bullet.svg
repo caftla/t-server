@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="4px" height="20px" viewBox="0 0 4 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-bullet</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Slices" transform="translate(-137.000000, -135.000000)" fill="#FFFFFF">
+            <path d="M139.000343,135 L139.00036,135 C139.788565,135 140.428783,138.347405 140.429453,140.714653 L137.571918,140.714653 C137.571918,138.347405 138.211452,135 139.000343,135 Z M141,153.57198 L140.428767,153.57198 L140.428767,154.28599 L141,154.28599 L141,155 L137,155 L137,154.28599 L137.571233,154.28599 L137.571233,153.57198 L137,153.57198 L137,144.286418 L137.571233,141.42952 L140.428767,141.42952 L141,144.286418 L141,153.57198 Z" id="icon-bullet"></path>
+        </g>
+    </g>
+</svg>

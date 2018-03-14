@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="19px" viewBox="0 0 14 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-dead</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Slices" transform="translate(-106.000000, -136.000000)">
+            <g id="icon-dead" transform="translate(106.000000, 136.000000)">
+                <path d="M14,10.9779574 L12.139,10.7339894 C12.139,10.7339894 12.3494,5.41621277 12.3494,5.38104255 C12.3494,2.40895745 9.9626,0 7.026,0 C4.0884,0 1.7096,2.40976596 1.7096,5.38104255 C1.7096,5.43784043 1.8924,10.722266 1.8924,10.722266 L0.1104,10.9789681 L7.0774,18.9723085 L14,10.9779574 Z" id="Fill-1-Copy-2" fill="#FEFEFE" opacity="0.3"></path>
+                <polygon id="Fill-1" fill="#FFFFFF" points="10 4.72 9.28 4 7 6.28 4.72 4 4 4.72 6.28 7 4 9.28 4.72 10 7 7.72 9.28 10 10 9.28 7.72 7"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
