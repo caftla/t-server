@@ -24,20 +24,21 @@ window.onload = function (event){
 		title = document.getElementById("title"),
 		goal = document.getElementById("goal"),
 		caught = document.getElementById("catch"),
+		ctaBtn = document.getElementById("ctaBtn"),
 
 		powerBar = setInterval(powerUp, 200);
 
 		trigger.addEventListener('click',function(){
+
+			if(balls == 3){
+				ctaBtn.style.display="block";
+			}
 
 			if(chances === allowed){
 
 					kickBall();
 
 					setTimeout(function(){
-
-						//Add script here for redirection...
-
-						console.log("Process banner redirection...");
 
 						points = 0;
 						blocked = 0;
@@ -136,8 +137,6 @@ window.onload = function (event){
 					},2000);
 
 				}else{
-
-					console.log("Tap Exceeded!");
 
 				}
 

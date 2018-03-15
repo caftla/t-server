@@ -7,7 +7,7 @@
 .ad{
 	width:300px;
 	height:250px;
-	display:block; 
+	display:block;
 	overflow: hidden;
 	position: relative;
 	outline: 1px solid #000;
@@ -44,9 +44,9 @@ li{
 	margin:0px auto;
 	line-height: 50px;
 	font-weight: bold;
-	text-align: center;	
+	text-align: center;
     -webkit-animation:0.7s expandUp ease;
-    text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px;	
+    text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px;
 }
 
 @-webkit-keyframes expandUp {
@@ -58,12 +58,12 @@ li{
     }
     75%{
         -webkit-transform: translateY(3%);
-    }	
+    }
     100% {
         -webkit-transform: translateY(0%) scale(1) scaleY(1);
-    }	
-}  
-	  
+    }
+}
+
 
 #catch{
 	color:#3a0505;
@@ -73,7 +73,7 @@ li{
 	margin:0px auto;
 	font-size: 25px;
 	line-height: 50px;
-	font-weight: bold;	
+	font-weight: bold;
 	text-align: center;
     -webkit-animation:1.2s expandOpen ease-out;
     text-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px;
@@ -81,20 +81,20 @@ li{
 
 @-webkit-keyframes expandOpen {
     0% {
-        -webkit-transform: scale(1.8);		
+        -webkit-transform: scale(1.8);
     }
     50% {
         -webkit-transform: scale(0.95);
-    }	
+    }
     80% {
         -webkit-transform: scale(1.05);
     }
     90% {
         -webkit-transform: scale(0.98);
-    }	
+    }
     100% {
         -webkit-transform: scale(1);
-    }					
+    }
 }
 
 #title.active,
@@ -127,11 +127,11 @@ li{
 	0%{
 		-webkit-transform: translateX(35px);
 	}
-	
+
 	50%{
 		-webkit-transform: translateX(-35px);
 	}
-	
+
 	100%{
 		-webkit-transform: translateX(35px);
 	}
@@ -182,33 +182,33 @@ li{
 
 
 @-webkit-keyframes kickRight{
-	
+
 	0%{
 		 background-position: -60px 0px;
 		 -webkit-transform: translateX(0);
 	}
-	
-	
+
+
 	100%{
 		 background-position: -100px 0px;
 		 -webkit-transform: translateX(-20px);
 	}
-	
+
 }
 
 @-webkit-keyframes kickLeft{
-	
+
 	0%{
 		 background-position: -60px 0px;
 		 -webkit-transform: translateX(0);
 	}
-	
-	
+
+
 	100%{
 		 background-position: 0px 0px;
 		 -webkit-transform: translateX(20px);
 	}
-	
+
 }
 
 ul#power{
@@ -219,7 +219,7 @@ ul#power{
 	margin: 42px auto;
 	border-radius: 3px;
 	text-align: center;
-	background-color: #111111;	
+	background-color: #111111;
 }
 
 ul#power li{
@@ -273,7 +273,7 @@ ul#power li#color5.active{
     display: block;
     position: absolute;
     border-radius: 50%;
-    background-color: rgba(160, 203, 45, 0.45);    
+    background-color: rgba(160, 203, 45, 0.45);
 }
 
 .pulse{
@@ -314,19 +314,19 @@ ul#power li#color5.active{
 }
 
 @-webkit-keyframes round{
-	
+
 	0%{
 		-webkit-transform: rotate(-10deg) skewX(20deg);
 	}
-	
+
 	50%{
 		-webkit-transform: rotate(10deg) skewX(-20deg);
 	}
-	
+
 	100%{
 		-webkit-transform: rotate(-10deg) skewX(20deg);
 	}
-	
+
 }
 
 
@@ -394,7 +394,7 @@ button{
 	text-decoration: none;
 	text-shadow: 0px 1px 1px rgba(0,0,0,0.35);
 	box-shadow: inset 0px 1px 1px rgba(255,255,255,0.75), 0px 1px 1px rgba(0,0,0,0.75);
-	
+
 	background: #fd8d25;
     border: 1px solid #513006;
     background: -moz-linear-gradient(top, #fd8d25 0%, #fc401d 100%);
@@ -461,10 +461,10 @@ button{
     }
     95%{
         -webkit-transform: translateY(2%);
-    }			
+    }
     100% {
         -webkit-transform: translateY(0%);
-    }	
+    }
 }
 
 #balls{
@@ -481,4 +481,16 @@ button{
 	display: inline-block;
 	background-size: 100% auto;
 	background-image: url(../img/ball.png);
+}
+
+#ctaBtn{
+	left: 0;
+	right: 0;
+	bottom: 1px;
+	width: 160px;
+	height: 33px;
+	margin: 0 auto;
+	display: none;
+	position: absolute;
+	background-color: transparent;
 }
