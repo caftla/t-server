@@ -484,11 +484,11 @@ button{
 }
 
 #ctaBtn{
+	top:0;
 	left: 0;
 	right: 0;
-	bottom: 1px;
-	width: 160px;
-	height: 33px;
+	bottom: 0;
+	z-index: 999;
 	margin: 0 auto;
 	display: none;
 	position: absolute;
