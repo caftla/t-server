@@ -40,7 +40,7 @@
             </div>
 
 
-            <button class="btn sendSMS">Play Now!</button>
+            <a class="btn sendSMS">Play Now!</a>
 
             <div class="msg">
 
@@ -154,13 +154,22 @@ This is a weekly Mobile Content Based Subscription service (game service). This 
     var buttons = document.getElementsByClassName('sendSMS');
 
     for (var i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener('click', function(e) {
-            e.preventDefault();
 
-            gac('send', 'event', 'interaction', 'click', 'sendSMS');
-            // openUrl(getSMSHrefRaw(shortcode, keyword));
-            openUrl('http://m.frogstargames.com/sg/crazy-birds?' + toQueryString(queryStringObj))
-        })
+        if(buttons[i].tagName == 'A') {
+            buttons[i].setAttribute('href', getSMSHrefRaw(shortcode, keyword));
+            buttons[i].addEventListener('mousedown', function (e) {
+                gac('send', 'event', 'interaction', 'click', 'sendSMS');
+            }, false);
+        } else {
+
+            buttons[i].addEventListener('click', function(e) {
+                e.preventDefault();
+
+                gac('send', 'event', 'interaction', 'click', 'sendSMS');
+                openUrl(getSMSHrefRaw(shortcode, keyword));
+                // openUrl('http://m.frogstargames.com/sg/crazy-birds?' + toQueryString(queryStringObj))
+            })
+        }
     }
 </script>
 
