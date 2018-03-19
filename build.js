@@ -27,6 +27,11 @@ const buildPage = (page: string): Promise =>
 
             if (pageType == 'html') {
                 return fs.writeFileAsync(`${pageBuildDir}/${page}/index.html`, htmlMinify(content, {removeComments: true, collapseWhitespace: true, minifyCSS: true, minifyJS: true}))
+            } else if (pageType == 'jstag') {
+                const jstagContent = `document.write('${
+                    htmlMinify(content, {removeComments: true, collapseWhitespace: true, minifyCSS: true, minifyJS: true}).replace(/(<\/?)script/g, (_, a)=> (a + "scr'+'ipt"))
+                }')`
+                return fs.writeFileAsync(`${pageBuildDir}/${page}/index.jstag.js`, jstagContent)
             } else {
                 return fs.writeFileAsync(`${pageBuildDir}/${page}/index.html.js`, babelify(content))
             }
@@ -35,9 +40,7 @@ const buildPage = (page: string): Promise =>
             const $ = cheerio.load(html)
             const pageType = $('meta[name="x-page-type"]').attr('content')
 
-            if (pageType == 'html') {
-
-                $('head').append('<script><%- scriptBlock %><\/script>')
+            if (pageType == 'html' || pageType == 'jstag') {
 
                 // append styles to head
                 R.forEach(({inline, content})=> {
@@ -65,7 +68,7 @@ const buildPage = (page: string): Promise =>
                 })
 
                 return {
-                    pageType: 'html',
+                    pageType: pageType,
                     content: $.html()
                 }
             } else {
