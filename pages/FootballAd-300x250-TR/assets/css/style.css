@@ -490,7 +490,7 @@ button{
 	bottom: 0;
 	z-index: 999;
 	margin: 0 auto;
-	display: none;
+	display: block;
 	position: absolute;
 	background-color: transparent;
 }
