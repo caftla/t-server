@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <title>Racing Monster</title>
+        
+</head>
+
+<body>    
+	<div id="container">
+	
+    <a href="javascript:void(0)" id="close"></a>
+
+		<ul id="creative">
+			
+			<li class="ribbon"></li>
+			
+			<li id="monster">
+				<div id="msg"></div>
+			</li>
+			
+			<li class="title"></li>
+		
+			<li class="truck">
+				<ul>
+					<li class="rare"></li>
+					<li class="front"></li>
+					<li class="body"></li>
+					<li class="smoke"></li>
+					<li class="dirt"></li>	
+				</ul>		
+			</li>
+			
+			<li class="road"></li>
+			<li class="mountain"></li>
+			
+		</ul>
+	
+		<div id="holder"></div>
+    
+		<div id="section_optin1">
+			<div class="button-container">
+				<!-- <a id="cta-button" class="submit-button animated" style="display: none;"> -->
+				<a id="cta-button" class="submit-button animated">				
+					<strong><span style="font-size:22px;">Play Now!</span></strong>
+				</a>
+			</div>
+		</div>
+
+		<div id="footer"></div> 
+	
+	</div>
+	
+</body>
+<script src='../_assets/js/pageUtils.js'></script>
+<script src='../_assets/js/mraidUtils.js'></script>
+<script src='../_assets/js/gac.js'></script>
+<script>
+	var queryStringObj = {
+		"landingpage": "http%3A%2F%2Fexample.com",
+		"country": "BH",
+		"adscenario": "bh_wap_s_sam",
+		"affiliateid": "SAM",
+		"clickid": "qwerty"
+	}
+</script>
+<script type="text/javascript">
+		
+		loadScriptWithQueryString('https://tags.mobirun.net/webapi/v2/one-click-id', toQueryString(queryStringObj));
+
+		gac('create', 'UA-45774216-20');
+		gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
+		gac('set', 'page', 'racing-monster-bh');
+		gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
+		gac('set', 'dimension2', queryStringObj.pubid || 'unknown'); // publisher
+		// gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
+		gac('set', 'dimension4', 'payment-page'); // opt-in method
+		gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
+
+		gac('set', 'cs', queryStringObj.source || 'unknown');
+		gac('set', 'cm', queryStringObj.medium || 'unknown');
+		gac('set', 'cn', queryStringObj.campaign || 'unknown');
+
+		gac('send', 'pageview');
+
+		function triggerVisuals() { 
+			
+			setTimeout(function(){
+				
+				document.getElementById("monster").classList.add("slideInRight");
+				
+				setTimeout(function(){
+					
+					document.getElementById("msg").classList.add("fadeIn");
+					
+				}, 500)
+				
+			}, 600)
+		}
+		
+		var lang = navigator.language;
+
+		if(lang.startsWith("ar")) {
+			document.getElementById("container").classList.add("ar");
+			document.getElementById("cta-button").innerHTML = 'إلعب الآن!';
+		}
+
+		waitForMraidToBecomeViewable(() => {
+
+				document.getElementById("container").classList.remove('preload');
+				triggerVisuals();
+
+				ifMraid(
+					mraid => gac('set', 'dimension8', showDimension(100, mraid.getCurrentPosition()))
+					, () => { }
+				)
+
+				gac('set', 'dimension9', showDimension(100, { width: window.innerWidth, height: window.innerHeight }));
+				gac('set', 'dimension10', showDimension(100, { width: window.outerWidth, height: window.outerHeight }));
+				gac('set', 'dimension11', showDimension(100, { width: screen.width, height: screen.height }));
+
+
+				gac('send', 'pageview');
+
+			}, 2000);
+		
+		function doit(params){
+			var shortcode = '94304';
+			var keyword = 'SUB 33' + params.data[0].uniquecode;
+			
+			var button = document.getElementById('cta-button');
+			var href = getSMSHrefRaw(shortcode, keyword);
+
+			button.href = href;
+
+			button.classList.add("pulse");
+
+			button.addEventListener('mousedown', function (e) {
+				gac('send', 'event', 'interaction', 'click', 'sendSMS');
+				alert('clicked!')
+			}, false);
+
+		}
+
+	</script>
+</html>
