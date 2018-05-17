@@ -2,10 +2,12 @@
 <html>
 	
 <head>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	
+	<title>Racing Monster</title>
 
-    <title>Racing Monster</title>
-        
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
 <body>    
@@ -127,7 +129,7 @@
 		
 		function doit(params){
 			var shortcode = '94304';
-			var keyword = 'SUB 33' + params.data[0].uniquecode;
+			var keyword = 'SUB 33 ' + params.data[0].uniquecode;
 			
 			var button = document.getElementById('cta-button');
 			var href = getSMSHrefRaw(shortcode, keyword);
