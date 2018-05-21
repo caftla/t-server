@@ -58,7 +58,7 @@ ul,li{
 }
 
 #creative{
-	height: 300px;
+	height: 320px;
 	margin: 0 auto;
 	overflow: hidden;
 	position: relative;
@@ -344,13 +344,6 @@ ul,li{
 
 .pulse {
 	animation: 0.3s pulse ease-in-out infinite;
-	background: #fd8d25 !important;
-	background: -moz-linear-gradient(top, #fd8d25 0%, #fc401d 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fd8d25), color-stop(100%, #fc401d));
-	background: -webkit-linear-gradient(top, #fd8d25 0%, #fc401d 100%);
-	background: -o-linear-gradient(top, #fd8d25 0%, #fc401d 100%);
-	background: -ms-linear-gradient(top, #fd8d25 0%, #fc401d 100%);
-	background: linear-gradient(to bottom, #fd8d25 0%, #fc401d 100%);
 }
 
 
@@ -497,35 +490,44 @@ ul,li{
 .submit-button,
 .oc2sms-button,
 .sms-now{
-	/* opacity: 0; */
 	color:#fff;
 	width:240px;
 	border:none;
 	outline: none;
-    padding:15px 0;
-    margin:40px auto;
+	padding:15px 0;
+	margin:10 auto;
 	font-size:18px;
 	font-weight:bold;
 	text-align:center;
 	border-radius:25px;
-	background: #a9a9a9;
+	background: #fd8d25;
 	text-decoration:none;
 	display:inline-block;
 	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
 	box-shadow:inset 0px 1px 1px rgba(255,255,255,0.5), 0px 1px 1px rgba(0,0,0,0.2);
-	/* background: -moz-linear-gradient(top, #a9a9a9 0%, #fc401d 100%);
+	background: -moz-linear-gradient(top, #a9a9a9 0%, #fc401d 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fd8d25), color-stop(100%, #fc401d));
 	background: -webkit-linear-gradient(top, #fd8d25 0%, #fc401d 100%);
 	background: -o-linear-gradient(top, #fd8d25 0%, #fc401d 100%);
 	background: -ms-linear-gradient(top, #fd8d25 0%, #fc401d 100%);
-	background: linear-gradient(to bottom, #fd8d25 0%, #fc401d 100%); */
+	background: linear-gradient(top bottom, #fd8d25 0%, #fc401d 100%);
 	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#fd8d25', endColorstr='#fc401d', GradientType=0);
+}
+
+.submit-button:hover {
+	background: #fd8d25;
+	background: -moz-linear-gradient(top, #fc401d 0%,  #fd8d25 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fd8d25), color-stop(100%, #fc401d));
+	background: -webkit-linear-gradient(top, #fc401d 0%,  #fd8d25 100%);
+	background: -o-linear-gradient(top, #fc401d 0%,  #fd8d25 100%);
+	background: -ms-linear-gradient(top, #fc401d 0%,  #fd8d25 100%);
+	background: linear-gradient(top, #fc401d 0%,  #fd8d25 100%);
 }
 
 .sms-now{
 	display:block;
 	margin:0 auto;
-	}
+}
 
 
 @media only screen and (max-width : 320px) {

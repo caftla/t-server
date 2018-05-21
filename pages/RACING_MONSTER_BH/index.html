@@ -44,13 +44,29 @@
     
 		<div id="section_optin1">
 			<div class="button-container">
-				<a id="cta-button" class="submit-button animated">				
+				<a id="cta-button" class="submit-button animated pulse">				
 					<strong><span style="font-size:22px;">Play Now!</span></strong>
 				</a>
 			</div>
 		</div>
 
-		<div id="footer"></div> 
+		<div id="footer">
+			<p style="font-size: 14px; text-align: center; padding-top: 30px; color: #FFFFFF">OR 
+				<br><br> Send <spna style="font-weight:bold; color:#55E72C; letter-spacing: 1px;">SUB33</spna> to <spna style="font-weight:bold; color:#55E72C; letter-spacing: 1px;">94304</spna> 
+				from your Batelco phone
+			</p>
+			
+			<div style="text-align: justify; margin: 60px auto;">
+				Welcome to Buzz2mobile!
+				
+				<br>
+				Buzz2mobile is a subscription service. When you subscribe, you get access to hundreds of exicting games and apps for only BHD 0.40/week.
+				To un-subscribe at any time send UNSUB 22 to 94304. For help, please contact our support team: bh@buz2mobile.com.
+				To make use of this service you must be more than 18 years old or have received permission from your parents or person who is authorized to pay your bill. 
+				By following subscription instructions on this ad., you agree to Buzz2mobile’s Terms of Service and Privacy Policy.
+			</div>
+
+		</div> 
 	
 	</div>
 	
@@ -68,6 +84,8 @@
 	}
 </script>
 <script type="text/javascript">
+		
+		document.getElementById('cta-button').href = getSMSHrefRaw('SUB33', '94304');
 		
 		loadScriptWithQueryString('https://tags.mobirun.net/webapi/v2/one-click-id', toQueryString(queryStringObj));
 
@@ -100,13 +118,6 @@
 				
 			}, 600)
 		}
-		
-		var lang = navigator.language;
-
-		if (lang.startsWith("ar")) {
-			document.getElementById("container").classList.add("ar");
-			document.getElementById("cta-button").innerHTML = 'إلعب الآن!';
-		}
 
 		waitForMraidToBecomeViewable(() => {
 
@@ -125,18 +136,16 @@
 
 				gac('send', 'pageview');
 
-			}, 2000);
+			}, 3000);
 		
 		function doit(params){
 			var shortcode = '94304';
-			var keyword = 'SUB 33 ' + params.data[0].uniquecode;
+			var keyword = 'SUB33 ' + params.data[0].uniquecode;
 			
 			var button = document.getElementById('cta-button');
 			var href = getSMSHrefRaw(shortcode, keyword);
-
+			
 			button.href = href;
-
-			button.classList.add("pulse");
 
 			button.addEventListener('mousedown', function (e) {
 				gac('send', 'event', 'interaction', 'click', 'sendSMS');
