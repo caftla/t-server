@@ -40,23 +40,25 @@
 			
 		</ul>
 	
-		<div id="holder"></div>
+		<div id="timer-area"><span>Limited time offer</span> <span id="timer">5:00</span></div>
+	
+		<div id="holder">
     
-		<div id="section_optin1">
-			<div class="button-container">
-				<a id="cta-button" class="submit-button animated pulse">				
-					<strong><span style="font-size:22px;">Play Now!</span></strong>
-				</a>
+			<h1>Start playing now! Click the button below:</h1>
+    
+			<div id="section_optin1">
+				<div class="button-container">
+					<a id="cta-button" class="submit-button animated pulse">				
+						Send SMS <span>SUB33</span> to <span>94304</span>
+					</a>
+				</div>
 			</div>
+		
 		</div>
 
 		<div id="footer">
-			<p style="font-size: 14px; text-align: center; padding-top: 30px; color: #FFFFFF">OR 
-				<br><br> Send <spna style="font-weight:bold; color:#55E72C; letter-spacing: 1px;">SUB33</spna> to <spna style="font-weight:bold; color:#55E72C; letter-spacing: 1px;">94304</spna> 
-				from your Batelco phone
-			</p>
-			
-			<div style="text-align: justify; margin: 60px auto;">
+						
+			<div style="text-align: justify; margin: 30px auto;">
 				Welcome to Buzz2mobile!
 				
 				<br>
@@ -123,6 +125,7 @@
 
 				document.getElementById("container").classList.remove('preload');
 				triggerVisuals();
+				startTimer();
 
 				ifMraid(
 					mraid => gac('set', 'dimension8', showDimension(100, mraid.getCurrentPosition()))
@@ -151,6 +154,36 @@
 				gac('send', 'event', 'interaction', 'click', 'sendSMS');
 			}, false);
 		}
+		
+		function startTimer() {
+	
+		var presentTime = document.getElementById('timer').innerHTML;
+		var timeArray = presentTime.split(/[:]+/);
+		var m = timeArray[0];
+		var s = checkSecond((timeArray[1] - 1));
+		
+		if(s==59){m=m-1}
+		
+		if(m<0){
+		
+		document.getElementById('timer').innerHTML= "00:00";
+		
+		}
+		
+		document.getElementById('timer').innerHTML = m + ":" + s;
+			setTimeout(startTimer, 1000);
+		}
+		
+		function checkSecond(sec) {
+		
+		if (sec < 10 && sec >= 0) {sec = "0" + sec}; 
+		
+		if (sec < 0) {sec = "59"};
+		
+		return sec;
+	
+		}
+			
 
 	</script>
 </html>

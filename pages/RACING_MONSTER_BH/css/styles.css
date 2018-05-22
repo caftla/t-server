@@ -94,7 +94,7 @@ ul,li{
 }
 
 .truck{
-    top: 155px;
+    top: 180px;
     z-index: 3;
     width: 180px;
     height: 102px;
@@ -279,8 +279,41 @@ ul,li{
 	}
 }
 
+#timer-area{
+	top:280px;
+	left:0;
+	right:0;
+	color:#fff;
+	z-index: 15;
+	padding: 5px;
+	display: block;
+	font-size: 12px;
+	position: absolute;
+	text-align: center;
+	text-transform: uppercase;
+	background-color: rgba(0,0,0,0.75);
+}
+
+#cta-button span{
+	color:#FFEB3B;
+}
+
+#timer-area #timer{
+	color:#fff;
+}
+
+#timer-area span{
+	color:#FFEB3B;
+}
+
+#holder h1{
+	color:#fff;
+	font-size: 14px;
+	margin: 15px 0 10px ;
+}
+
 #monster{
-	bottom:-20px;
+	bottom:40px;
 	z-index: 8;
 	width:70px;
 	right:-10px;
@@ -487,16 +520,14 @@ ul,li{
 	text-align: justify;
 }
 
-.submit-button,
-.oc2sms-button,
-.sms-now{
+.submit-button{
 	color:#fff;
 	width:240px;
 	border:none;
 	outline: none;
 	padding:15px 0;
 	margin:10 auto;
-	font-size:18px;
+	font-size:16px;
 	font-weight:bold;
 	text-align:center;
 	border-radius:25px;
