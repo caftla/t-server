@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	
+	<title>Racing Monster</title>
+
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>    
+	<div id="container">
+	
+    <a href="javascript:void(0)" id="close"></a>
+
+		<h1 style="direction: rtl;
+    position: absolute;
+    left: 50px;
+    right: 50px;
+    text-align: center;
+    top: 121px;
+    z-index: 100000;
+    color: #fff;
+    text-shadow: #fff 0 0 10px;">ابدأ اللعب الآن!</h1>
+
+		<ul id="creative">
+			
+			<li class="ribbon"></li>
+			
+			<li id="monster">
+				<div id="msg"></div>
+			</li>
+			
+			<li class="title"></li>
+		
+			<li class="truck">
+				<ul>
+					<li class="rare"></li>
+					<li class="front"></li>
+					<li class="body"></li>
+					<li class="smoke"></li>
+					<li class="dirt"></li>	
+				</ul>		
+			</li>
+			
+			<li class="road"></li>
+			<li class="mountain"></li>
+			
+		</ul>
+	
+		<div id="timer-area"><span>عرض محدود</span> <span id="timer">5:00</span></div>
+	
+		<div id="holder">
+    
+			<div id="section_optin1">
+				<div class="button-container">
+					<a id="cta-button" class="submit-button animated pulse" style="font-size: 14pt; direction: rtl; margin-top: 20px">				
+						 إشترك الآن!
+					</a>
+				</div>
+			</div>
+		
+		</div>
+
+		<div id="footer">
+						
+			<!-- <div style="text-align: justify; margin: 30px auto; direction: rtl">
+مرحباً بك في خدمة VideozLand تقدم هذه الخدمة مكتبة متنوعة من الفيديوهات المتميزة
+	<br> عند الاشتراك في الخدمة سوف تحصل على فترة مجانية لمدة ثلاثة أيام ستتلقى بعدها رسالة يوميا بسعر 300 دينار عراقي لكل رسالة،
+	لإلغاء الاشتراك ارسل 0 إلى 2888
+			</div> -->
+
+		</div> 
+	
+	</div>
+	
+</body>
+<script src='../_assets/js/pageUtils.js'></script>
+<script src='../_assets/js/mraidUtils.js'></script>
+<script src='../_assets/js/gac.js'></script>
+<script data-remove>
+	var queryStringObj = {
+		"country": "BH"
+	}
+</script>
+<script type="text/javascript">
+		
+		var lp_url = 'http://n.videozland.com/iq/best-videos-dmb?offer=' + queryStringObj.offer + '&atmobirun=1&click_id=' + queryStringObj.click_id + '&inventory_domain=' + queryStringObj.inventory_domain + '&sub_id=' + queryStringObj.sub_id;
+
+		if(typeof mraid != "undefined" && !!mraid.open) {
+			var cb = function() { 
+				mraid.open(lp_url)
+			}
+			document.getElementById('cta-button').addEventListener('click', cb)
+			document.getElementById('container').addEventListener('click', cb)
+		} else {
+			document.getElementById('cta-button').href = lp_url;
+			document.getElementById('container').href = lp_url;
+		}
+		
+		gac('create', 'UA-45774216-20');
+		gac('set', 'cid', queryStringObj.clientid || (new Date()).getTime());
+		gac('set', 'page', 'racing_monster_iq');
+		gac('set', 'dimension1', queryStringObj.campaignid || 'unknown'); // campaignid
+		gac('set', 'dimension2', queryStringObj.pubid || 'unknown'); // publisher
+		// gac('set', 'dimension3', queryStringObj.network || 'unknown');  // network
+		gac('set', 'dimension4', 'payment-page'); // opt-in method
+		gac('set', 'dimension5', typeof isMraid != "undefined" && isMraid ? 'mraid' : 'not_mraid');
+
+		gac('set', 'cs', queryStringObj.source || 'unknown');
+		gac('set', 'cm', queryStringObj.medium || 'unknown');
+		gac('set', 'cn', queryStringObj.campaign || 'unknown');
+
+		gac('send', 'pageview');
+
+		function triggerVisuals() { 
+			
+			setTimeout(function(){
+				
+				document.getElementById("monster").classList.add("slideInRight");
+				
+				setTimeout(function(){
+					
+					document.getElementById("msg").classList.add("fadeIn");
+					
+				}, 500)
+				
+			}, 600)
+		}
+
+		waitForMraidToBecomeViewable(() => {
+
+				document.getElementById("container").classList.remove('preload');
+				triggerVisuals();
+				startTimer();
+
+				ifMraid(
+					mraid => gac('set', 'dimension8', showDimension(100, mraid.getCurrentPosition()))
+					, () => { }
+				)
+
+				gac('set', 'dimension9', showDimension(100, { width: window.innerWidth, height: window.innerHeight }));
+				gac('set', 'dimension10', showDimension(100, { width: window.outerWidth, height: window.outerHeight }));
+				gac('set', 'dimension11', showDimension(100, { width: screen.width, height: screen.height }));
+
+
+				gac('send', 'pageview');
+
+			}, 3000);
+		
+		
+		function startTimer() {
+	
+		var presentTime = document.getElementById('timer').innerHTML;
+		var timeArray = presentTime.split(/[:]+/);
+		var m = timeArray[0];
+		var s = checkSecond((timeArray[1] - 1));
+		
+		if(s==59){m=m-1}
+		
+		if(m<0){
+		
+		document.getElementById('timer').innerHTML= "00:00";
+		
+		}
+		
+		document.getElementById('timer').innerHTML = m + ":" + s;
+			setTimeout(startTimer, 1000);
+		}
+		
+		function checkSecond(sec) {
+		
+		if (sec < 10 && sec >= 0) {sec = "0" + sec}; 
+		
+		if (sec < 0) {sec = "59"};
+		
+		return sec;
+	
+		}
+			
+
+	</script>
+</html>

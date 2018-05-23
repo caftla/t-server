@@ -94,3 +94,35 @@ Tag example
 "
 />
 ```
+
+```
+<script src="mraid.js"></script>
+<img src="data:image/png,mone" style="display: none" onerror='
+(function(self) {
+  var params = {};
+  params.offer = 1245;
+  params.cid = 3;
+  params.subid = "[SUB_ID]";
+  params._app = "[SITE_DOMAIN_APP_NAME]";
+  params.aff_sub6 = "SmartyAds";
+  params.campaignid = 3;
+  params.source = "SmartyAds";
+  params.medium = "cpc";
+  params.campaign = "FLAMILINGO_ES";
+  params.publisherid = "[PUBLISHER_ID]";
+  params._os = "[OS]";
+  params._city = "[CITY]";
+  params._country = "[COUNTRY]";
+  params._width = "[WIDTH]";
+  params._height = "[HEIGHT]";
+  params.clickid = "[HASH]";
+  var src = "http://localhost:3000/pages/RACING_MONSTER_IQ?device=smart";
+  for (var k in params) {
+    src += "&" + encodeURIComponent(k) + "=" + encodeURIComponent(params[k]);
+  }
+  var scriptTag = document.createElement("script");
+  scriptTag.id = "mobirun-script";
+  scriptTag.src = src;
+  document.head.appendChild(scriptTag);
+})(this);' />
+```
